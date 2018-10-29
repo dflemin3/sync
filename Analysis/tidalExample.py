@@ -34,7 +34,7 @@ cpl = np.genfromtxt(os.path.join(cplDir,"bintides.secondary.forward"))
 ctl = np.genfromtxt(os.path.join(ctlDir,"bintides.secondary.forward"))
 
 # Plot e, Porb, Prot
-fig, axes = plt.subplots(nrows=3, figsize=(9,24), sharex=True)
+fig, axes = plt.subplots(nrows=3, figsize=(6,16), sharex=True)
 
 # Left: e
 axes[0].plot(cpl[:,0], cpl[:,5], lw=3, ls="-", color="C0", label="CPL")
