@@ -1,0 +1,7 @@
+*vplot_config.py
+*.DS_Store
+*.pyc
+*.ipynb_checkpoints
+*.forward
+*.log
+References/
