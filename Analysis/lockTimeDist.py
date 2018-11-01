@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['font.size'] = 18.0
+mpl.rcParams['font.size'] = 16.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
@@ -71,10 +71,10 @@ porbBinEdges = [0, 20, 40, 60, 80, 100]
 
 fig = plt.figure(figsize=(5, 15))
 
-gs = GridSpec(9, 1, height_ratios=[1, 0.001,
-                                   1, 0.001,
-                                   1, 0.001,
-                                   1, 0.001, 1])
+gs = GridSpec(9, 1, height_ratios=[1, 0.05,
+                                   1, 0.05,
+                                   1, 0.05,
+                                   1, 0.05, 1])
 
 # Loop over gridspec
 for ii in range(9):
@@ -96,13 +96,41 @@ for ii in range(9):
         ax.hist(ctl["Pri_LockTime"][ctlMask].values/1.0e9, bins="auto", color="C1", label="CTL",
                 histtype="step", normed=True, lw=3)
 
+        # Ignore unlocked systems for calculations
+        cplMask = cplMask & (cpl["Pri_LockTime"][cplMask] < 7.0e9)
+        ctlMask = ctlMask & (ctl["Pri_LockTime"][ctlMask] < 7.0e9)
+
+        # Annotate with medians, 25,75 percentiles
+        med = np.median(cpl["Pri_LockTime"][cplMask].values/1.0e9)
+        up = np.percentile(cpl["Pri_LockTime"][cplMask].values/1.0e9, 75) - med
+        down = med - np.percentile(cpl["Pri_LockTime"][cplMask].values/1.0e9, 25)
+        ax.text(0.76, 0.9, ("CPL: $%.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up, down)),
+                ha="center", va="center", size=14, color="C0", zorder=100,
+                bbox=dict(boxstyle="square", fc="white", ec="white", alpha=0.0),
+                transform=ax.transAxes)
+
+        med = np.median(ctl["Pri_LockTime"][ctlMask].values/1.0e9)
+        up = np.percentile(ctl["Pri_LockTime"][ctlMask].values/1.0e9, 75) - med
+        down = med - np.percentile(ctl["Pri_LockTime"][ctlMask].values/1.0e9, 25)
+        ax.text(0.76, 0.76, ("CTL: $%.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up, down)),
+                ha="center", va="center", size=14, color="C1", zorder=100,
+                bbox=dict(boxstyle="square", fc="white", ec="white", alpha=0.0),
+                transform=ax.transAxes)
+
         # Uniform x axis limits
         ax.set_xlim(0, 7)
 
+        # Annotate with period range
+        up = porbBinEdges[ii//2]
+        down = porbBinEdges[ii//2 + 1]
+        ax.set_title("$%.0lf$ $<$ P$_{orb}$ $<$ $%.0lf$ [d]" % (up, down),
+                     fontsize=12, weight="bold")
+
         if ii == 4:
-            ax.set_ylabel("Normalized Counts [Arbitrary Units]", fontsize=23, labelpad=10)
+            ax.set_ylabel("Normalized Counts [Arbitrary Units]", fontsize=20,
+                          labelpad=10)
 
 # Format last axis
-ax.set_xlabel("Tidal Locking Time [Gyr]", fontsize=23)
+ax.set_xlabel("Tidal Locking Time [Gyr]", fontsize=20)
 
 fig.savefig("../Plots/lockTimePorbHist.pdf", bbox_inches="tight", dpi=600)
