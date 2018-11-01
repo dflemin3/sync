@@ -71,10 +71,10 @@ porbBinEdges = [0, 20, 40, 60, 80, 100]
 
 fig = plt.figure(figsize=(5, 15))
 
-gs = GridSpec(9, 1, height_ratios=[1, 0.05,
-                                   1, 0.05,
-                                   1, 0.05,
-                                   1, 0.05, 1])
+gs = GridSpec(9, 1, height_ratios=[1, 0.1,
+                                   1, 0.1,
+                                   1, 0.1,
+                                   1, 0.1, 1])
 
 # Loop over gridspec
 for ii in range(9):
@@ -104,16 +104,16 @@ for ii in range(9):
         med = np.median(cpl["Pri_LockTime"][cplMask].values/1.0e9)
         up = np.percentile(cpl["Pri_LockTime"][cplMask].values/1.0e9, 75) - med
         down = med - np.percentile(cpl["Pri_LockTime"][cplMask].values/1.0e9, 25)
-        ax.text(0.76, 0.9, ("CPL: $%.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up, down)),
-                ha="center", va="center", size=14, color="C0", zorder=100,
+        ax.text(0.75, 0.9, ("CPL: $%.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up, down)),
+                ha="center", va="center", size=15, color="C0", zorder=100,
                 bbox=dict(boxstyle="square", fc="white", ec="white", alpha=0.0),
                 transform=ax.transAxes)
 
         med = np.median(ctl["Pri_LockTime"][ctlMask].values/1.0e9)
         up = np.percentile(ctl["Pri_LockTime"][ctlMask].values/1.0e9, 75) - med
         down = med - np.percentile(ctl["Pri_LockTime"][ctlMask].values/1.0e9, 25)
-        ax.text(0.76, 0.76, ("CTL: $%.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up, down)),
-                ha="center", va="center", size=14, color="C1", zorder=100,
+        ax.text(0.75, 0.75, ("CTL: $%.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up, down)),
+                ha="center", va="center", size=15, color="C1", zorder=100,
                 bbox=dict(boxstyle="square", fc="white", ec="white", alpha=0.0),
                 transform=ax.transAxes)
 
@@ -124,7 +124,7 @@ for ii in range(9):
         up = porbBinEdges[ii//2]
         down = porbBinEdges[ii//2 + 1]
         ax.set_title("$%.0lf$ $<$ P$_{orb}$ $<$ $%.0lf$ [d]" % (up, down),
-                     fontsize=12, weight="bold")
+                     fontsize=15, weight="bold")
 
         if ii == 4:
             ax.set_ylabel("Normalized Counts [Arbitrary Units]", fontsize=20,
