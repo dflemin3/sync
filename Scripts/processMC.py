@@ -46,7 +46,7 @@ for ii, directory in enumerate(dirs):
     # List to hold this sim's data (row in df)
     tmp = []
 
-    # Read in mass from primary input file
+    # Read in mass, tidal Q from primary input file
     with open(os.path.join(directory, primary_name), 'r') as f:
         primary_in = f.read()
 
@@ -54,6 +54,11 @@ for ii, directory in enumerate(dirs):
         dMass = re.findall('%s(.*?)#' % 'dMass', primary_in)[0]
         dMass = float("".join(dMass.split()))
         tmp.append(dMass)
+
+        # Find the line where dTidalQ lives, remove whitespace, make it a float
+        dTidalQ = re.findall('%s(.*?)#' % 'dTidalQ', primary_in)[0]
+        dTidalQ = float("".join(dTidalQ.split()))
+        tmp.append(dTidalQ)
 
     # Read in mass from secondary input file
     with open(os.path.join(directory, secondary_name), 'r') as f:
@@ -63,6 +68,11 @@ for ii, directory in enumerate(dirs):
         dMass2 = re.findall('%s(.*?)#' % 'dMass', secondary_in)[0]
         dMass2 = float("".join(dMass2.split()))
         tmp.append(dMass2)
+
+        # Find the line where dTidalQ lives, remove whitespace, make it a float
+        dTidalQ2 = re.findall('%s(.*?)#' % 'dTidalQ', secondary_in)[0]
+        dTidalQ2 = float("".join(dTidalQ2.split()))
+        tmp.append(dTidalQ2)
 
     # Pull LockTimes out of logfile
     with open(os.path.join(os.path.join(directory, logfile_name)), 'r') as f:
@@ -129,7 +139,7 @@ for ii, directory in enumerate(dirs):
     table.append(tmp)
 
 # Make df with the following columns:
-headers = ["Pri_dMass", "Sec_dMass", "Pri_LockTime", "Sec_LockTime", "Age"]
+headers = ["Pri_dMass", "Pri_dTidaLQ", "Sec_dMass", "Sec_dTidalQ", "Pri_LockTime", "Sec_LockTime", "Age"]
 headers = headers + ["Pri_ProtInitial", "Pri_ProtAge", "Pri_ProtFinal"]
 headers = headers + ["Sec_ProtInitial", "Sec_ProtAge", "Sec_ProtFinal"]
 headers = headers + ["Initial_Ecc", "Final_Ecc", "Age_Ecc"]

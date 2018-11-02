@@ -3,9 +3,8 @@
 @author: David P. Fleming, University of Washington, Oct 2018
 @email: dflemin3 (at) uw (dot) edu
 
-TODO:
-- Write description
-- Annotate multipanel figure
+Construct marginalize histograms of tidal locking times in multiple orbital
+period bins.
 
 Script output:
 
@@ -29,9 +28,6 @@ mpl.rcParams['font.size'] = 16.0
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
 mpl.rc('text', usetex=True)
-
-# Constants
-EPS = 1.0e-10 # Small-enough number
 
 # Load data
 cpl = pd.read_csv("../Data/mcCPL.csv")
