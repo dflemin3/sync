@@ -95,4 +95,28 @@ cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity")
 
 fig.savefig("../Plots/lurie.pdf", bbox_inches="tight", dpi=600)
+
+### Now make marginal distribution plot of Porb/Prot for CPL, CTL, and Lurie
+fig, ax = plt.subplots()
+
+bins = np.logspace(np.log10(0.5), np.log10(5), 25)
+
+ax.hist(cpl["Age_Porb"]/cpl["Pri_ProtAge"], bins=bins, histtype="step", lw=2.5,
+        color="C0", density=True, label="CPL",
+        range=[np.log10(0.5), np.log10(5)])
+ax.hist(ctl["Age_Porb"]/ctl["Pri_ProtAge"], bins=bins, histtype="step", lw=2.5,
+        color="C1", density=True, label="CTL",
+        range=[np.log10(0.5), np.log10(5)])
+ax.hist(lurie["Porb"]/lurie["Prot"], bins=bins, histtype="step", lw=2.5,
+        color="red", density=True, label="Lurie et al. (2017)",
+        range=[np.log10(0.5), np.log10(5)])
+
+# Format, save
+ax.set_ylabel("Normalized Counts", fontsize=20)
+ax.set_xlabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
+ax.set_xscale("log")
+ax.legend(loc="best", framealpha=0, fontsize=18)
+fig.tight_layout()
+fig.savefig("../Plots/lurieHist.pdf", bbox_inches="tight", dpi=600)
+
 # Done!

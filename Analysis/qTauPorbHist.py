@@ -19,7 +19,7 @@ mpl.rcParams['font.size'] = 20.0
 cmap = "inferno_r"
 
 ## for Palatino and other serif fonts use:
-mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
+mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Load data
