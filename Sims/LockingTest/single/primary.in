@@ -1,0 +1,18 @@
+# The host star, the sun -> Primary body!
+sName		primary		# Body's name
+saModules       stellar
+
+# Physical Parameters
+iBodyType     1 # Star!
+dMass         1.0                        # Mass, solar masses
+dAge          5.0e6
+dRotPeriod    -1.0
+
+# STELLAR Parameters
+sStellarModel baraffe
+sMagBrakingModel matt
+
+# Some options are allowed to only appear in one file, but it can be primary or body.
+# That should really be documented!
+
+saOutputOrder	Time -Radius -RotPer -RotRate -LostAngMom RadGyra 

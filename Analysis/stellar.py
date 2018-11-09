@@ -17,10 +17,10 @@ import matplotlib.pyplot as plt
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 25.0
+mpl.rcParams['font.size'] = 30.0
 
 ## for Palatino and other serif fonts use:
-mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
+mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Read in output files
@@ -30,6 +30,9 @@ path = "../Sims/StellarEvolution/"
 g = np.genfromtxt(os.path.join(path,"stellar.g.forward"))
 k = np.genfromtxt(os.path.join(path,"stellar.k.forward"))
 m = np.genfromtxt(os.path.join(path,"stellar.m.forward"))
+gr = np.genfromtxt(os.path.join(path,"stellar.gr.forward"))
+kr = np.genfromtxt(os.path.join(path,"stellar.kr.forward"))
+mr = np.genfromtxt(os.path.join(path,"stellar.mr.forward"))
 
 # All on same time grid
 time = g[:,0]
@@ -55,7 +58,7 @@ ax[0].scatter(time[ind_k], k[ind_k,1], s=75, color="C1")
 ax[0].scatter(time[ind_m], m[ind_m,1], s=75, color="C2")
 
 # Format
-ax[0].legend()
+ax[0].legend(loc="best", framealpha=0, fontsize=25)
 ax[0].set_ylabel("Radius [R$_{\odot}$]")
 ax[0].set_xlabel("$t - t_0$ [yr]")
 
@@ -88,6 +91,18 @@ ax[2].scatter(time[ind_g], g[ind_g,2], s=75, color="C0")
 ax[2].scatter(time[ind_k], k[ind_k,2], s=75, color="C1")
 ax[2].scatter(time[ind_m], m[ind_m,2], s=75, color="C2")
 
+ax[2].plot(time, gr[:,2], lw=2.5, color="C0", ls="--",)
+ax[2].plot(time, kr[:,2], lw=2.5, color="C1", ls="--",)
+ax[2].plot(time, mr[:,2], lw=2.5, color="C2", ls="--",)
+
+# Plot points to indicate ZAMS
+ax[2].scatter(time[ind_g], gr[ind_g,2], s=75, color="C0")
+ax[2].scatter(time[ind_k], kr[ind_k,2], s=75, color="C1")
+ax[2].scatter(time[ind_m], mr[ind_m,2], s=75, color="C2")
+
+ax[2].plot([100], [100], lw=2.5, ls="-", color="grey", label="Matt et al. (2015)")
+ax[2].plot([100], [100], lw=2.5, ls="--", color="grey", label="Reiners \& Mohanty (2012)")
+
 # Format
 ax[2].set_ylabel("Rotation Period [d]")
 ax[2].set_xlabel("$t - t_0$ [yr]")
@@ -95,6 +110,7 @@ ax[2].set_xlim(1.0e6,time[-1])
 ax[2].set_ylim(0.5e-1,1.0e2)
 ax[2].set_xscale("log")
 ax[2].set_yscale("log")
+ax[2].legend(loc="upper left", framealpha=0, fontsize=22)
 
 # Save!
 fig.tight_layout()

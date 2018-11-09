@@ -1,0 +1,18 @@
+# The primary star
+sName		gr		# Body's name
+saModules stellar
+
+# Physical Parameters
+iBodyType       1
+dMass		1.0		# Mass, negative -> Earth masses
+dAge            5.0e6           # Disk-binary interactions occur before this time
+dRotPeriod      -1.0            # Rotation period in days
+
+# STELLAR parameters
+sStellarModel baraffe                     # Stellar evolutin model: `baraffe` or `none`
+sMagBrakingModel reiners
+
+# Some options are allowed to only appear in one file, but it can be primary or body.
+# That should really be documented!
+
+saOutputOrder Time -Radius -RotPer -TotEn -TotAng RadGyra

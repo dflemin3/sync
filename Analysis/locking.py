@@ -10,13 +10,14 @@ in the Kepler field.
 
 Script Output:
 
-CPL locked Prot median: 28.989571500000004
-CPL unlocked Prot median: 40.65482
-CPL fraction of locked binaries: 0.5742
+CPL locked Prot median: 27.049087
+CPL unlocked Prot median: 42.744551
+CPL fraction of locked binaries: 0.2518
 
-CTL locked Prot median: 25.438067999999998
-CTL unlocked Prot median: 40.002216
-CTL fraction of locked binaries: 0.5357
+CTL locked Prot median: 4.683883
+CTL unlocked Prot median: 42.3556655
+CTL fraction of locked binaries: 0.0202
+
 
 """
 
@@ -43,8 +44,8 @@ seed = 42
 np.random.seed(seed)
 
 # Load in data
-cpl = pd.read_csv("../Data/mcCPL.csv")
-ctl = pd.read_csv("../Data/mcCTL.csv")
+cpl = pd.read_csv("../Data/mcCPLTorque.csv")
+ctl = pd.read_csv("../Data/mcCTLTorque.csv")
 
 # Create indices for a random sample of num points to make scatterplot legible
 inds = np.random.choice(np.arange(len(cpl)), size=num, replace=False)

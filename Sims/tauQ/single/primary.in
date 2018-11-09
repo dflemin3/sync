@@ -5,8 +5,8 @@ saModules       stellar
 # Physical Parameters
 iBodyType     1 # Star!
 dMass         1.0                        # Mass, solar masses
-dAge          5.0e6
-dRotPeriod    -1.0
+dAge          1.0e6
+dRotPeriod    -1.67
 
 # STELLAR Parameters
 sStellarModel baraffe

@@ -21,9 +21,11 @@ mpl.rcParams['font.size'] = 22.0
 mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
+plotLurie = True
+
 # Load data
-cpl = pd.read_csv("../Data/mcCPL.csv")
-ctl = pd.read_csv("../Data/mcCTL.csv")
+cpl = pd.read_csv("../Data/mcCPLTorque.csv")
+ctl = pd.read_csv("../Data/mcCTLTorque.csv")
 
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])
@@ -33,6 +35,8 @@ cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9
 cpl["Sec_LockTime"][cpl["Sec_LockTime"] < 0] = 7.0e9
 ctl["Pri_LockTime"][ctl["Pri_LockTime"] < 0] = 7.0e9
 ctl["Sec_LockTime"][ctl["Sec_LockTime"] < 0] = 7.0e9
+
+# 1st Fig modeled after Fig. 6, upper panel from Lurie+2017
 
 fig = plt.figure(figsize=(19, 8))
 gs = GridSpec(1, 5, width_ratios=[1, 0.05, 1, 0.01, 0.075], wspace=0.05)
@@ -45,12 +49,13 @@ im = ax0.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
                  c=cpl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
-# Plot Lurie+2017 data
-ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=50, zorder=2,
-            marker="x", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+if plotLurie:
+    # Plot Lurie+2017 data
+    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
+                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
-# Plot Lurie+2017 detection limit of 45 d
-ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
+    # Plot Lurie+2017 detection limit of 45 d
+    ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
 
 # Format
 ax0.set_rasterization_zorder(0)
@@ -61,10 +66,11 @@ ax0.set_yscale("log")
 ax0.set_xlabel("P$_{orb}$ [d]", fontsize=25)
 ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
 ax0.set_title("CPL")
-leg = ax0.legend(loc="best", framealpha=0.0)
+leg = ax0.legend(loc="upper left", framealpha=0.75, fontsize=25)
 leg.legendHandles[0]._sizes = [100]
 leg.legendHandles[0].set_color('k')
-leg.legendHandles[1]._sizes = [100]
+if plotLurie:
+    leg.legendHandles[1]._sizes = [100]
 
 ### CTL Plots ###
 # Plot simulated data
@@ -73,12 +79,13 @@ im = ax1.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
                  c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
-# Plot Lurie+2017 data
-ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=50, zorder=2,
-           marker="x", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+if plotLurie:
+    # Plot Lurie+2017 data
+    ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
+               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
-# Plot Lurie+2017 detection limit of 45 d
-ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
+    # Plot Lurie+2017 detection limit of 45 d
+    ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
 
 # Format
 ax1.set_rasterization_zorder(0)
@@ -94,29 +101,73 @@ cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity")
 
-fig.savefig("../Plots/lurie.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lurieFig6.pdf", bbox_inches="tight", dpi=600)
 
-### Now make marginal distribution plot of Porb/Prot for CPL, CTL, and Lurie
-fig, ax = plt.subplots()
+### 2nd Fig modeled after Fig. 7 from Lurie+2017 ###
 
-bins = np.logspace(np.log10(0.5), np.log10(5), 25)
+fig = plt.figure(figsize=(19, 8))
+gs = GridSpec(1, 5, width_ratios=[1, 0.05, 1, 0.01, 0.075], wspace=0.05)
 
-ax.hist(cpl["Age_Porb"]/cpl["Pri_ProtAge"], bins=bins, histtype="step", lw=2.5,
-        color="C0", density=True, label="CPL",
-        range=[np.log10(0.5), np.log10(5)])
-ax.hist(ctl["Age_Porb"]/ctl["Pri_ProtAge"], bins=bins, histtype="step", lw=2.5,
-        color="C1", density=True, label="CTL",
-        range=[np.log10(0.5), np.log10(5)])
-ax.hist(lurie["Porb"]/lurie["Prot"], bins=bins, histtype="step", lw=2.5,
-        color="red", density=True, label="Lurie et al. (2017)",
-        range=[np.log10(0.5), np.log10(5)])
+### CPL Plot ###
 
-# Format, save
-ax.set_ylabel("Normalized Counts", fontsize=20)
-ax.set_xlabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
-ax.set_xscale("log")
-ax.legend(loc="best", framealpha=0, fontsize=18)
-fig.tight_layout()
-fig.savefig("../Plots/lurieHist.pdf", bbox_inches="tight", dpi=600)
+# Plot simulated data
+ax0 = fig.add_subplot(gs[0])
+im = ax0.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
+                 c=cpl["Age_Ecc"].values, cmap="viridis", zorder=1,
+                 s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
+
+ax0.axhline(1, lw=2, color="black", ls="-", zorder=2)
+
+if plotLurie:
+    # Plot Lurie+2017 data
+    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
+                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+
+    # Plot Lurie+2017 detection limit of 45 d
+    ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
+
+# Format
+ax0.set_rasterization_zorder(0)
+ax0.set_xlim(0,50)
+ax0.set_ylim(0.0, 3)
+ax0.set_xlabel("P$_{orb}$ [d]", fontsize=25)
+ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
+ax0.set_title("CPL")
+leg = ax0.legend(loc="lower right", framealpha=0.75, fontsize=15)
+leg.legendHandles[0]._sizes = [50]
+leg.legendHandles[0].set_color('k')
+if plotLurie:
+    leg.legendHandles[1]._sizes = [50]
+
+### CTL Plots ###
+# Plot simulated data
+ax1 = fig.add_subplot(gs[2])
+im = ax1.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
+                 c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
+                 s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
+
+ax1.axhline(1, lw=2, color="black", ls="-", zorder=2)
+
+if plotLurie:
+    # Plot Lurie+2017 data
+    ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
+               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+
+    # Plot Lurie+2017 detection limit of 45 d
+    ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=2)
+
+# Format
+ax1.set_rasterization_zorder(0)
+ax1.set_xlim(0,50)
+ax1.set_ylim(0.0, 3)
+ax1.set_xlabel("P$_{orb}$ [d]", fontsize=25)
+ax1.set_title("CTL")
+
+### Colorbar ###
+cbaxes = fig.add_subplot(gs[4])
+cb = plt.colorbar(im, cax=cbaxes)
+cb.set_label(label="Eccentricity")
+
+fig.savefig("../Plots/lurieFig7.pdf", bbox_inches="tight", dpi=600)
 
 # Done!

@@ -46,7 +46,7 @@ for ii, directory in enumerate(dirs):
     # List to hold this sim's data (row in df)
     tmp = []
 
-    # Read in mass, tidal Q from primary input file
+    # Read in mass, tidal tau from primary input file
     with open(os.path.join(directory, primary_name), 'r') as f:
         primary_in = f.read()
 
@@ -55,10 +55,10 @@ for ii, directory in enumerate(dirs):
         dMass = float("".join(dMass.split()))
         tmp.append(dMass)
 
-        # Find the line where dTidalQ lives, remove whitespace, make it a float
-        dTidalQ = re.findall('%s(.*?)#' % 'dTidalQ', primary_in)[0]
-        dTidalQ = float("".join(dTidalQ.split()))
-        tmp.append(dTidalQ)
+        # Find the line where dTidalTau lives, remove whitespace, make it a float
+        dTidalTau = re.findall('%s(.*?)#' % 'dTidalTau', primary_in)[0]
+        dTidalTau = float("".join(dTidalTau.split()))*YEARSEC
+        tmp.append(dTidalTau)
 
     # Read in mass from secondary input file
     with open(os.path.join(directory, secondary_name), 'r') as f:
@@ -69,10 +69,10 @@ for ii, directory in enumerate(dirs):
         dMass2 = float("".join(dMass2.split()))
         tmp.append(dMass2)
 
-        # Find the line where dTidalQ lives, remove whitespace, make it a float
-        dTidalQ2 = re.findall('%s(.*?)#' % 'dTidalQ', secondary_in)[0]
-        dTidalQ2 = float("".join(dTidalQ2.split()))
-        tmp.append(dTidalQ2)
+        # Find the line where dTidalTau lives, remove whitespace, make it a float
+        dTidalTau2 = re.findall('%s(.*?)#' % 'dTidalTau', secondary_in)[0]
+        dTidalTau2 = float("".join(dTidalTau2.split()))*YEARSEC
+        tmp.append(dTidalTau2)
 
     # Pull LockTimes out of logfile
     with open(os.path.join(os.path.join(directory, logfile_name)), 'r') as f:
@@ -113,7 +113,8 @@ for ii, directory in enumerate(dirs):
     tmp.append(data[-1,2])
 
     # Read in simulation data for secondary star
-    # saOutputOrder	Time Semim Ecce -RotPer -Radius RadGyra -OrbPeriod -TotEn -TotAngMom
+    # saOutputOrder	Time Semim Ecce -RotPer -Radius RadGyra -OrbPeriod -TotEn
+    # -TotAngMom -EqRotPer #Output order
     data = np.genfromtxt(os.path.join(directory,secondary_out_name), delimiter=" ")
 
     # Save initial rotation period
@@ -135,22 +136,28 @@ for ii, directory in enumerate(dirs):
     tmp.append(data[-1,6])
     tmp.append(data[ind,6])
 
+    # Save initial, final Peq, Peq at age
+    tmp.append(data[0,9])
+    tmp.append(data[-1,9])
+    tmp.append(data[ind,9])
+
     # Save row
     table.append(tmp)
 
 # Make df with the following columns:
-headers = ["Pri_dMass", "Pri_dTidaLQ", "Sec_dMass", "Sec_dTidalQ", "Pri_LockTime", "Sec_LockTime", "Age"]
+headers = ["Pri_dMass", "Pri_dTidalTau", "Sec_dMass", "Sec_dTidalTau", "Pri_LockTime", "Sec_LockTime", "Age"]
 headers = headers + ["Pri_ProtInitial", "Pri_ProtAge", "Pri_ProtFinal"]
 headers = headers + ["Sec_ProtInitial", "Sec_ProtAge", "Sec_ProtFinal"]
 headers = headers + ["Initial_Ecc", "Final_Ecc", "Age_Ecc"]
 headers = headers + ["Initial_Porb", "Final_Porb", "Age_Porb"]
+headers = headers + ["Initial_Peq", "Final_Peq", "Age_Peq"]
 df = pd.DataFrame(table, columns=headers)
 
 # Examine dataframe
 print(df.head(5))
 
 # Save it!
-df.to_csv("mcCPL.csv", header=True, index=False)
+df.to_csv("mcCTLTorque.csv", header=True, index=False)
 
 # Finished!
 print("Done!")
