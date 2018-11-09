@@ -289,23 +289,29 @@ All code used to run simulations and generate figures is available online\footno
 
 we can explain fast rotation observed in \citet{Meibom2007} to be due to tidal torques speeding up stellar Prots
 
-Plots:
-
--Porb vs Q/tau grid for e=0, and vs mass ratio
-
--average tsync for various orbital period ranges for CPL vs CTL marginalizing over all other parameters. do it with small multiples
-
--Prot as a function of mass for locked (unlocked) binaries of random ages for gyrochronology results, naturally produces fast rotators
-
--Plot showing diff between binary relative to single star Prot evolution for various Porbs
-
--tsync contours over Q/tau and Porb
-
 \subsection{Tidal-Locking Over $Q,\tau$ and P$_{orb}$}
+
+\begin{figure*}[ht]
+	\includegraphics[width=\textwidth]{../Plots/qTauPorbLockHist.pdf}
+   \caption{Caption}%
+    \label{fig:qTauLock}%
+\end{figure*}
 
 XXX
 
-\subsection{Tidal-Locking as a Function of Age} \label{sec:results:age}
+\subsection{Tidal-Locking as a Function of Eccentricity} \label{sec:results:ecc}
+
+\begin{figure*}[ht]
+	\includegraphics[width=\textwidth]{../Plots/eccPorbLockHist.pdf}
+   \caption{Caption.}%
+    \label{fig:eccLock}%
+\end{figure*}
+
+\begin{figure*}[ht]
+	\includegraphics[width=\textwidth]{../Plots/eccPorbRatioHist.pdf}
+   \caption{Caption.}%
+    \label{fig:eccRatio}%
+\end{figure*}
 
 XXX
 
@@ -319,17 +325,37 @@ XXX
     \label{fig:lockHistPorb}%
 \end{figure}
 
+\subsection{Comparison with \kepler} \label{sec:kepler}
+
+\begin{figure*}[ht]
+	\includegraphics[width=\textwidth]{../Plots/lurie.pdf}
+   \caption{Caption.}
+    \label{fig:lurie}
+\end{figure*}
+
 \subsubsection{Deviations From Single Star P$_{rot}$ Evolution: Implications for Gyrochronology}
+
+\begin{figure}[h]
+	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
+   \caption{Caption}%
+    \label{fig:binGyro}%
+\end{figure}
 
 Here we examine the tidal locking in binaries using the simulations from XXX by plotting P$_{rot}$ as a function of mass and age for binaries in XXX. We find that $35.5\%$ of binaries tidally lock before the age of the system, typically for tidal $Q \lsim 10^7$. Tidally-locked binaries tend to rotate more rapidly than unlocked binaries, reflected in the increased density for P$_{rot} \lsim 20$ d in the marginal distribution for the locked population and in the distribution medians (locked median P$_{rot} = 19.8$ d compared to unlocked median P$_{rot} = 27.5$ d). Binaries readily tidally-lock at short P$_{orb}$ due to the tidal force's strong semi-major axis dependence, increasing the strength of tidal torques at shorter orbital separations. When stellar binaries approach the tidally-locked state, tidal torques overpower the torque due to magnetic braking, fixing P$_{rot} = $P$_{orb}$, resulting in long-lasting rapid rotation in short P$_{orb}$ binaries. 
 
 Tidal forces modify the spins of unlocked binaries as well, tending to spin-up stars against the effects of magnetic braking towards orbital synchronization, reflected in unlocked binaries' median P$_{rot} = 27.5$ d, compared to the single star median P$_{rot} = 30.6$ d. Tidal locking is not limited to P$_{orb} \lsim 10$ d, however, as we observe stellar binaries to tidally lock out up to P$_{orb} \approx 70$ d, producing a slow-rotating population above the P$_{rot}$ distribution envelop of single stars (compare to XXX). This behavior is consistent with observations of P$_{rot}$ in \kepler eclipsing binaries by \citet{Lurie2017} who find that binaries can tidally lock up to their detection limit of P$_{orb} = $ P$_{rot} = 45$ d. The observed age distribution of tidally-locked binaries has little dependence on P$_{rot}$, with both young and old systems tidally-locking at long and short P$_{rot}$, causing the predictions of gyrochronology models to fail in such systems. 
 
-%\begin{figure}[h]
-%	\includegraphics[width=0.45\textwidth]{../Plots/locked_kepler.pdf}
-%   \caption{Simulated distribution of P$_{rot}$ for tidally-locked (cross) and unlocked (circle) stellar binaries, colored by age for Model 2 (see $\S$~\ref{sec:results:kepler2}). Left: P$_{rot}$ as a function of stellar mass.  Right: Marginalized P$_{rot}$ distribution for locked (blue) and unlocked (orange) binaries.  Tidally-locked binaries rotate more rapidly than unlocked binaries, displaying an increased density in the P$_{rot}$ distribution for P$_{rot} {\lsim} 20$ d, and with a median P$_{rot} = 19.8$ d, compared to the unlocked median P$_{rot} = 27.5$ d. Unlocked binaries on average rotate more quickly than single stars (compare to single distribution in Fig.~\ref{fig:kepler2}) due to the influence of tidal torques.}
-%    \label{fig:locking}
-%\end{figure}
+\begin{figure}[h]
+	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
+   \caption{Caption}%
+    \label{fig:lockingCPL}%
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
+   \caption{Caption}%
+    \label{fig:lockingCTL}%
+\end{figure}
 
 %% SECTION: DISCUSSION %%
 
