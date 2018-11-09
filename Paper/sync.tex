@@ -70,6 +70,8 @@ Box 951580, Seattle, WA 98195}
 
 - Lurie finds tons of short Porb EBs because transit observational biases favor bodies with short orbital periods for a finite observing window, eg Kepler's lifetime 
 
+- Consult Lurie's paper for CPL vs CTL (e.g. why not 3:2 population-> use CTL!) and for discussing sunsync population
+
 \end{abstract}
 
 %% KEYWORDS %%
@@ -84,9 +86,8 @@ Angular momentum evolution in low-mass (M$\lsim 1$ M$_{\odot}$) short-period (P$
 
 Tides impart a significant signature in the long-term angular momentum evolution for binary stars, especially so for the stellar spins. Tidal-locking occurs much earlier than orbital circularization as the tidal-locking timescale is estimated to be $2-3$ orders of magnitude less than the circularization timescale since the stellar spins harbor much less angular momentum than the orbit \citep{Zahn1989,Witte2002,Mazeh2008}. Tidal-locking is expected for binaries with P$_{orb} \lsim$ 20 d \citep[e.g.][]{Meibom2006,Mazeh2008,Zahn2008,Meibom2015}. A large sample of $816$ rotation period measurements derived using starspot modulations on primary stars of \kepler eclipsing binaries by \citet{Lurie2017} confirm that most short-period binaries are tidally-locked, but also find tentative evidence for tidal-locking in binaries with P$_{orb}$ up to 45 d, their detection limit. Observations by the extended \kepler mission \citep[K2,][]{Howell2014} and the Transiting Exoplanet Survey Satellite \citep[TESS, ][]{Ricker2014,Sullivan2015} will contain low-mass, short-period eclipsing binaries, permitting additional tests for models of stellar rotation evolution due to tidal torques.
  
-Rotation period distributions measured in clusters and field stars are likely contaminated by unresolved binaries, given that roughly half of Sun-like stars are in stellar binaries \citep{Raghavan2010,Duchene2013}, and that binaries are difficult to resolve in photometric surveys due to low transit probabilities. In the \kepler field, for example, \citet{Simonian2018} recently found that most rapid rotators (P$_{rot} \lsim 7.5$ d) are likely non-eclipsing, tidally-synchronized short-period photometric binaries, indicating that tidal torques in binaries can significantly impact observed P${rot}$ distributions.  Even if stellar binaries have not yet tidally-locked, tidal torques modify stellar rotation periods away from the long-term spin-down due to magnetic braking predicted for single stars \citep{Dunn1961,Skumanich1972,Barnes2003}. Ages inferred from rotation periods of stars in unresolved binaries using gyrochronology, a method that link the long-term spin-down of low-mass stars to their ages, \citep{Skumanich1972,Barnes2003,Barnes2007,Mamajek2008,Barnes2010}, will likely be incorrect, however no previous study has quantified this effect.  Moreover, no previous study has quantified how tidal-locking proceeds in low-mass stellar binaries using a realistic treatment of stellar evolution and magnetic braking. 
+Rotation period distributions measured in clusters and field stars are likely contaminated by unresolved binaries, given that roughly half of Sun-like stars are in stellar binaries \citep{Raghavan2010,Duchene2013}, and that binaries are difficult to resolve in photometric surveys due to low transit probabilities. In the \kepler field, for example, \citet{Simonian2018} recently found that most rapid rotators (P$_{rot} \lsim 7.5$ d) are likely non-eclipsing, tidally-synchronized short-period photometric binaries, indicating that tidal torques in binaries can significantly impact observed P${rot}$ distributions.  Even if stellar binaries have not yet tidally-locked, tidal torques modify stellar rotation periods away from the long-term spin-down due to magnetic braking predicted for single stars \citep{Dunn1961,Skumanich1972,Barnes2003}. Ages inferred from rotation periods of stars in unresolved binaries using gyrochronology, a method that link the long-term spin-down of low-mass stars to their ages, \citep{Skumanich1972,Barnes2003,Barnes2007,Mamajek2008,Barnes2010}, will likely be incorrect, however no previous study has quantified this effect.  Moreover, no previous study has quantified how tidal-locking proceeds in stellar binaries using a realistic treatment of stellar evolution and magnetic braking over the full main sequence lifetimes of low-mass stars.
 
-XXX mention main sequence lifetimes
 
 Here, we examine how tidal torques, coupled with a modern stellar evolution and magnetic braking models, shape the angular momentum evolution of low-mass binary stars.  We investigate under what conditions tidal-locking occurs, and what the typical tidal-locking timescale is as a function of stellar mass and tidal dissipation parameters for two widely-used equilibrium tidal models.  We show how tidal torques in binaries cause stellar rotation periods to not strongly correlate with age, causing the predictions of gyrochronlogy models to fail in such systems.  We describe our model in $\S$~\ref{sec:methods} and our simulation procedure in $\S$~\ref{sec:simulations}.  We present our results in $\S$~\ref{sec:results} and discuss their implications in $\S$~\ref{sec:discussion}.
 
@@ -346,13 +347,13 @@ Here we examine the tidal locking in binaries using the simulations from XXX by 
 Tidal forces modify the spins of unlocked binaries as well, tending to spin-up stars against the effects of magnetic braking towards orbital synchronization, reflected in unlocked binaries' median P$_{rot} = 27.5$ d, compared to the single star median P$_{rot} = 30.6$ d. Tidal locking is not limited to P$_{orb} \lsim 10$ d, however, as we observe stellar binaries to tidally lock out up to P$_{orb} \approx 70$ d, producing a slow-rotating population above the P$_{rot}$ distribution envelop of single stars (compare to XXX). This behavior is consistent with observations of P$_{rot}$ in \kepler eclipsing binaries by \citet{Lurie2017} who find that binaries can tidally lock up to their detection limit of P$_{orb} = $ P$_{rot} = 45$ d. The observed age distribution of tidally-locked binaries has little dependence on P$_{rot}$, with both young and old systems tidally-locking at long and short P$_{rot}$, causing the predictions of gyrochronology models to fail in such systems. 
 
 \begin{figure}[h]
-	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
+	\includegraphics[width=0.45\textwidth]{../Plots/lockedCPL.pdf}
    \caption{Caption}%
     \label{fig:lockingCPL}%
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
+	\includegraphics[width=0.45\textwidth]{../Plots/lockedCTL.pdf}
    \caption{Caption}%
     \label{fig:lockingCTL}%
 \end{figure}
