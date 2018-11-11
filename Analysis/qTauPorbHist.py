@@ -27,8 +27,8 @@ mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorque.csv")
-ctl = pd.read_csv("../Data/mcCTLTorque.csv")
+cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
+ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
 # Lock times < 0 -> Not locked, set them to 7e9 (last simulation output time)
 cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9
@@ -40,8 +40,8 @@ cpl["Pri_dTidalQ"] = pd.Series(cpl["Pri_dTidaLQ"].values, index=cpl.index)
 # Construct Porb, ecc bins based on assumed ranges
 num = 11
 porbBinEdges = np.linspace(0, 100, num)
-qBinEdges = np.logspace(4, 8, num)
-tauBinEdges = np.logspace(-3, 0, num)[::-1]
+qBinEdges = np.logspace(4, 7, num)
+tauBinEdges = np.logspace(-2, 0, num)[::-1]
 
 # Array for joint locking time distribution
 cplJointPeq = np.zeros((num-1, num-1))
@@ -81,8 +81,8 @@ for ii in range(num-1):
 
 fig = plt.figure(figsize=(19, 8))
 gs = GridSpec(1, 5, width_ratios=[1, 0.05, 1, 0.01, 0.075], wspace=0.05)
-qExtent = [4, 8, 0, 100]
-tauExtent = [0, -3, 0, 100] # Reverse tau
+qExtent = [4, 7, 0, 100]
+tauExtent = [0, -2, 0, 100] # Reverse tau
 
 ### CPL Plot ###
 ax1 = fig.add_subplot(gs[0])

@@ -1,0 +1,15 @@
+# The primary star
+sName		primary		# Body's name
+saModules stellar        # Modules
+
+# Physical Parameters
+iBodyType       1
+dMass		1.0		# Mass, negative -> Earth masses
+dAge            5.0e6           # Disk-binary interactions occur before this time
+dRotPeriod      -0.5            # Rotation period in days
+
+# STELLAR parameters
+sStellarModel baraffe           # Stellar evolutin model: `baraffe` or `none`
+sMagBrakingModel matt           # Magnetic braking model
+
+saOutputOrder Time -Radius -RotPer RadGyra # Output order

@@ -1,0 +1,25 @@
+# secondary star
+sName		secondary		# Body's name
+saModules eqtide stellar                # Modules
+
+# Physical Parameters
+iBodyType       1
+dMass	        1.0		# Mass, negative -> Earth masses
+dAge            5.0e6           # disk-binary interactions important before this time
+dRotPeriod      -0.5            # Rotation period in days
+
+# Binary Parameters
+dEcc            0.15            # Binary eccentricity
+dOrbPeriod      -4.0            # Binary orbital period
+
+# EQTIDE Parameters
+dTidalQ		1.0e6        	# Tidal phase lag
+dK2		0.5	        # Love number of degree 2
+dMaxLockDiff    0.01            # Locks when spin period within 1% of orbital period
+saTidePerts	primary		# Body name(s) of tidal perturbers
+
+# STELLAR parameters
+sStellarModel baraffe           # Stellar evolutin model: `baraffe` or `none`
+sMagBrakingModel matt           # Magnetic braking model
+
+saOutputOrder	Time Semim Ecce -RotPer -Radius RadGyra -OrbPeriod -TotEn -TotAngMom -EqRotPer #Output order

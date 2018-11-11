@@ -24,8 +24,8 @@ mpl.rc('text', usetex=True)
 plotLurie = True
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorque.csv")
-ctl = pd.read_csv("../Data/mcCTLTorque.csv")
+cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
+ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])

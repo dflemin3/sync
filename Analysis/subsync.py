@@ -8,12 +8,12 @@ on the subsynchronous rotators.
 
 Script output:
 
-Median subsync tidal tau: 0.024179478659999996
-Median supersync tidal tau: 0.0412718247
-Median subsync ecc: 0.13616799999999998
-Median supersync ecc: 0.1525495
-Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.44291609353507566
-Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.08665749656121045
+Median subsync tidal tau: 0.042416253599999995
+Median supersync tidal tau: 0.1245296974
+Median subsync ecc: 0.1288805
+Median supersync ecc: 0.151426
+Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6126373626373627
+Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.11401098901098901
 
 """
 
@@ -34,8 +34,8 @@ mpl.rc('text', usetex=True)
 plotLurie = True
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorque.csv")
-ctl = pd.read_csv("../Data/mcCTLTorque.csv")
+cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
+ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])
@@ -67,10 +67,10 @@ if plotLurie:
 # Format
 ax0.set_rasterization_zorder(0)
 ax0.set_xlim(0,10)
-ax0.set_ylim(0.0, 1.3)
+ax0.set_ylim(0.4, 1.3)
 ax0.set_xlabel("P$_{orb}$ [d]", fontsize=25)
 ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
-leg = ax0.legend(loc="upper left", framealpha=0.75, fontsize=17)
+leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=18)
 leg.legendHandles[0]._sizes = [50]
 leg.legendHandles[0].set_color('k')
 if plotLurie:
