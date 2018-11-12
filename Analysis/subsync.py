@@ -8,12 +8,18 @@ on the subsynchronous rotators.
 
 Script output:
 
-Median subsync tidal tau: 0.042416253599999995
-Median supersync tidal tau: 0.1245296974
+Median subsync tidal tau: 0.0790922272
+Median supersync tidal tau: 0.12508653609999998
 Median subsync ecc: 0.1288805
 Median supersync ecc: 0.151426
 Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6126373626373627
 Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.11401098901098901
+
+Interpretation:
+
+Although Lurie+2017 attributes differential rotation to the production of the
+subsynchronous population, we find that coupled stellar-tidal evolution naturally
+produces the population. XXX COMPARE FRACTIONS TO LURIE---IT's CLOSE
 
 """
 
@@ -40,12 +46,6 @@ ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])
 
-# Lock times < 0 -> Not locked, set them to 7e9 (last simulation output time)
-cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9
-cpl["Sec_LockTime"][cpl["Sec_LockTime"] < 0] = 7.0e9
-ctl["Pri_LockTime"][ctl["Pri_LockTime"] < 0] = 7.0e9
-ctl["Sec_LockTime"][ctl["Sec_LockTime"] < 0] = 7.0e9
-
 ### 1st Fig modeled after Fig. 7 from Lurie+2017, sub zoomed in on subsync population ###
 
 fig = plt.figure(figsize=(9, 8))
@@ -68,9 +68,9 @@ if plotLurie:
 ax0.set_rasterization_zorder(0)
 ax0.set_xlim(0,10)
 ax0.set_ylim(0.4, 1.3)
-ax0.set_xlabel("P$_{orb}$ [d]", fontsize=25)
-ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
-leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=18)
+ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
+ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
+leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=25)
 leg.legendHandles[0]._sizes = [50]
 leg.legendHandles[0].set_color('k')
 if plotLurie:
@@ -80,13 +80,13 @@ if plotLurie:
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label="Eccentricity")
+cb.set_label(label="Eccentricity", fontsize=25)
 
 fig.savefig("../Plots/subsync.pdf", bbox_inches="tight", dpi=600)
 
 ### Plot histogram of log10 tidal taus above and below Prot=Peq=Porb=1 line
 
-subMask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 0.7)
+subMask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 1.0)
 
 fig, ax = plt.subplots()
 
@@ -98,7 +98,7 @@ ax.hist(np.log10(ctl["Pri_dTidalTau"][~subMask].values), lw=3, histtype="step",
 
 ax.set_ylabel("Normalized Counts")
 ax.set_xlabel(r"log$_{10}(\tau \mathrm{[s]})$")
-ax.legend(loc="lower center", framealpha=0)
+ax.legend(loc="lower center", framealpha=0, fontsize=18)
 
 fig.savefig("../Plots/subsyncTauHist.pdf", bbox_inches="tight", dpi=600)
 

@@ -6,6 +6,26 @@
 This script plots the Prot evolution of 1-1 Msun binary undergoing stellar-tidal
 evolution with Porb = 50 d for various tidal Qs and taus.
 
+Interpretation:
+
+For all stars, early spin down is due to stellar radius contraction along the
+pre-main sequence.  All stars then begin to spin down over long timescales
+due to magnetic braking and tidal torques in binaries. For the CPL model,
+ALL binaries tidally lock while for the CTL model, only
+binaries with tau > 0.1 s tidally lock.  Binaries with tau < 0.1 s have tides
+that are weak and get overpowered by magnetic braking toques that spin down the
+star.  Note how when CPL models tidally lock, it's in synchronous rotation
+since e = 0.1  CTL models lock into slighty *supersynchronous* rotation since
+Peq = f(e, Porb) * Porb where f(e, Porb) < 1 for e > 0. Binaries with sufficiently
+large tau can also modify e owing to stronger tidal torques, working to
+circularize the orbit, to stars with large tau have larger Peq due to smaller e.
+For our choice of Q and tau, the CPL model has stronger torques than the CTL model,
+locking systems earlier.  Note that for long Porb and for systems of a given age,
+binaries will have longer Prot than single star systems owing to tidal torques
+spinning-down the star towards the tidally locked state.  Using gyrochronlogy
+models, this would incorrect making the systems appear old than they actually
+are.
+
 """
 
 import numpy as np

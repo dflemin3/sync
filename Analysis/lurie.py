@@ -27,14 +27,9 @@ plotLurie = True
 cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
 ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
-lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
-                    names=["Porb", "Prot", "Ecc"])
-
-# Lock times < 0 -> Not locked, set them to 7e9 (last simulation output time)
-cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9
-cpl["Sec_LockTime"][cpl["Sec_LockTime"] < 0] = 7.0e9
-ctl["Pri_LockTime"][ctl["Pri_LockTime"] < 0] = 7.0e9
-ctl["Sec_LockTime"][ctl["Sec_LockTime"] < 0] = 7.0e9
+lurie = pd.read_csv("../Data/Lurie2017Full.csv", header=0)
+lurie["Prot"] = lurie["p_acf"].copy()
+lurie["Porb"] = lurie["p_orb"].copy()
 
 # 1st Fig modeled after Fig. 6, upper panel from Lurie+2017
 
@@ -52,7 +47,7 @@ im = ax0.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
 if plotLurie:
     # Plot Lurie+2017 data
     ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
-                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
 
     # Plot Lurie+2017 detection limit of 45 d
     ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
@@ -63,8 +58,8 @@ ax0.set_xlim(1,100)
 ax0.set_ylim(0.9, 30)
 ax0.set_xscale("log")
 ax0.set_yscale("log")
-ax0.set_xlabel("P$_{orb}$ [d]", fontsize=25)
-ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
+ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
+ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
 ax0.set_title("CPL")
 leg = ax0.legend(loc="upper left", framealpha=0.75, fontsize=25)
 leg.legendHandles[0]._sizes = [100]
@@ -82,7 +77,7 @@ im = ax1.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
 if plotLurie:
     # Plot Lurie+2017 data
     ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
-               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
 
     # Plot Lurie+2017 detection limit of 45 d
     ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
@@ -93,7 +88,7 @@ ax1.set_xlim(1,100)
 ax1.set_ylim(0.9, 30)
 ax1.set_xscale("log")
 ax1.set_yscale("log")
-ax1.set_xlabel("P$_{orb}$ [d]", fontsize=25)
+ax1.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax1.set_title("CTL")
 
 ### Colorbar ###
@@ -121,7 +116,7 @@ ax0.axhline(1, lw=2, color="black", ls="-", zorder=2)
 if plotLurie:
     # Plot Lurie+2017 data
     ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
-                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
 
     # Plot Lurie+2017 detection limit of 45 d
     ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
@@ -130,10 +125,10 @@ if plotLurie:
 ax0.set_rasterization_zorder(0)
 ax0.set_xlim(0,50)
 ax0.set_ylim(0.0, 3)
-ax0.set_xlabel("P$_{orb}$ [d]", fontsize=25)
-ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=25)
+ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
+ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
 ax0.set_title("CPL")
-leg = ax0.legend(loc="lower right", framealpha=0.75, fontsize=15)
+leg = ax0.legend(loc="lower right", framealpha=0.75, fontsize=18)
 leg.legendHandles[0]._sizes = [50]
 leg.legendHandles[0].set_color('k')
 if plotLurie:
@@ -151,7 +146,7 @@ ax1.axhline(1, lw=2, color="black", ls="-", zorder=2)
 if plotLurie:
     # Plot Lurie+2017 data
     ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
-               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
 
     # Plot Lurie+2017 detection limit of 45 d
     ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=2)
@@ -160,7 +155,7 @@ if plotLurie:
 ax1.set_rasterization_zorder(0)
 ax1.set_xlim(0,50)
 ax1.set_ylim(0.0, 3)
-ax1.set_xlabel("P$_{orb}$ [d]", fontsize=25)
+ax1.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax1.set_title("CTL")
 
 ### Colorbar ###

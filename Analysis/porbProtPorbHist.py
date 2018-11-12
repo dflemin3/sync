@@ -28,11 +28,13 @@ cpl["Pri_dTidalQ"] = pd.Series(cpl["Pri_dTidaLQ"].values, index=cpl.index)
 ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
 # Read in lurie data
-lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
-                    names=["Porb", "Prot", "Ecc"])
+lurie = pd.read_csv("../Data/Lurie2017Full.csv", header=0)
+lurie["Prot"] = lurie["p_acf"].copy()
+lurie["Porb"] = lurie["p_orb"].copy()
 
 # Construct Porb, ecc bins based on assumed ranges
 num = 11
+bins = 20
 porbBinEdges = np.linspace(0, 100, num)
 porbProtBinEdges = np.linspace(0.4, 2.0, num)
 
@@ -107,14 +109,13 @@ for ii in range(len(porbBinEdges)-1):
 
 ax1.set_xlim(0.4, 2.0)
 ax1.set_ylim(0, 100)
-ax1.set_xlabel(r"P$_{orb}$/P$_{rot}$", fontsize=22)
-ax1.set_ylabel("Orbital Period [d]", fontsize=22)
-ax1.set_title("CPL")
+ax1.set_xlabel(r"P$_{orb}$/P$_{rot}$", fontsize=30)
+ax1.set_ylabel("Orbital Period [d]", fontsize=30)
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label="Median log$_{10}(Q)$", labelpad=30, rotation=270)
+cb.set_label(label="Median log$_{10}(Q)$", labelpad=30, fontsize=25)
 
 fig.savefig("../Plots/porbProtPorbQHist.pdf", bbox_inches="tight", dpi=600)
 
@@ -139,13 +140,12 @@ for ii in range(len(porbBinEdges)-1):
 
 ax2.set_xlim(0.4, 2.0)
 ax2.set_ylim(0, 100)
-ax2.set_xlabel(r"P$_{orb}$/P$_{rot}$", fontsize=22)
-ax2.set_title("CTL")
+ax2.set_xlabel(r"P$_{orb}$/P$_{rot}$", fontsize=30)
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label=r"Median log$_{10}(\tau[\mathrm{s}])$", labelpad=30, rotation=270)
+cb.set_label(label=r"Median log$_{10}(\tau[\mathrm{s}])$", labelpad=30, fontsize=25)
 
 fig.savefig("../Plots/porbProtPorbTauHist.pdf", bbox_inches="tight", dpi=600)
 
@@ -163,44 +163,42 @@ taus = []
 # Loop over Lurie+2017 data, assign points to bin, estimate tidal parameters
 for kk in range(len(lurie)):
     for ii in range(num-1):
-        # Focus on Porb < 10 d
-        if porbBinEdges[ii+1] <= 10:
-            for jj in range(num-1):
-                cplMask = (cpl["Final_Porb"] > porbBinEdges[ii])
-                cplMask = cplMask & (cpl["Final_Porb"] < porbBinEdges[ii + 1])
-                cplMask = cplMask & (cpl["Final_Porb"]/cpl["Pri_ProtFinal"] > porbProtBinEdges[jj])
-                cplMask = cplMask & (cpl["Final_Porb"]/cpl["Pri_ProtFinal"] < porbProtBinEdges[jj + 1])
+        for jj in range(num-1):
+            cplMask = (cpl["Final_Porb"] > porbBinEdges[ii])
+            cplMask = cplMask & (cpl["Final_Porb"] < porbBinEdges[ii + 1])
+            cplMask = cplMask & (cpl["Final_Porb"]/cpl["Pri_ProtFinal"] > porbProtBinEdges[jj])
+            cplMask = cplMask & (cpl["Final_Porb"]/cpl["Pri_ProtFinal"] < porbProtBinEdges[jj + 1])
 
-                ctlMask = (ctl["Final_Porb"] > porbBinEdges[ii])
-                ctlMask = ctlMask & (ctl["Final_Porb"] < porbBinEdges[ii + 1])
-                ctlMask = ctlMask & (ctl["Final_Porb"]/ctl["Pri_ProtFinal"] > porbProtBinEdges[jj])
-                ctlMask = ctlMask & (ctl["Final_Porb"]/ctl["Pri_ProtFinal"] < porbProtBinEdges[jj + 1])
+            ctlMask = (ctl["Final_Porb"] > porbBinEdges[ii])
+            ctlMask = ctlMask & (ctl["Final_Porb"] < porbBinEdges[ii + 1])
+            ctlMask = ctlMask & (ctl["Final_Porb"]/ctl["Pri_ProtFinal"] > porbProtBinEdges[jj])
+            ctlMask = ctlMask & (ctl["Final_Porb"]/ctl["Pri_ProtFinal"] < porbProtBinEdges[jj + 1])
 
-                if np.sum(cplMask) == 0:
-                    continue
-                else:
-                    porbProt = lurie["Porb"][kk]/lurie["Prot"][kk]
-                    porb = lurie["Porb"][kk]
-                    if(porb > porbBinEdges[ii]) and (porb < porbBinEdges[ii+1]):
-                        if (porbProt > porbProtBinEdges[jj]) and (porbProt < porbProtBinEdges[jj+1]):
-                            # Found correct bin, sample tidal Qs, taus with replacement
-                            qs = qs + list(np.random.choice(np.log10(cpl["Pri_dTidalQ"][cplMask]),
+            if np.sum(cplMask) == 0:
+                continue
+            else:
+                porbProt = lurie["Porb"][kk]/lurie["Prot"][kk]
+                porb = lurie["Porb"][kk]
+                if(porb > porbBinEdges[ii]) and (porb < porbBinEdges[ii+1]):
+                    if (porbProt > porbProtBinEdges[jj]) and (porbProt < porbProtBinEdges[jj+1]):
+                        # Found correct bin, sample tidal Qs, taus with replacement
+                        qs = qs + list(np.random.choice(np.log10(cpl["Pri_dTidalQ"][cplMask]),
+                                       size=nsamp, replace=True))
+            if np.sum(ctlMask) == 0:
+                continue
+            else:
+                porbProt = lurie["Porb"][kk]/lurie["Prot"][kk]
+                porb = lurie["Porb"][kk]
+                if(porb > porbBinEdges[ii]) and (porb < porbBinEdges[ii+1]):
+                    if (porbProt > porbProtBinEdges[jj]) and (porbProt < porbProtBinEdges[jj+1]):
+                        # Found correct bin, sample tidal Qs, taus with replacement
+                        taus = taus + list(np.random.choice(np.log10(ctl["Pri_dTidalTau"][ctlMask]),
                                            size=nsamp, replace=True))
-                if np.sum(ctlMask) == 0:
-                    continue
-                else:
-                    porbProt = lurie["Porb"][kk]/lurie["Prot"][kk]
-                    porb = lurie["Porb"][kk]
-                    if(porb > porbBinEdges[ii]) and (porb < porbBinEdges[ii+1]):
-                        if (porbProt > porbProtBinEdges[jj]) and (porbProt < porbProtBinEdges[jj+1]):
-                            # Found correct bin, sample tidal Qs, taus with replacement
-                            taus = taus + list(np.random.choice(np.log10(ctl["Pri_dTidalTau"][ctlMask]),
-                                               size=nsamp, replace=True))
 
 # Tidal Q figure
 fig, ax = plt.subplots()
 
-ax.hist(qs, bins="auto", range=[4, 7], histtype="step", lw=3, density=True)
+ax.hist(qs, bins=bins, range=[4, 7], histtype="step", lw=3, density=True)
 ax.set_xlabel("log$_{10}(Q)$")
 ax.set_ylabel("Normalized Counts")
 
@@ -222,7 +220,7 @@ fig.savefig("../Plots/qLurie.pdf", bbox_inches="tight", dpi=600)
 # Tidal tau figure
 fig, ax = plt.subplots()
 
-ax.hist(taus, bins="auto", range=[-2, 0], histtype="step", lw=3, density=True)
+ax.hist(taus, bins=bins, range=[-2, 0], histtype="step", lw=3, density=True)
 ax.set_xlabel(r"log$_{10}(\tau[\mathrm{s}])$")
 ax.set_ylabel("Normalized Counts")
 

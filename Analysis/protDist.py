@@ -27,7 +27,12 @@ single-star only models due to tidal torques.  Both tidal models predict a large
 population of rapid rotators (Prot < 7.5 d, < 20 d) than single star models fail
 to do, regardless of age, for stars with M > 0.5 Msun, aka GK stars which Kepler
 is most sensitive to. Therefore, fast rotators in Kepler field can be explained
-by tidally-interacting binaries.
+by tidally-interacting binaries. Furthermore, note that the binary Prot distribution
+does not always follow the expected result of single star gyrochronology that
+predicts that, in the long run, stars rotate more slowly with age.  Ages of
+binaries, especially short Prot tidally-influenced systems, do not always
+correlate with age as tides can fix Prot = Peq, or at least keep it near Peq,
+decoupling Prot from age, causing gyrochronlogy methods to fail in this instance. 
 
 """
 
@@ -107,7 +112,7 @@ ax2.set_rasterization_zorder(0)
 ax2.set_xlabel("Mass [M$_{\odot}$]")
 ax2.set_xlim(0.1, 1)
 ax2.set_ylim(0.0, 100)
-ax2.text(0.15, 90, "Single", ha="left", va="center", size=30, color="black",
+ax2.text(0.15, 90, "Single Star", ha="left", va="center", size=30, color="black",
          zorder=100)
 
 ### Colorbar for scatter plots ###

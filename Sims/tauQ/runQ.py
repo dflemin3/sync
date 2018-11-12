@@ -5,7 +5,7 @@ import os
 
 # Find all subdirectories
 dir_path = os.path.dirname(os.path.realpath(__file__))
-dirs = ["20_4", "20_5", "20_6", "20_7", "50_4", "50_5", "50_6", "50_7"]
+dirs = ["q4", "q5", "q6", "q7", "tau10", "tau1", "tau0_1", "tau0_01", "single"]
 
 # Run simulations
 for dir in dirs:
