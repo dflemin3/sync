@@ -85,7 +85,7 @@ lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
 inds = np.random.choice(np.arange(len(cpl)), size=num, replace=False)
 
 # Plot!
-fig = plt.figure(figsize=(30, 8))
+fig = plt.figure(figsize=(30, 10))
 gs = GridSpec(3, 7,
               height_ratios=[0.05, 0.015, 1],
               width_ratios=[1, 0.001, 1, 0.001, 1, 0.001, 0.25],

@@ -11,12 +11,33 @@ in the Kepler field.
 Script Output:
 
 CPL locked Prot median: 27.049087
-CPL unlocked Prot median: 42.744551
+CPL unlocked Prot median: 41.0628235
+CPL interacting Prot median: 51.7563165
 CPL fraction of locked binaries: 0.2518
+CPL fraction of not locked but interacting binaries: 0.0956
 
 CTL locked Prot median: 4.683883
-CTL unlocked Prot median: 42.3556655
+CTL unlocked Prot median: 41.19235
+CTL interacting Prot median: 49.27336
 CTL fraction of locked binaries: 0.0202
+CTL fraction of not locked but interacting binaries: 0.1257
+
+CPL locked Age median: 4.511807432302286
+CPL unlocked Age median: 3.6993176339544354
+CPL interacting Age median: 4.518420938215314
+
+CTL locked Age median: 3.8579810329094926
+CTL unlocked Age median: 3.9204912513099366
+CTL interacting Age median: 4.604624291466229
+
+CPL locked Porb median: 27.947582500000003
+CPL unlocked Porb median: 60.4407475
+CPL interacting Porb median: 57.719126499999994
+
+CTL locked Porb median: 4.7715415
+CTL unlocked Porb median: 51.597271
+CTL interacting Porb median: 58.190884
+
 
 
 """
@@ -60,6 +81,19 @@ ctl["Sec_LockTime"][ctl["Sec_LockTime"] < 0] = 7.0e9
 cpl["Locked"] = pd.Series(cpl["Pri_LockTime"] < cpl["Age"], index=cpl.index)
 ctl["Locked"] = pd.Series(ctl["Pri_LockTime"] < ctl["Age"], index=ctl.index)
 
+# Make flag for binaries that are strongly tidally-influence, that is, stars with
+# Prot/Peq within [0.9, 1.1] but not locked
+mask = ((np.fabs(1.0 - (cpl["Pri_ProtAge"]/cpl["Age_Peq"])) <= 0.1).values) & (~cpl["Locked"].values)
+cpl["Interacting"] = pd.Series(mask, index=cpl.index)
+mask = ((np.fabs(1.0 - (ctl["Pri_ProtAge"]/ctl["Age_Peq"])) <= 0.1).values) & (~ctl["Locked"].values)
+ctl["Interacting"] = pd.Series(mask, index=ctl.index)
+
+# Make flag for "freely rotating binaries", i.e. not locked and not strongly interacting
+mask = (~cpl["Interacting"].values) & (~cpl["Locked"].values)
+cpl["Free"] = pd.Series(mask, index=cpl.index)
+mask = (~ctl["Interacting"].values) & (~ctl["Locked"].values)
+ctl["Free"] = pd.Series(mask, index=ctl.index)
+
 ### CPL ###
 
 fig = plt.figure(figsize=(10,9))
@@ -68,16 +102,22 @@ gs = GridSpec(4,4, wspace=0.45)
 ax = fig.add_subplot(gs[1:4,0:3])
 ax_marg_y = fig.add_subplot(gs[1:4,3])
 
+# Not tidally locked binaries: sub and super sync populations
+x = cpl.iloc[inds]["Pri_dMass"][cpl.iloc[inds]["Free"]]
+y = cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Free"]]
+im = ax.scatter(x, y, color="C1", marker="o", s=30, zorder=1, label="Not Locked")
+
+# Not locked, but strongly tidally interacting
+x = cpl.iloc[inds]["Pri_dMass"][cpl.iloc[inds]["Interacting"]]
+y = cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Interacting"]]
+color = (cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Interacting"]]/cpl.iloc[inds]["Age_Peq"][cpl.iloc[inds]["Interacting"]]).values
+im = ax.scatter(x, y, color="C2", marker="d", s=50, zorder=2, label="Interacting")
+
 # Plot locked binaries
-im = ax.scatter(cpl.iloc[inds]["Pri_dMass"][cpl.iloc[inds]["Locked"]],
-                cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Locked"]],
-                c=cpl.iloc[inds]["Age"][cpl.iloc[inds]["Locked"]].values/1.0e9,
-                cmap="viridis", marker="x", s=50, zorder=1, label="Locked")
-# Not tidally locked binaries
-im = ax.scatter(cpl.iloc[inds]["Pri_dMass"][~cpl.iloc[inds]["Locked"]],
-                cpl.iloc[inds]["Pri_ProtAge"][~cpl.iloc[inds]["Locked"]],
-                c=cpl.iloc[inds]["Age"][~cpl.iloc[inds]["Locked"]].values/1.0e9,
-                cmap="viridis", marker="o", s=30, zorder=2, label="Not Locked")
+x = cpl.iloc[inds]["Pri_dMass"][cpl.iloc[inds]["Locked"]]
+y = cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Locked"]]
+color = (cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Locked"]]/cpl.iloc[inds]["Age_Peq"][cpl.iloc[inds]["Locked"]]).values
+im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
 ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=28)
@@ -85,27 +125,23 @@ ax.set_xlim(np.min(cpl["Pri_dMass"]), np.max(cpl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=28)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
-leg = ax.legend(loc="upper left", framealpha=0.0, fontsize=15)
-for marker in leg.legendHandles:
-    marker.set_color('k')
+leg = ax.legend(loc="upper left", framealpha=0.5, fontsize=15)
 
 # Plot marginals
+ax_marg_y.hist(cpl["Pri_ProtAge"][cpl["Free"]], orientation="horizontal",
+               bins=bins, histtype="step", lw=3, color="C1",
+               label="Not Locked", density=False)
+ax_marg_y.hist(cpl["Pri_ProtAge"][cpl["Interacting"]], orientation="horizontal",
+               bins=bins, histtype="step", lw=3, color="C2",
+               label="Interacting", density=False)
 ax_marg_y.hist(cpl["Pri_ProtAge"][cpl["Locked"]], orientation="horizontal",
                bins=bins, histtype="step", lw=3, color="C0",
-               label="Locked", density=True)
-ax_marg_y.hist(cpl["Pri_ProtAge"][~cpl["Locked"]], orientation="horizontal",
-               bins=bins, histtype="step", lw=3, color="C1",
-               label="Not Locked", density=True)
+               label="Locked", density=False)
 
 # Format marginals
 ax_marg_y.set_ylim(ylims)
-ax_marg_y.legend(loc="best", framealpha=0.5, fontsize=12)
+ax_marg_y.legend(loc="upper center", framealpha=0.5, fontsize=12)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
-
-# Now adding the colorbar
-cbaxes = fig.add_axes([0.1, 0.775, 0.8, 0.03])
-cb = plt.colorbar(im, cax=cbaxes, label="System Age [Gyr]",
-                  orientation="horizontal")
 
 # Save!
 fig.savefig("../Plots/lockedCPL.pdf", bbox_inches="tight", dpi=600)
@@ -118,16 +154,21 @@ gs = GridSpec(4,4, wspace=0.45)
 ax = fig.add_subplot(gs[1:4,0:3])
 ax_marg_y = fig.add_subplot(gs[1:4,3])
 
+# Not tidally locked binaries: sub and super sync populations
+x = ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Free"]]
+y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Free"]]
+im = ax.scatter(x, y, color="C1", marker="o", s=30, zorder=1, label="Not Locked")
+
+# Not tidally locked binaries, but strongly tidally Interacting
+x = ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Interacting"]]
+y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Interacting"]]
+im = ax.scatter(x, y, color="C2", marker="d", s=50, zorder=2,
+                label="Interacting")
+
 # Plot locked binaries
-im = ax.scatter(ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Locked"]],
-                ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Locked"]],
-                c=ctl.iloc[inds]["Age"][ctl.iloc[inds]["Locked"]].values/1.0e9,
-                cmap="viridis", marker="x", s=50, zorder=1, label="Locked")
-# Not tidally locked binaries
-im = ax.scatter(ctl.iloc[inds]["Pri_dMass"][~ctl.iloc[inds]["Locked"]],
-                ctl.iloc[inds]["Pri_ProtAge"][~ctl.iloc[inds]["Locked"]],
-                c=ctl.iloc[inds]["Age"][~ctl.iloc[inds]["Locked"]].values/1.0e9,
-                cmap="viridis", marker="o", s=30, zorder=2, label="Not Locked")
+x = ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Locked"]]
+y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Locked"]]
+im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
 ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=28)
@@ -136,36 +177,134 @@ ax.set_ylabel("P$_{rot}$ [d]", fontsize=28)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
 leg = ax.legend(loc="upper left", framealpha=0.0, fontsize=15)
-for marker in leg.legendHandles:
-    marker.set_color('k')
 
 # Plot marginals
+ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Free"]], orientation="horizontal",
+               bins=bins, histtype="step", lw=3, color="C1",
+               label="Not Locked", density=False)
+ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Interacting"]], orientation="horizontal",
+               bins=bins, histtype="step", lw=3, color="C2",
+               label="Interacting", density=False)
 ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Locked"]], orientation="horizontal",
                bins=bins, histtype="step", lw=3, color="C0",
-               label="Locked", density=True)
-ax_marg_y.hist(ctl["Pri_ProtAge"][~ctl["Locked"]], orientation="horizontal",
-               bins=bins, histtype="step", lw=3, color="C1",
-               label="Not Locked", density=True)
+               label="Locked", density=False)
 
 # Format marginals
 ax_marg_y.set_ylim(ylims)
-ax_marg_y.legend(loc="best", framealpha=0.5, fontsize=11)
+ax_marg_y.legend(loc="upper center", framealpha=0.0, fontsize=11)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
-
-# Now adding the colorbar
-cbaxes = fig.add_axes([0.1, 0.775, 0.8, 0.03])
-cb = plt.colorbar(im, cax=cbaxes, label="System Age [Gyr]",
-                  orientation="horizontal")
 
 # Save!
 fig.savefig("../Plots/lockedCTL.pdf", bbox_inches="tight", dpi=600)
 
+# Output interesting statistics
+
+# Prots in d
+print("Prot Stats:")
 print("CPL locked Prot median:",np.median(cpl["Pri_ProtAge"][cpl["Locked"]]))
-print("CPL unlocked Prot median:",np.median(cpl["Pri_ProtAge"][~cpl["Locked"]]))
+print("CPL unlocked Prot median:",np.median(cpl["Pri_ProtAge"][cpl["Free"]]))
+print("CPL interacting Prot median:",np.median(cpl["Pri_ProtAge"][cpl["Interacting"]]))
 print("CPL fraction of locked binaries:",np.mean(cpl["Locked"]))
+print("CPL fraction of not locked but interacting binaries:",np.mean(cpl["Interacting"]))
 print()
 print("CTL locked Prot median:",np.median(ctl["Pri_ProtAge"][ctl["Locked"]]))
-print("CTL unlocked Prot median:",np.median(ctl["Pri_ProtAge"][~ctl["Locked"]]))
+print("CTL unlocked Prot median:",np.median(ctl["Pri_ProtAge"][ctl["Free"]]))
+print("CTL interacting Prot median:",np.median(ctl["Pri_ProtAge"][ctl["Interacting"]]))
 print("CTL fraction of locked binaries:",np.mean(ctl["Locked"]))
+print("CTL fraction of not locked but interacting binaries:",np.mean(ctl["Interacting"]))
+print()
+
+# Ages in Gyr
+print("Age Stats:")
+print("CPL locked Age median:",np.median(cpl["Age"][cpl["Locked"]]/1.0e9))
+print("CPL unlocked Age median:",np.median(cpl["Age"][cpl["Free"]]/1.0e9))
+print("CPL interacting Age median:",np.median(cpl["Age"][cpl["Interacting"]]/1.0e9))
+print()
+print("CTL locked Age median:",np.median(ctl["Age"][ctl["Locked"]]/1.0e9))
+print("CTL unlocked Age median:",np.median(ctl["Age"][ctl["Free"]]/1.0e9))
+print("CTL interacting Age median:",np.median(ctl["Age"][ctl["Interacting"]]/1.0e9))
+print()
+
+# Porbs in d
+print("Porb Stats:")
+print("CPL locked Porb median:",np.median(cpl["Age_Porb"][cpl["Locked"]]))
+print("CPL unlocked Porb median:",np.median(cpl["Age_Porb"][cpl["Free"]]))
+print("CPL interacting Porb median:",np.median(cpl["Age_Porb"][cpl["Interacting"]]))
+print()
+print("CTL locked Porb median:",np.median(ctl["Age_Porb"][ctl["Locked"]]))
+print("CTL unlocked Porb median:",np.median(ctl["Age_Porb"][ctl["Free"]]))
+print("CTL interacting Porb median:",np.median(ctl["Age_Porb"][ctl["Interacting"]]))
+
+# Make histograms of CPL, CTL Prot and Porb for 3 classifications
+
+### CPL ###
+fig, axes = plt.subplots(ncols=2, figsize=(17, 8), sharey=True)
+ax0 = axes[0]
+ax1 = axes[1]
+
+# Prot
+ax0.hist(cpl["Pri_ProtAge"][cpl["Free"]],
+         bins=bins, histtype="step", lw=3, color="C1",
+         label="Not Locked", density=True, ls="-", range=[0,100])
+ax0.hist(cpl["Pri_ProtAge"][cpl["Interacting"]],
+         bins=bins, histtype="step", lw=3, color="C2",
+         label="Interacting", density=True, ls="-", range=[0,100])
+ax0.hist(cpl["Pri_ProtAge"][cpl["Locked"]],
+         bins=bins, histtype="step", lw=3, color="C0",
+         label="Locked", density=True, ls="-", range=[0,100])
+
+# Porb
+ax0.hist(cpl["Age_Porb"][cpl["Free"]],
+         bins=bins, histtype="step", lw=3, color="C1",
+         label="", density=True, ls="--", range=[0,100])
+ax0.hist(cpl["Age_Porb"][cpl["Interacting"]],
+         bins=bins, histtype="step", lw=3, color="C2",
+         label="", density=True, ls="--", range=[0,100])
+ax0.hist(cpl["Age_Porb"][cpl["Locked"]],
+         bins=bins, histtype="step", lw=3, color="C0",
+         label="", density=True, ls="--", range=[0,100])
+
+# Format marginals
+ax0.set_xlim(0,100)
+ax0.set_ylim(0, 0.0325)
+ax0.set_xlabel("Period [d]", fontsize=30)
+ax0.set_ylabel("Normalized Counts", fontsize=30)
+
+### CTL ###
+
+# Prot
+ax1.hist(ctl["Pri_ProtAge"][ctl["Free"]],
+         bins=bins, histtype="step", lw=3, color="C1",
+         label="Not Locked", density=True, ls="-", range=[0,100])
+ax1.hist(ctl["Pri_ProtAge"][ctl["Interacting"]],
+         bins=bins, histtype="step", lw=3, color="C2",
+         label="Interacting", density=True, ls="-", range=[0,100])
+ax1.hist(ctl["Pri_ProtAge"][ctl["Locked"]],
+         bins=bins, histtype="step", lw=3, color="C0",
+         label="Locked", density=True, ls="-", range=[0,100])
+
+# Porb
+ax1.hist(ctl["Age_Porb"][ctl["Free"]],
+         bins=bins, histtype="step", lw=3, color="C1",
+         label="", density=True, ls="--", range=[0,100])
+ax1.hist(ctl["Age_Porb"][ctl["Interacting"]],
+         bins=bins, histtype="step", lw=3, color="C2",
+         label="", density=True, ls="--", range=[0,100])
+ax1.hist(ctl["Age_Porb"][ctl["Locked"]],
+         bins=bins, histtype="step", lw=3, color="C0",
+         label="", density=True, ls="--", range=[0,100])
+
+# Dummy lines for legend
+ax1.plot([500], [500], lw=3, ls="-", color="grey", label="P$_{rot}$")
+ax1.plot([500], [500], lw=3, ls="--", color="grey", label="P$_{orb}$")
+
+# Format marginals
+ax1.set_xlim(0,100)
+ax1.set_ylim(0, 0.0325)
+ax1.set_xlabel("Period [d]", fontsize=30)
+ax1.legend(loc="best", framealpha=0.0, fontsize=17)
+
+fig.tight_layout()
+fig.savefig("../Plots/lockedProtPorbHist.pdf", bbox_inches="tight", dpi=600)
 
 # Done!
