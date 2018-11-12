@@ -140,6 +140,7 @@ for ii in range(len(porbBinEdges)-1):
 
 ax2.set_xlim(0.4, 2.0)
 ax2.set_ylim(0, 100)
+ax2.set_ylabel("Orbital Period [d]", fontsize=30)
 ax2.set_xlabel(r"P$_{orb}$/P$_{rot}$", fontsize=30)
 
 ### Colorbar ###
@@ -151,7 +152,7 @@ fig.savefig("../Plots/porbProtPorbTauHist.pdf", bbox_inches="tight", dpi=600)
 
 ################################################################################
 #
-#   Estimate tidal Q, tau for Porb < 10 d where Lurie+2017 sample is more complete
+#   Estimate tidal Q, tau for Lurie+2017 sample
 #
 ################################################################################
 
