@@ -20,6 +20,19 @@ CPL Fraction of Stars with Prot < 20 d: 0.1947
 CTL Fraction of Stars with Prot < 20 d: 0.1702
 Single Fraction of Stars with Prot < 20 d: 0.0523
 
+CPL Median Age of Stars with Prot < 20 d: 3.094056856848848
+CTL Median Age of Stars with Prot < 20 d: 2.7658880946291395
+Single Mediage Age of Stars with Prot < 20 d: 1.346166303555715
+
+CPL + Age of Stars with Prot < 20 d: 5.8487757586979665
+CTL + Age of Stars with Prot < 20 d: 5.563816566899135
+Single + Age of Stars with Prot < 20 d: 1.8214255111813729
+
+CPL - Age of Stars with Prot < 20 d: 1.3467068622724916
+CTL - Age of Stars with Prot < 20 d: 1.2988697413400274
+Single - Age of Stars with Prot < 20 d: 1.0843035833816197
+
+
 Interpretation:
 
 Binary models, regardless of tidal model, systematic rotate more quickly than
@@ -32,7 +45,7 @@ does not always follow the expected result of single star gyrochronology that
 predicts that, in the long run, stars rotate more slowly with age.  Ages of
 binaries, especially short Prot tidally-influenced systems, do not always
 correlate with age as tides can fix Prot = Peq, or at least keep it near Peq,
-decoupling Prot from age, causing gyrochronlogy methods to fail in this instance. 
+decoupling Prot from age, causing gyrochronlogy methods to fail in this instance.
 
 """
 
@@ -84,8 +97,8 @@ ax0 = fig.add_subplot(gs[14])
 im = ax0.scatter(cpl.iloc[inds]["Pri_dMass"], cpl.iloc[inds]["Pri_ProtAge"], s=50,
                  c=cpl.iloc[inds]["Age"].values/1.0e9, vmin=1, vmax=7, cmap=cmap)
 ax0.set_rasterization_zorder(0)
-ax0.set_xlabel("Mass [M$_{\odot}$]")
-ax0.set_ylabel("Rotation Period [d]")
+ax0.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
+ax0.set_ylabel("Rotation Period [d]", fontsize=30)
 ax0.set_xlim(0.1, 1)
 ax0.set_ylim(0.0, 100)
 ax0.text(0.15, 90, "CPL", ha="left", va="center", size=30, color="black",
@@ -97,7 +110,7 @@ ax1 = fig.add_subplot(gs[16])
 ax1.scatter(ctl.iloc[inds]["Pri_dMass"], ctl.iloc[inds]["Pri_ProtAge"], s=50,
             c=ctl.iloc[inds]["Age"].values/1.0e9, vmin=1, vmax=7, cmap=cmap)
 ax1.set_rasterization_zorder(0)
-ax1.set_xlabel("Mass [M$_{\odot}$]")
+ax1.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
 ax1.set_xlim(0.1, 1)
 ax1.set_ylim(0.0, 100)
 ax1.text(0.15, 90, "CTL", ha="left", va="center", size=30, color="black",
@@ -109,7 +122,7 @@ ax2 = fig.add_subplot(gs[18])
 ax2.scatter(single.iloc[inds]["Pri_dMass"], single.iloc[inds]["Pri_ProtAge"], s=50,
             c=single.iloc[inds]["Age"].values/1.0e9, vmin=1, vmax=7, cmap=cmap)
 ax2.set_rasterization_zorder(0)
-ax2.set_xlabel("Mass [M$_{\odot}$]")
+ax2.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
 ax2.set_xlim(0.1, 1)
 ax2.set_ylim(0.0, 100)
 ax2.text(0.15, 90, "Single Star", ha="left", va="center", size=30, color="black",
@@ -131,7 +144,7 @@ ax3.hist(single["Pri_ProtAge"], orientation="horizontal", bins=bins,
          histtype="step", lw=3, color="C2", label="Single", density=True)
 
 # Format marginals
-ax3.legend(loc="best", framealpha=0.0, fontsize=15)
+ax3.legend(loc="best", framealpha=0.0, fontsize=17)
 plt.setp(ax3.get_yticklabels(), visible=False);
 ax3.set_ylim(0.0, 100)
 
@@ -147,5 +160,17 @@ print()
 print("CPL Fraction of Stars with Prot < 20 d:",np.sum(cpl["Pri_ProtAge"] < 20)/len(cpl))
 print("CTL Fraction of Stars with Prot < 20 d:",np.sum(ctl["Pri_ProtAge"] < 20)/len(ctl))
 print("Single Fraction of Stars with Prot < 20 d:",np.sum(single["Pri_ProtAge"] < 20)/len(single))
+print()
+print("CPL Median Age of Stars with Prot < 20 d:",np.median(cpl["Age"][cpl["Pri_ProtAge"] < 20]/1.0e9))
+print("CTL Median Age of Stars with Prot < 20 d:",np.median(ctl["Age"][ctl["Pri_ProtAge"] < 20]/1.0e9))
+print("Single Mediage Age of Stars with Prot < 20 d:",np.median(single["Age"][single["Pri_ProtAge"] < 20]/1.0e9))
+print()
+print("CPL + Age of Stars with Prot < 20 d:",np.percentile(cpl["Age"][cpl["Pri_ProtAge"] < 20]/1.0e9, 84))
+print("CTL + Age of Stars with Prot < 20 d:",np.percentile(ctl["Age"][ctl["Pri_ProtAge"] < 20]/1.0e9, 84))
+print("Single + Age of Stars with Prot < 20 d:",np.percentile(single["Age"][single["Pri_ProtAge"] < 20]/1.0e9, 84))
+print()
+print("CPL - Age of Stars with Prot < 20 d:",np.percentile(cpl["Age"][cpl["Pri_ProtAge"] < 20]/1.0e9, 16))
+print("CTL - Age of Stars with Prot < 20 d:",np.percentile(ctl["Age"][ctl["Pri_ProtAge"] < 20]/1.0e9, 16))
+print("Single - Age of Stars with Prot < 20 d:",np.percentile(single["Age"][single["Pri_ProtAge"] < 20]/1.0e9, 16))
 
 fig.savefig("../Plots/protDist.pdf", bbox_inches="tight", dpi=600)

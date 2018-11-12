@@ -44,13 +44,12 @@ im = ax0.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
                  c=cpl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
+ax0.axhline(1, lw=3, color="black", ls="--", zorder=100)
+
 if plotLurie:
     # Plot Lurie+2017 data
     ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
                 marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
-
-    # Plot Lurie+2017 detection limit of 45 d
-    ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
 
 # Format
 ax0.set_rasterization_zorder(0)
@@ -74,13 +73,12 @@ im = ax1.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
                  c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
+ax1.axhline(1, lw=3, color="black", ls="--", zorder=100)
+
 if plotLurie:
     # Plot Lurie+2017 data
     ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
-
-    # Plot Lurie+2017 detection limit of 45 d
-    ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
 
 # Format
 ax1.set_rasterization_zorder(0)
@@ -111,15 +109,12 @@ im = ax0.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
                  c=cpl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
-ax0.axhline(1, lw=2, color="black", ls="-", zorder=2)
+ax0.axhline(1, lw=3, color="black", ls="--", zorder=100)
 
 if plotLurie:
     # Plot Lurie+2017 data
     ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
                 marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
-
-    # Plot Lurie+2017 detection limit of 45 d
-    ax0.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=3)
 
 # Format
 ax0.set_rasterization_zorder(0)
@@ -141,15 +136,12 @@ im = ax1.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
                  c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
-ax1.axhline(1, lw=2, color="black", ls="-", zorder=2)
+ax1.axhline(1, lw=3, color="black", ls="--", zorder=100)
 
 if plotLurie:
     # Plot Lurie+2017 data
     ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
-
-    # Plot Lurie+2017 detection limit of 45 d
-    ax1.plot([1.0, 100.0], [1.0/45.0, 100.0/45.0], ls="-", lw="5", color="k", zorder=2)
 
 # Format
 ax1.set_rasterization_zorder(0)

@@ -26,12 +26,6 @@ mpl.rc('text', usetex=True)
 cpl = pd.read_csv("../Data/mcCPLTorque.csv")
 ctl = pd.read_csv("../Data/mcCTLTorque.csv")
 
-# Lock times < 0 -> Not locked, set them to 7e9 (last simulation output time)
-cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9
-cpl["Sec_LockTime"][cpl["Sec_LockTime"] < 0] = 7.0e9
-ctl["Pri_LockTime"][ctl["Pri_LockTime"] < 0] = 7.0e9
-ctl["Sec_LockTime"][ctl["Sec_LockTime"] < 0] = 7.0e9
-
 # Construct Porb, ecc bins based on assumed ranges
 num = 11
 porbBinEdges = np.linspace(0, 100, num)

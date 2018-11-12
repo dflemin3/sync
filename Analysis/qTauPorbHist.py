@@ -90,8 +90,8 @@ ax1 = fig.add_subplot(gs[0])
 ax1.imshow(cplJointPeq, origin="lower", aspect="auto", extent=qExtent,
           cmap=cmap)
 
-ax1.set_xlabel(r"log$_{10}(Q)$", fontsize=22)
-ax1.set_ylabel("Orbital Period [d]", fontsize=22)
+ax1.set_xlabel(r"log$_{10}(Q)$", fontsize=30)
+ax1.set_ylabel("Orbital Period [d]", fontsize=30)
 ax1.set_title("CPL")
 
 ### CTL Plot ###
@@ -127,8 +127,8 @@ ax1 = fig.add_subplot(gs[0])
 ax1.imshow(cplJointRatio, origin="lower", aspect="auto", extent=qExtent,
           cmap="RdBu", vmin=0.5, vmax=1.5)
 
-ax1.set_xlabel(r"log$_{10}(Q)$", fontsize=22)
-ax1.set_ylabel("Orbital Period [d]", fontsize=22)
+ax1.set_xlabel(r"log$_{10}(Q)$", fontsize=30)
+ax1.set_ylabel("Orbital Period [d]", fontsize=30)
 ax1.set_title("CPL")
 
 ### CTL Plot ###
@@ -138,13 +138,13 @@ im = ax2.imshow(ctlJointRatio, origin="lower", aspect="auto", extent=tauExtent,
                 cmap="RdBu", vmin=0.5, vmax=1.5)
 
 #ax2.axes.get_yaxis().set_visible(False)
-ax2.set_xlabel(r"log$_{10}(\tau \mathrm{[s]})$", fontsize=22)
+ax2.set_xlabel(r"log$_{10}(\tau \mathrm{[s]})$", fontsize=30)
 ax2.set_title("CTL")
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label="Median P$_{orb}$/P$_{rot}$", labelpad=30, rotation=270)
+cb.set_label(label="Median P$_{orb}$/P$_{rot}$", labelpad=30, rotation=270, fontsize=25)
 
 fig.savefig("../Plots/qTauPorbRatioHist.pdf", bbox_inches="tight", dpi=600)
 # Done!

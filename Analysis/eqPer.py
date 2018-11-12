@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 22.0
+mpl.rcParams['font.size'] = 24.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -93,16 +93,16 @@ axes[0].plot([100], [100], lw=3, ls="-", color="grey", label="CPL")
 axes[0].plot([100], [100], lw=3, ls="--", color="grey", label="CTL")
 
 axes[0].legend(loc="best", framealpha=0, fontsize=15, ncol=3)
-axes[0].set_ylabel("P$_{rot}$/P$_{eq}$")
-axes[0].set_xlabel("Time [yr]")
+axes[0].set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=30)
+axes[0].set_xlabel("Time [yr]", fontsize=30)
 axes[0].set_xscale("log")
 axes[0].axhline(1, lw=2.5, ls=":", color="k")
 axes[0].set_xlim(1.0e6, cpl[-1,0])
 axes[0].set_ylim(0, 1.3)
 
 # Format right axis
-axes[1].set_ylabel("$d$P$_{rot}$/$dt$ [d/Gyr]")
-axes[1].set_xlabel("Time [yr]")
+axes[1].set_ylabel("$d$P$_{rot}$/$dt$ [d/Gyr]", fontsize=30)
+axes[1].set_xlabel("Time [yr]", fontsize=30)
 axes[1].set_xlim(1.0e6, cpl[-1,0])
 #axes[1].set_ylim(-2.0e-2, 1.0e-1)
 axes[1].set_xscale("log")
@@ -133,9 +133,9 @@ for ii, dir in enumerate(dirs):
 ax.plot([100], [100], lw=3, ls="-", color="grey", label="CPL")
 ax.plot([100], [100], lw=3, ls="--", color="grey", label="CTL")
 
-ax.legend(loc="best", framealpha=0, fontsize=15, bbox_to_anchor=[1,1])
-ax.set_ylabel("P$_{rot}$/P$_{eq}$")
-ax.set_xlabel("Time [yr]")
+ax.legend(loc="best", framealpha=0, fontsize=18, bbox_to_anchor=[1,1])
+ax.set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=30)
+ax.set_xlabel("Time [yr]", fontsize=30)
 ax.set_xscale("log")
 ax.axhline(1, lw=2.5, ls=":", color="k")
 ax.set_xlim(1.0e6, cpl[-1,0])

@@ -15,11 +15,13 @@ Median supersync ecc: 0.151426
 Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6126373626373627
 Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.11401098901098901
 
+
 Interpretation:
 
 Although Lurie+2017 attributes differential rotation to the production of the
 subsynchronous population, we find that coupled stellar-tidal evolution naturally
-produces the population. XXX COMPARE FRACTIONS TO LURIE---IT's CLOSE
+produces the population. Compare with Lurie+2017 sample for 2 < Porb < 10 days:
+72% in [0.92,1.2] and 15% in [0.84, 0.92].
 
 """
 
@@ -70,12 +72,12 @@ ax0.set_xlim(0,10)
 ax0.set_ylim(0.4, 1.3)
 ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
-leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=25)
-leg.legendHandles[0]._sizes = [50]
+leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=22)
+leg.legendHandles[0]._sizes = [100]
 leg.legendHandles[0].set_color('k')
 if plotLurie:
     leg.legendHandles[1].set_color('k')
-    leg.legendHandles[1]._sizes = [50]
+    leg.legendHandles[1]._sizes = [100]
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])

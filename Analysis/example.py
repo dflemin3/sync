@@ -78,8 +78,8 @@ ax.plot([100], [100], lw=3, ls="-", color="grey", label="CPL")
 ax.plot([100], [100], lw=3, ls="--", color="grey", label="CTL")
 
 # Format plot
-ax.set_xlabel("Time [yr]")
-ax.set_ylabel("Rotation Period [d]")
+ax.set_xlabel("Time [yr]", fontsize=30)
+ax.set_ylabel("Rotation Period [d]", fontsize=30)
 ax.set_xlim(1.0e7, qData[-1,0])
 ax.set_xscale("log")
 ax.set_ylim(0.05,60)
