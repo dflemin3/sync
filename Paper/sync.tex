@@ -238,13 +238,13 @@ P^{\mathrm{CTL}}_{eq} = P_{orb} \frac{\beta^3 f_5(e) (1 + \cos^2(\psi))}{2f_2(e)
 \end{equation}
 The CTL model predicts that bodies on eccentric orbits tidally-lock into supersyncronous rotation, and only bodies with aligned spins on circular orbits are synchronous rotators. 
 
-Due to the discontinuities in the equilibrium tidal model equations, for example in Eq.~(\ref{eqn:cpl:eps}) when $\omega \approx n$, numerical solutions for the CPL and CTL models can produce unphysical evolution. We follow \citet{Barnes2013} and \citet{Fleming2018} and fix P$_{rot} = $ P$_{eq}$ according to Eq.~(\ref{eqn:cpl:eqPer}) or Eq.~(\ref{eqn:ctl:eqPer}) for the CPL and CTL models, respectively, when P$_{rot}$ is within $1\%$ of P$_{eq}$. We find that this scheme produces physically and numerically accurate results. 
+Due to the discontinuities in the equilibrium tidal model equations, for example in Eq.~(\ref{eqn:cpl:eps}) when $\omega \approx n$, numerical solutions for the CPL and CTL models can produce unphysical evolution. We follow \citet{Barnes2013} and \citet{Fleming2018} and fix P$_{rot} = $ P$_{eq}$ according to Eq.~(\ref{eqn:cpl:eqPer}) or Eq.~(\ref{eqn:ctl:eqPer}) for the CPL and CTL models, respectively, when two conditions are met: P$_{rot}$ is within $1\%$ of P$_{eq}$ and the P$_{rot}$ derivative points towards $P_{eq}$ on both sides of P$_{eq}$, i.e. when the gradient of P$_{rot}$ points towards the tidally-locked state when tides overpower magnetic braking. We find that this scheme produces physically and numerically accurate results. 
 
 \subsubsection{Example Tidal Evolution} \label{sec:methods:eqtideExample}
 
 We plot the tidal evolution for $a$, $e$, and $\omega$, ignoring stellar evolution, for a solar-twin binary with an initial P$_{orb} = 10$ d, P$_{rot} = 1$ d, $e = 0.2$ for the CPL model and CTL model, assuming $Q=10^6$ and $\tau = 0.1$ seconds, respectively, in Fig.~\ref{fig:tidalExample}. Both the CPL and CTL model predict the same qualitative evolution: both the binary's $e$ and P$_{orb}$ slightly increasing as tides force the spins toward the tidally-locked state, transfering rotational angular momentum into the orbit in the process.  At late times, both the CPL and CTL drive the binaries towards orbital circularization, with tidal dissipation decreasing P$_{orb}$. The predictions of the CPL and CTL model, differ, however, when the binaries tidally-lock.  Under the CPL model, the binary tidally-locks into a synchronous orbit as $e < \sqrt{1/19}$, e.g. Eq.~(\ref{eqn:cpl:eqPer}), while the CTL model predicts supersyncronous rotation due to the CTL model's equilibrium period eccentricity dependence, e.g. Eq.~(\ref{eqn:ctl:eqPer}).
 
-\begin{figure}[h]
+\begin{figure}
 	\includegraphics[width=0.4\textwidth]{../Plots/tidalExample.pdf}
    \caption{Tidal evolution of a 1 M$_{\odot} -$ 1 M$_{\odot}$ stellar binary's $e$ (top), P$_{orb}$ (middle) and P$_{rot}$ (bottom) for the CPL (blue) and CTL (orange) model. The blue (CPL) and orange (CTL) vertical dashed lines denote when the stellar binary tidally-locks. Both the CPL and CTL model predict the same qualitative evolution. The rotational evolution differs, however, as under the CPL model, the binary tidally-locks into a synchronous orbit as $e < \sqrt{1/19}$, e.g. Eq.~(\ref{eqn:cpl:eqPer}), while the CTL model predicts supersyncronous rotation due to the CTL model's equilibrium period eccentricity dependence (see Eq.~(\ref{eqn:ctl:eqPer})).}%
     \label{fig:tidalExample}%
@@ -273,7 +273,6 @@ and
 where $J_{orb}$ is the orbital angular momentum.
 
 %% SECTION: Simulations + Initial conditions %%
-
 \section{Simulations} \label{sec:simulations}
 
 We examine stellar angular momentum evolution in low-mass binaries by performing a Monte Carlo study of two sets of 10,000 stellar binaries, one modeled using the CPL model and the other using the CTL formalism.  We simulate both stars' spin evolution but mainly consider the P$_{rot}$ evolution for the primary, i.e. more massive star in binaries, as it is observationally easier to measure a P$_{rot}$ on the more massive, and hence brighter, star \citep[e.g.][]{Meibom2006,Lurie2017}. For each simulation, we sample the primary's mass uniformly over $[0.1, 1]$ M$_{\odot}$. Following \citet{Matt2015}, we uniformly sample the log$_{10}$ of P$_{rot}$ over [$0.8,15$] days, a distribution that approximates the P$_{rot}$ distribution of young stars in the ${\sim}2$ Myr old ONC.  We compute the secondary star's mass by uniformly sampling the mass ratio over [$0.1, 1$] following observations of mass ratios in low-mass binaries \citep{Raghavan2010,Moe2018}. Given the inherent uncertainty in and complexity of the formation of binaries \citep[e.g.][]{Bonnell1994,Bate2000,Bate2002,Moe2018} and the potential for dynamical processing via tides or stellar close encounters \citep[e.g.][]{Mardling2001,Hurley2002,Ivanova2005,Meibom2005}, we take an agnostic approach to the initial orbital configuration by uniformly randomly sampling the initial eccentricity ($e$) over [$0.0,0.3$] and uniformly sampling the initial P$_{orb}$ over [$3,100$] d. Altough the CTL model is applicable for $e > 0.3$ while the CPL model is not, we restrict $e \leq 0.3$ to allow us to compare both models.
@@ -290,76 +289,94 @@ All code used to run simulations and generate figures is available online\footno
 
 we can explain fast rotation observed in \citet{Meibom2007} to be due to tidal torques speeding up stellar Prots
 
+
+\subsection{Coupled Stellar-Tidal Evolution}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
+   \caption{Caption.}%
+    \label{fig:coupledExample}%
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/eqPer.pdf}
+   \caption{Caption.}%
+    \label{fig:eqPer}%
+\end{figure}
+
 \subsection{Tidal-Locking Over $Q,\tau$ and P$_{orb}$}
 
 \begin{figure*}[ht]
-	\includegraphics[width=\textwidth]{../Plots/qTauPorbLockHist.pdf}
+	\includegraphics[width=\textwidth]{../Plots/qTauPorbRatioHist.pdf}
    \caption{Caption}%
     \label{fig:qTauLock}%
 \end{figure*}
 
 XXX
 
-\subsection{Tidal-Locking as a Function of Eccentricity} \label{sec:results:ecc}
-
-\begin{figure*}[ht]
-	\includegraphics[width=\textwidth]{../Plots/eccPorbLockHist.pdf}
-   \caption{Caption.}%
-    \label{fig:eccLock}%
-\end{figure*}
-
-\begin{figure*}[ht]
-	\includegraphics[width=\textwidth]{../Plots/eccPorbRatioHist.pdf}
-   \caption{Caption.}%
-    \label{fig:eccRatio}%
-\end{figure*}
-
-XXX
-
-\subsubsection{Tidal-Locking as a Function of P$_{orb}$} \label{sec:results:porb}
-
-XXX
-
-\begin{figure}[h]
-	\includegraphics[width=0.4\textwidth]{../Plots/lockTimePorbHist.pdf}
-   \caption{Caption.}%
-    \label{fig:lockHistPorb}%
-\end{figure}
-
-\subsection{Comparison with \kepler} \label{sec:kepler}
-
-\begin{figure*}[ht]
-	\includegraphics[width=\textwidth]{../Plots/lurie.pdf}
-   \caption{Caption.}
-    \label{fig:lurie}
-\end{figure*}
-
 \subsubsection{Deviations From Single Star P$_{rot}$ Evolution: Implications for Gyrochronology}
-
-\begin{figure}[h]
-	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
-   \caption{Caption}%
-    \label{fig:binGyro}%
-\end{figure}
 
 Here we examine the tidal locking in binaries using the simulations from XXX by plotting P$_{rot}$ as a function of mass and age for binaries in XXX. We find that $35.5\%$ of binaries tidally lock before the age of the system, typically for tidal $Q \lsim 10^7$. Tidally-locked binaries tend to rotate more rapidly than unlocked binaries, reflected in the increased density for P$_{rot} \lsim 20$ d in the marginal distribution for the locked population and in the distribution medians (locked median P$_{rot} = 19.8$ d compared to unlocked median P$_{rot} = 27.5$ d). Binaries readily tidally-lock at short P$_{orb}$ due to the tidal force's strong semi-major axis dependence, increasing the strength of tidal torques at shorter orbital separations. When stellar binaries approach the tidally-locked state, tidal torques overpower the torque due to magnetic braking, fixing P$_{rot} = $P$_{orb}$, resulting in long-lasting rapid rotation in short P$_{orb}$ binaries. 
 
 Tidal forces modify the spins of unlocked binaries as well, tending to spin-up stars against the effects of magnetic braking towards orbital synchronization, reflected in unlocked binaries' median P$_{rot} = 27.5$ d, compared to the single star median P$_{rot} = 30.6$ d. Tidal locking is not limited to P$_{orb} \lsim 10$ d, however, as we observe stellar binaries to tidally lock out up to P$_{orb} \approx 70$ d, producing a slow-rotating population above the P$_{rot}$ distribution envelop of single stars (compare to XXX). This behavior is consistent with observations of P$_{rot}$ in \kepler eclipsing binaries by \citet{Lurie2017} who find that binaries can tidally lock up to their detection limit of P$_{orb} = $ P$_{rot} = 45$ d. The observed age distribution of tidally-locked binaries has little dependence on P$_{rot}$, with both young and old systems tidally-locking at long and short P$_{rot}$, causing the predictions of gyrochronology models to fail in such systems. 
 
-\begin{figure}[h]
-	\includegraphics[width=0.45\textwidth]{../Plots/lockedCPL.pdf}
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{../Plots/protDist.pdf}
    \caption{Caption}%
-    \label{fig:lockingCPL}%
+    \label{fig:protDist}%
 \end{figure}
 
-\begin{figure}[h]
-	\includegraphics[width=0.45\textwidth]{../Plots/lockedCTL.pdf}
+
+%% SECTION: COMPARISON TO KEPLER %%
+\section{Comparison to \kepler} \label{sec:kepler}
+
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{../Plots/lurieFig7.pdf}
    \caption{Caption}%
-    \label{fig:lockingCTL}%
+    \label{fig:lurie7}%
+\end{figure}
+
+\subsection{The Subsynchronous Population} \label{sec:subsync}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/subsync.pdf}
+   \caption{Caption}%
+    \label{fig:subsync}%
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/subsyncTauHist.pdf}
+   \caption{Caption}%
+    \label{fig:subsyncTauHist}%
+\end{figure}
+
+\subsection{$Q$, $\tau$ Constraints from P$_{orb}$ and P$_{rot}$} \label{sec:qTau}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/porbProtPorbQHist.pdf}
+   \caption{Caption}%
+    \label{fig:qmap}%
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/porbProtPorbTauHist.pdf}
+   \caption{Caption}%
+    \label{fig:taumap}%
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/qLurie.pdf}
+   \caption{Caption}%
+    \label{fig:qLurie}%
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/tauLurie.pdf}
+   \caption{Caption}%
+    \label{fig:tauLurie}%
 \end{figure}
 
 %% SECTION: DISCUSSION %%
-
 \section{Discussion} \label{sec:discussion}
 
 XXX
