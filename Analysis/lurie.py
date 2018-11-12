@@ -49,7 +49,7 @@ ax0.axhline(1, lw=3, color="black", ls="--", zorder=100)
 if plotLurie:
     # Plot Lurie+2017 data
     ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
-                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
+                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax0.set_rasterization_zorder(0)
@@ -78,7 +78,7 @@ ax1.axhline(1, lw=3, color="black", ls="--", zorder=100)
 if plotLurie:
     # Plot Lurie+2017 data
     ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=2,
-               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
+               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax1.set_rasterization_zorder(0)
@@ -114,7 +114,7 @@ ax0.axhline(1, lw=3, color="black", ls="--", zorder=100)
 if plotLurie:
     # Plot Lurie+2017 data
     ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
-                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
+                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax0.set_rasterization_zorder(0)
@@ -141,7 +141,7 @@ ax1.axhline(1, lw=3, color="black", ls="--", zorder=100)
 if plotLurie:
     # Plot Lurie+2017 data
     ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
-               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)", alpha=0.7)
+               marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax1.set_rasterization_zorder(0)

@@ -212,7 +212,7 @@ ax.axvline(down, ls="--", color="black", lw=2)
 ax.axvline(up, ls="--", color="black", lw=2)
 
 # Annotate
-ax.text(5, 0.5, (r"log$_{10}(Q) = %.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up-med, med-down)),
+ax.text(5.5, 0.425, (r"log$_{10}(Q) = %.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up-med, med-down)),
         ha="center", va="center", size=16, color="black", zorder=100,
         bbox=dict(boxstyle="square", fc="white", ec="white", alpha=0.9))
 
