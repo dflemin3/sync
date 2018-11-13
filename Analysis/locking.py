@@ -235,7 +235,7 @@ print("CTL locked Porb median:",np.median(ctl["Age_Porb"][ctl["Locked"]]))
 print("CTL unlocked Porb median:",np.median(ctl["Age_Porb"][ctl["Free"]]))
 print("CTL interacting Porb median:",np.median(ctl["Age_Porb"][ctl["Interacting"]]))
 
-# Make histograms of CPL, CTL Prot and Porb for 3 classifications
+# Make histograms of CPL, CTL Prot and Porb for 3 classifications: Diagnostic version
 
 ### CPL ###
 fig, axes = plt.subplots(ncols=2, figsize=(17, 8), sharey=True)
@@ -306,5 +306,38 @@ ax1.legend(loc="best", framealpha=0.0, fontsize=17)
 
 fig.tight_layout()
 fig.savefig("../Plots/lockedProtPorbHist.pdf", bbox_inches="tight", dpi=600)
+
+# Make histograms of CPL, CTL Prot and Porb for 3 classifications: Paper version
+fig, ax = plt.subplots()
+
+# CPL
+ax.hist(cpl["Pri_ProtAge"][cpl["Interacting"]],
+        bins=bins, histtype="step", lw=3, color="C2",
+        label="Interacting", density=True, ls="-", range=[0,100])
+ax.hist(cpl["Pri_ProtAge"][cpl["Locked"]],
+        bins=bins, histtype="step", lw=3, color="C0",
+        label="Locked", density=True, ls="-", range=[0,100])
+
+# CTL
+ax.hist(ctl["Pri_ProtAge"][ctl["Interacting"]],
+        bins=bins, histtype="step", lw=3, color="C2", density=True, ls="--",
+        range=[0,100], label="")
+ax.hist(ctl["Pri_ProtAge"][ctl["Locked"]],
+        bins=bins, histtype="step", lw=3, color="C0", density=True, ls="--",
+        range=[0,100], label="")
+
+# Dummy lines for legend
+ax.plot([500], [500], lw=3, ls="-", color="grey", label="CPL")
+ax.plot([500], [500], lw=3, ls="--", color="grey", label="CTL")
+
+# Format marginals
+ax.set_xlim(0,100)
+ax.set_ylim(0, 0.0325)
+ax.set_xlabel("Rotation Period [d]", fontsize=30)
+ax.set_ylabel("Normalized Counts", fontsize=30)
+ax.legend(loc="upper right", fontsize=18)
+
+fig.tight_layout()
+fig.savefig("../Plots/lockedProtHist.pdf", bbox_inches="tight", dpi=600)
 
 # Done!
