@@ -28,7 +28,7 @@ cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
 ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
 lurie = pd.read_csv("../Data/Lurie2017Full.csv", header=0)
-lurie["Prot"] = lurie["p_acf"].copy()
+lurie["Prot"] = lurie["p_1_min"].copy() # As recommended by Lurie+2017 for equitorial Prot
 lurie["Porb"] = lurie["p_orb"].copy()
 
 # 1st Fig modeled after Fig. 6, upper panel from Lurie+2017

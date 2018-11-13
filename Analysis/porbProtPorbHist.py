@@ -29,7 +29,7 @@ ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
 # Read in lurie data
 lurie = pd.read_csv("../Data/Lurie2017Full.csv", header=0)
-lurie["Prot"] = lurie["p_acf"].copy()
+lurie["Prot"] = lurie["p_1_min"].copy() # As recommended by Lurie+2017 for equitorial Prot
 lurie["Porb"] = lurie["p_orb"].copy()
 
 # Construct Porb, ecc bins based on assumed ranges
@@ -212,7 +212,7 @@ ax.axvline(down, ls="--", color="black", lw=2)
 ax.axvline(up, ls="--", color="black", lw=2)
 
 # Annotate
-ax.text(5.5, 0.425, (r"log$_{10}(Q) = %.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up-med, med-down)),
+ax.text(5.2, 0.425, (r"log$_{10}(Q) = %.2lf^{+%0.2lf}_{-%0.2lf}$" % (med, up-med, med-down)),
         ha="center", va="center", size=16, color="black", zorder=100,
         bbox=dict(boxstyle="square", fc="white", ec="white", alpha=0.9))
 

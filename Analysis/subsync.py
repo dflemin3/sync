@@ -45,6 +45,7 @@ plotLurie = True
 cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
 ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
 
+# Load in cleaned sample of Prot and Ecc from Lurie+2017
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])
 
