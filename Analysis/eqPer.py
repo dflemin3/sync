@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 24.0
+mpl.rcParams['font.size'] = 20.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -74,37 +74,33 @@ for ii, dir in enumerate(dirs):
         iLockIndCTL = np.argmin(np.fabs(ctl[:,0]-dLockTimeCTL))
 
     # Left: Prot/Peq
-    axes[0].plot(cpl[:,0], cpl[:,4]/cpl[:,5], lw=3, ls="-", color=colors[ii],
-                 label="P$_{orb}$ = %s d" % dir)
-    axes[0].plot(ctl[:,0], ctl[:,4]/ctl[:,5], lw=3, ls="--", color=colors[ii])
+    axes[0].plot(cpl[:,0], cpl[:,4]/cpl[:,5], lw=2.5, ls="-", color=colors[ii])
+    axes[0].plot(ctl[:,0], ctl[:,4]/ctl[:,5], lw=2.5, ls="--", color=colors[ii])
 
     # Right: dProt/dt
     cplDeriv = (cpl[:,6] + cpl[:,7])*YEARSEC/DAYSEC*1.0e9
     ctlDeriv = (ctl[:,6] + ctl[:,7])*YEARSEC/DAYSEC*1.0e9
-    axes[1].plot(cpl[:iLockIndCPL,0], cplDeriv[:iLockIndCPL], lw=3, ls="-",
-                 color=colors[ii])
-    axes[1].plot(ctl[:iLockIndCTL,0], ctlDeriv[:iLockIndCTL], lw=3, ls="--",
+    axes[1].plot(cpl[:iLockIndCPL,0], cplDeriv[:iLockIndCPL], lw=2, ls="-",
+                 color=colors[ii], label="P$_{orb}$ = %s d" % dir)
+    axes[1].plot(ctl[:iLockIndCTL,0], ctlDeriv[:iLockIndCTL], lw=2, ls="--",
                  color=colors[ii])
 
-    axes[1].set_ylabel("Orbital Period [d]")
+axes[1].plot([100], [100], lw=3, ls="-", color="grey", label="CPL")
+axes[1].plot([100], [100], lw=3, ls="--", color="grey", label="CTL")
 
 # Format left axis
-axes[0].plot([100], [100], lw=3, ls="-", color="grey", label="CPL")
-axes[0].plot([100], [100], lw=3, ls="--", color="grey", label="CTL")
-
-axes[0].legend(loc="best", framealpha=0, fontsize=15, ncol=3)
-axes[0].set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=30)
-axes[0].set_xlabel("Time [yr]", fontsize=30)
+axes[0].set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=25)
+axes[0].set_xlabel("Time [yr]", fontsize=25)
 axes[0].set_xscale("log")
 axes[0].axhline(1, lw=2.5, ls=":", color="k")
 axes[0].set_xlim(1.0e6, cpl[-1,0])
-axes[0].set_ylim(0, 1.3)
+axes[0].set_ylim(0, 1.2)
 
 # Format right axis
-axes[1].set_ylabel("$d$P$_{rot}$/$dt$ [d/Gyr]", fontsize=30)
-axes[1].set_xlabel("Time [yr]", fontsize=30)
+axes[1].set_ylabel("$d$P$_{rot}$/$dt$ [d/Gyr]", fontsize=25)
+axes[1].set_xlabel("Time [yr]", fontsize=25)
 axes[1].set_xlim(1.0e6, cpl[-1,0])
-#axes[1].set_ylim(-2.0e-2, 1.0e-1)
+axes[1].legend(loc="lower center", framealpha=0.75, fontsize=13, ncol=3)
 axes[1].set_xscale("log")
 axes[1].set_yscale("symlog")
 axes[1].axhline(0, lw=2.5, ls=":", color="k")
