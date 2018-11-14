@@ -62,12 +62,20 @@ Box 951580, Seattle, WA 98195}
 
 - Lurie finds tons of short Porb EBs because transit observational biases favor bodies with short orbital periods for a finite observing window, eg Kepler's lifetime 
 
-- Consult Lurie's paper for CPL vs CTL (e.g. why not 3:2 population-> use CTL!) and for discussing sunsync population
+- Consult Lurie's paper for CPL vs CTL (e.g. why not 3:2 population-> use CTL!) and for discussing sunsync population. stars prob not in 3:2 resonance since they likely dont have a fixed solid body shape as I assume, but perhaps in a decoupled core envelope model (bouvier?) envelope could get locked into resonance
 
-- cite Matsen+2018 for "more than $50\%$ of thebinary period distribution will be imaged in about $85\%$ of the host stars" in paper
+- cite Matsen+2018 for "more than $50\%$ of the binary period distribution will be imaged in about $85\%$ of the host stars" in paper
 about detecting unresolved binaries in TESS
 
 - we use Lurie+2017 Prots that "Assuming solar-like differential rotation, P1,min will be closest to the equatorial rotation period. This provides a consistent reference point for the differential rotation discussion below."
+
+- lower left cluster in ProtPorb space in Lurie plot are likely BD or exoplanets according to Lurie
+
+- compare results to Lurie section 4.4.2 discussion of dependence with eccentricity
+
+- lurie finds that low mass ratio binaries are more likely to be subsync for Porb less than 10 days, makes sense since lower mass secondary means weaker tidal torques
+
+- we can explain fast rotation observed in \citet{Meibom2007} to be due to tidal torques speeding up stellar Prots
 
 \end{abstract}
 
@@ -282,15 +290,7 @@ All code used to run simulations and generate figures is available online\footno
 
 %% SECTION: RESULTS %%
 
-\section{Role $Q$ and $\tau$}
-
-we can explain fast rotation observed in \citet{Meibom2007} to be due to tidal torques speeding up stellar Prots
-
-\begin{figure}
-	\includegraphics[width=0.45\textwidth]{../Plots/example.pdf}
-   \caption{Caption.}%
-    \label{fig:coupledExample}%
-\end{figure}
+\section{The Rotational Equilibrium State} \label{sec:eq}
 
 XXX
 
@@ -301,6 +301,8 @@ XXX
 \end{figure}
 
 XXX
+
+\section{Role $Q$ and $\tau$}
 
 \begin{figure*}[ht]
 	\includegraphics[width=\textwidth]{../Plots/qTauPorbRatioHist.pdf}
@@ -323,38 +325,6 @@ XXX
    \caption{Caption}%
     \label{fig:taumap}%
 \end{figure}
-
-XXX
-
-\section{Deviations From Single Star P$_{rot}$ Evolution: Implications for Gyrochronology} \label{sec:gyro}
-
-\begin{figure}
-	\includegraphics[width=0.45\textwidth]{../Plots/lockedCPL.pdf}
-   \caption{Caption.}%
-    \label{fig:lockedCPL}%
-\end{figure}
-
-XXX
-
-\begin{figure}
-	\includegraphics[width=0.45\textwidth]{../Plots/lockedCTL.pdf}
-   \caption{Caption.}%
-    \label{fig:lockedCTL}%
-\end{figure}
-
-XXX
-
-Here we compare the P$_{rot}$ distribution for tidally-interacting stellar binaries from our CPL and CTL simulations with the P$_{rot}$ distribution of single stars subject to stellar evolution and magnetic braking.  We simulate 10,000 single star systems according to the evolution described in $\S$~\ref{sec:methods:stellar}.  To generate the simulations, we sample from the same mass and initial P$_{rot}$ distributions we used for the binary simulations described $\S$~\ref{sec:methods}. In Fig.~\ref{fig:protDist}, we P$_{rot}$ as a function of mass and age for binaries simulated using both the CPL and CTL model and for single stars. 
-
-Tidally-locked binaries tend to rotate more rapidly than unlocked binaries, reflected in the increased density for P$_{rot} \lsim 20$ d in the marginal distribution for the locked population and in the distribution medians (locked median P$_{rot} = 19.8$ d compared to unlocked median P$_{rot} = 27.5$ d). Binaries readily tidally-lock at short P$_{orb}$ due to the tidal force's strong semi-major axis dependence, increasing the strength of tidal torques at shorter orbital separations. When stellar binaries approach the tidally-locked state, tidal torques overpower the torque due to magnetic braking, fixing P$_{rot} = $P$_{orb}$, resulting in long-lasting rapid rotation in short P$_{orb}$ binaries. 
-
-Tidal forces modify the spins of unlocked binaries as well, tending to spin-up stars against the effects of magnetic braking towards orbital synchronization, reflected in unlocked binaries' median P$_{rot} = 27.5$ d, compared to the single star median P$_{rot} = 30.6$ d. Tidal locking is not limited to P$_{orb} \lsim 10$ d, however, as we observe stellar binaries to tidally lock out up to P$_{orb} \approx 70$ d, producing a slow-rotating population above the P$_{rot}$ distribution envelop of single stars (compare to XXX). This behavior is consistent with observations of P$_{rot}$ in \kepler eclipsing binaries by \citet{Lurie2017} who find that binaries can tidally lock up to their detection limit of P$_{orb} = $ P$_{rot} = 45$ d. The observed age distribution of tidally-locked binaries has little dependence on P$_{rot}$, with both young and old systems tidally-locking at long and short P$_{rot}$, causing the predictions of gyrochronology models to fail in such systems. 
-
-\begin{figure*}[t]
-	\includegraphics[width=\textwidth]{../Plots/protDist.pdf}
-   \caption{P$_{rot}$ as a function of stellar mass and age according to our CPL (left), CTL (left center), and single star (right center) simulations. The P$_{rot}$ distribution for each case, marginalized over stellar mass, is depicted in the right panel. For each case, we only plot 2,500 systems for clarity but account for all systems when computing the marginalized distributions. Both tidal models predict a substantial population of fast rotators (P$_{rot} < 20$ d) not seen in the single star model at any age, except for young (age $< 2$ Gyr) M dwarfs (M$ < 0.5$ M$_{\odot}$). In many binary systems, both tidal models predict that age does not directly correlate with P$_{rot}$, especially in short P$_{orb}$ binaries where tidal torques are stronger, compared to the clear age-dependence of P$_{rot}$ seen in the single star models, the key assumption of gyrochronology methods.}%
-    \label{fig:protDist}%
-\end{figure*}
 
 XXX
 
@@ -394,6 +364,46 @@ XXX
    \caption{Caption}%
     \label{fig:tauLurie}%
 \end{figure}
+
+\section{Deviations From Single Star P$_{rot}$ Evolution: Implications for Gyrochronology} \label{sec:gyro}
+
+Here we compare the P$_{rot}$ distribution for tidally-interacting stellar binaries from our CPL and CTL simulations with the P$_{rot}$ distribution of single stars subject to stellar evolution and magnetic braking.  We simulate 10,000 single star systems according to the evolution described in $\S$~\ref{sec:methods:stellar}.  To generate the simulations, we sample from the same mass and initial P$_{rot}$ distributions we used for the binary simulations described $\S$~\ref{sec:methods}. In Fig.~\ref{fig:protDist}, we P$_{rot}$ as a function of mass and age for binaries simulated using both the CPL and CTL model and for single stars. 
+
+Tidally-locked binaries tend to rotate more rapidly than unlocked binaries, reflected in the increased density for P$_{rot} \lsim 20$ d in the marginal distribution for the locked population and in the distribution medians (locked median P$_{rot} = 19.8$ d compared to unlocked median P$_{rot} = 27.5$ d). Binaries readily tidally-lock at short P$_{orb}$ due to the tidal force's strong semi-major axis dependence, increasing the strength of tidal torques at shorter orbital separations. When stellar binaries approach the tidally-locked state, tidal torques overpower the torque due to magnetic braking, fixing P$_{rot} = $P$_{orb}$, resulting in long-lasting rapid rotation in short P$_{orb}$ binaries. 
+
+Tidal forces modify the spins of unlocked binaries as well, tending to spin-up stars against the effects of magnetic braking towards orbital synchronization, reflected in unlocked binaries' median P$_{rot} = 27.5$ d, compared to the single star median P$_{rot} = 30.6$ d. Tidal locking is not limited to P$_{orb} \lsim 10$ d, however, as we observe stellar binaries to tidally lock out up to P$_{orb} \approx 70$ d, producing a slow-rotating population above the P$_{rot}$ distribution envelop of single stars (compare to XXX). This behavior is consistent with observations of P$_{rot}$ in \kepler eclipsing binaries by \citet{Lurie2017} who find that binaries can tidally lock up to their detection limit of P$_{orb} = $ P$_{rot} = 45$ d. The observed age distribution of tidally-locked binaries has little dependence on P$_{rot}$, with both young and old systems tidally-locking at long and short P$_{rot}$, causing the predictions of gyrochronology models to fail in such systems. 
+
+\begin{figure*}[t]
+	\includegraphics[width=\textwidth]{../Plots/protDist.pdf}
+   \caption{P$_{rot}$ as a function of stellar mass and age according to our CPL (left), CTL (left center), and single star (right center) simulations. The P$_{rot}$ distribution for each case, marginalized over stellar mass, is depicted in the right panel. For each case, we only plot 2,500 systems for clarity but account for all systems when computing the marginalized distributions. Both tidal models predict a substantial population of fast rotators (P$_{rot} < 20$ d) not seen in the single star model at any age, except for young (age $< 2$ Gyr) M dwarfs (M$ < 0.5$ M$_{\odot}$). In many binary systems, both tidal models predict that age does not directly correlate with P$_{rot}$, especially in short P$_{orb}$ binaries where tidal torques are stronger, compared to the clear age-dependence of P$_{rot}$ seen in the single star models, the key assumption of gyrochronology methods.}%
+    \label{fig:protDist}%
+\end{figure*}
+
+XXX
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/lockedCPL.pdf}
+   \caption{Caption.}%
+    \label{fig:lockedCPL}%
+\end{figure}
+
+XXX
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/lockedCTL.pdf}
+   \caption{Caption.}%
+    \label{fig:lockedCTL}%
+\end{figure}
+
+XXX
+
+\begin{figure}
+	\includegraphics[width=0.45\textwidth]{../Plots/lockedProtHist.pdf}
+   \caption{Caption.}%
+    \label{fig:lockedInteracting}%
+\end{figure}
+
+XXX
 
 %% SECTION: DISCUSSION %%
 \section{Discussion} \label{sec:discussion}
