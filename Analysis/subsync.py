@@ -64,8 +64,8 @@ ax0.axhline(1, lw=2, color="black", ls="-", zorder=2)
 
 if plotLurie:
     # Plot Lurie+2017 data
-    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], c=lurie["Ecc"], s=200, zorder=3,
-                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], c=lurie["Ecc"], s=75, zorder=3,
+                marker="d", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax0.set_rasterization_zorder(0)

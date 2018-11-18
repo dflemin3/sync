@@ -139,3 +139,32 @@ ax.set_ylim(0, 1.3)
 
 # Save!
 fig.savefig("../Plots/eqPer.pdf", bbox_inches="tight", dpi=600)
+
+### Short Porb Plot ###
+
+ctlDir = "../Sims/Peq"
+dirs = ["0.001", "0.01", "0.1"]
+labels = [r"$\tau = 10^{-3}$ s", r"$\tau = 10^{-2}$ s", r"$\tau = 10^{-1}$ s"]
+
+fig, ax = plt.subplots(figsize=(9,8))
+
+for ii, dir in enumerate(dirs):
+    # Load data
+    # saOutputOrder	Time -TotEn -TotAngMom -Radius -RotPer -EqRotPer
+    # DRotPerDtEqtide DRotPerDtStellar Ecce -OrbPer RadGyra -SurfEnFluxTotal
+    ctl = np.genfromtxt(os.path.join(ctlDir, dir, "bintides.secondary.forward"))
+
+    # Left: Prot/Peq
+    ax.plot(ctl[:,0], ctl[:,4]/ctl[:,5], lw=3, ls="-", label=labels[ii],
+            color="C%d" % ii)
+
+ax.legend(loc="best", framealpha=0, fontsize=18)
+ax.set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=30)
+ax.set_xlabel("Time [yr]", fontsize=30)
+ax.set_xscale("log")
+ax.axhline(1, lw=2.5, ls=":", color="k")
+ax.set_xlim(1.0e6, cpl[-1,0])
+ax.set_ylim(0, 1.4)
+
+# Save!
+fig.savefig("../Plots/eqPerShortPorb.pdf", bbox_inches="tight", dpi=600)
