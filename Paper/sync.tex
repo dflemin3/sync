@@ -50,32 +50,27 @@
 %%\email{dflemin3@uw.edu}
 
 %%\author[0000-0001-9293-4043]{David P. Fleming}
-\author{David P. Fleming et al}
+\author{David P. Fleming}
 \affil{Astronomy Department, University of Washington \\
 Box 951580, Seattle, WA 98195}
+
+\author{Rory Barnes}
+\affiliation{Astronomy Department, University of Washington \\
+Box 951580, Seattle, WA 98195}
+
+\author{James R. A. Davenport}
+\affiliation{Astronomy Department, University of Washington \\
+Box 951580, Seattle, WA 98195}
+
+\author{Rodrigo Luger}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute \\
+New York, NY 10010}
 
 %% ABSTRACT %%
 
 \begin{abstract}
 
-- 5 points with Porb < 10 days and Porb/Prot > 10 in lurie plot are likely young stars that have or continue to spin up via angular momentum conservation due to pre main sequence contraction.  evidence for young stars in the Kepler field, e.g. McQuillan+2014, Matt+2015, Davenport+2017,2018 support this theory
-
-- Lurie finds tons of short Porb EBs because transit observational biases favor bodies with short orbital periods for a finite observing window, eg Kepler's lifetime 
-
-- Consult Lurie's paper for CPL vs CTL (e.g. why not 3:2 population-> use CTL!) and for discussing sunsync population. stars prob not in 3:2 resonance since they likely dont have a fixed solid body shape as I assume, but perhaps in a decoupled core envelope model (bouvier?) envelope could get locked into resonance
-
-- cite Matsen+2018 for "more than $50\%$ of the binary period distribution will be imaged in about $85\%$ of the host stars" in paper
-about detecting unresolved binaries in TESS
-
-- we use Lurie+2017 Prots that "Assuming solar-like differential rotation, P1,min will be closest to the equatorial rotation period. This provides a consistent reference point for the differential rotation discussion below."
-
-- lower left cluster in ProtPorb space in Lurie plot are likely BD or exoplanets according to Lurie
-
-- compare results to Lurie section 4.4.2 discussion of dependence with eccentricity
-
-- lurie finds that low mass ratio binaries are more likely to be subsync for Porb less than 10 days, makes sense since lower mass secondary means weaker tidal torques
-
-- we can explain fast rotation observed in \citet{Meibom2007} to be due to tidal torques speeding up stellar Prots
+Stellar rotation period (P$_{rot}$) studies have produced numerous insights into the angular momentum evolution of low-mass stars, but previous investigations have focused on single stars even though roughly half of Sun-like stars are in stellar binaries. Here, we examine how tidal torques, stellar evolution, and magnetic braking shape the P$_{rot}$ evolution of low-mass stellar binaries by performing Monte Carlo simulations of coupled stellar-tidal evolution. We find that tides can modify stellar rotations in binaries with orbital periods (P$_{orb}$) up to 100 days.  At short P$_{orb}$, many stellar binaries tidally-lock into synchronous rotation, naturally producing a population of fast rotators (P$_{rot} < 10$ d) across all stellar masses as is observed in the \textit{Kepler} field, a feature that cannot be reproduced by single-star-only models of magnetic braking.  Many binaries with longer P$_{orb}$ can tidally-lock, fixing the stellar P$_{rot}$ to the binary P$_{orb}$, causing P$_{rot}$ to not be a valid proxy for age in all cases, i.e. gyrochronology methods must be applied carefully. We compare our model predictions with \kepler eclipsing binary (EB) rotation periods and find that our predictions are in excellent agreement with observations, with the ``Constant Time Lag" equilibrium tidal best matching observations.  We show that even for short P$_{orb}$ binaries, tidal torques can balance magnetic braking, naturally producing a population of subsynchronous rotators similar what \citet{Lurie2017} observed in their sample of \kepler EBs. By comparing observations of \kepler EBs with our simulations, we constrain the tidal time lag to $\tau = 0.19^{+0.43}_{-0.16}$ s.
 
 \end{abstract}
 
@@ -89,13 +84,13 @@ about detecting unresolved binaries in TESS
 
 Angular momentum evolution in low-mass (M$\lsim 1$ M$_{\odot}$) short-period (P$_{orb} \lsim 10$ d) stellar binaries is dominated by tides.  Tidal torques drive secular changes in the binary orbit and stellar spins, eventually circularizing the orbit and synchronizing the stellar spins in the long-term \citep{Counselman1973}. Orbital circularization is ubiquitous in short-period binaries, owing to the tidal torque's strong semi-major axis dependence, with both theoretical \citep[e.g.][]{Zahn1989} and observational \citep[e.g.][]{Meibom2005,Mazeh2008,Lurie2017} studies finding that most binaries with P$_{orb} \lsim 10$ d are circularized. For short-period binaries, tidal torques work quickly on ${\sim}100$ Myr timescales, as \citet{Zahn1989} finds that the orbit of solar twin binaries circularizes during the stellar pre-main sequence.  Observations by \citet{Meibom2005} support this picture as they find short-period binaries in the ${\sim}150$ Myr old cluster M35 tend to have circular orbits.
 
-Tides impart a significant signature in the long-term angular momentum evolution for binary stars, especially so for the stellar spins. Tidal torques drive stellar spins towards the tidally-locked state in which the stellar rotation periods (P$_{rot}$) are equal to the equilibrium rotation period (P$_{eq}$) predicted by tidal models, with a familiar example of this effect being spin-orbit synchronization where P$_{rot} = $ P$_{eq} = $ P$_{orb}$.  Tidal-locking occurs much earlier than orbital circularization as the tidal-locking timescale is estimated to be $2-3$ orders of magnitude less than the circularization timescale \citep{Zahn1989,Witte2002,Mazeh2008}, and as a result, tidal-locking is expected for binaries with P$_{orb} \lsim$ 20 d \citep[e.g.][]{Meibom2006,Mazeh2008,Zahn2008,Meibom2015}. 
+Tides impart a significant signature in the long-term angular momentum evolution for binary stars, especially so for the stellar spins. Tidal torques drive stellar spins towards the tidally-locked state in which the stellar P$_{rot}$ are equal to the equilibrium rotation period (P$_{eq}$) predicted by tidal models, with a familiar example of this effect being spin-orbit synchronization where P$_{rot} = $ P$_{eq} = $ P$_{orb}$.  Tidal-locking occurs much earlier than orbital circularization as the tidal-locking timescale is estimated to be $2-3$ orders of magnitude less than the circularization timescale \citep{Zahn1989,Witte2002,Mazeh2008}, and as a result, tidal-locking is expected for binaries with P$_{orb} \lsim$ 20 d \citep[e.g.][]{Meibom2006,Mazeh2008,Zahn2008,Meibom2015}. 
 
-A large, homogenous sample of $816$ rotation period measurements derived using starspot modulations on low-mass \kepler eclipsing binary stars by \citet{Lurie2017} confirm that most short-period binaries are tidally-locked and also show that the tidal torques can influence stellar spins in binaries with P$_{orb}$ up to 45 d, their detection limit. Futhermore, \citet{Lurie2017} shows that a substantial a population of subsynchronous short-period binaries exist in the \kepler field, clustered near P$_{orb}/$P$_{rot}{\sim} 0.9$, in defiance of the expectation of tidal locking.  These findings suggest that that synchronization for short P$_{orb}$ binaries is not the sole outcome of tidal interactions in low-mass stellar binaries, but rather that impact of tidal effects should be reconsidered for longer P$_{orb}$ and to examine if our current understanding of tidal torques is consistent with short P$_{orb}$ subsynchronous rotators.  Both the extended \kepler mission \citep[K2,][]{Howell2014} and the Transiting Exoplanet Survey Satellite \citep[TESS, ][]{Ricker2014,Sullivan2015} will detect additional low-mass, short-period eclipsing binaries, permitting additional tests for models of stellar angular momentum evolution subject to tidal torques.
+The large sample of $816$ P$_{rot}$ measurements derived using starspot modulations on low-mass \kepler eclipsing binary stars by \citet{Lurie2017} confirm that most short-period binaries are tidally-locked and also show that the tidal torques can influence stellar spins in binaries with P$_{orb}$ up to 45 d, their detection limit. Futhermore, \citet{Lurie2017} shows that a substantial a population of subsynchronous short-period binaries exist in the \kepler field, clustered near P$_{orb}/$P$_{rot}{\sim} 0.9$, in defiance of the expectation of tidal locking.  These findings suggest that that synchronization is not a given for tidally-interacting, short P$_{orb}$  stellar binaries and that impact of tidal effects should be reconsidered for longer P$_{orb}$.  Both the extended \kepler mission \citep[K2,][]{Howell2014} and the Transiting Exoplanet Survey Satellite \citep[TESS, ][]{Ricker2014,Sullivan2015} will detect additional low-mass, short-period eclipsing binaries, permitting additional tests for models of stellar angular momentum evolution subject to tidal torques.
  
-Understanding angular momentum evolution in low-mass stellar binaries is paramount as rotation period distributions measured in clusters and field stars are likely contaminated by unresolved binaries, given that roughly half of Sun-like stars are in stellar binaries \citep{Raghavan2010,Duchene2013}, and that binaries are difficult to resolve in photometric surveys due to low transit probabilities. In the \kepler field, for example, \citet{Simonian2018} recently found that most rapid rotators (P$_{rot} \lsim 7.5$ d) are likely non-eclipsing, tidally-synchronized short-period photometric binaries, indicating that tidal torques in binaries can significantly impact observed P${rot}$ distributions.  Even if stellar binaries have not yet tidally-locked, tidal torques modify stellar rotation periods towards the tidally-locked state, away from the long-term spin-down due to magnetic braking predicted for single stars \citep{Dunn1961,Skumanich1972,Barnes2003}, impacting a contaminating signal that current models do not account for. Moreover, any ages inferred from rotation periods of stars in unresolved binaries using gyrochronology, a method that link the long-term spin-down of low-mass stars to their ages, \citep{Skumanich1972,Barnes2003,Barnes2007,Mamajek2008,Barnes2010}, will likely be incorrect owing to the influence of tidal torques. No previous study has quantified this effect.  
+Understanding angular momentum evolution in low-mass stellar binaries is paramount as P$_{rot}$ distributions measured in clusters \citep[e.g. Praesepe, ][]{Douglas2017} and field stars \citep[e.g. \kepler, ][]{McQuillan2014,Simonian2018} are likely contaminated by unresolved binaries, given that roughly half of Sun-like stars are in stellar binaries \citep{Raghavan2010,Duchene2013}, and that binaries are difficult to resolve in photometric surveys. In the \kepler field, for example, \citet{Simonian2018} recently found that most rapid rotators (P$_{rot} \lsim 7.5$ d) are likely non-eclipsing, tidally-synchronized short-period photometric binaries, indicating that tidal torques in binaries can significantly impact observed P${rot}$ distributions.  Even if stellar binaries have not yet tidally-locked, tidal torques modify stellar rotation periods towards the tidally-locked state, away from the long-term spin-down due to magnetic braking predicted for single stars \citep{Dunn1961,Skumanich1972,Barnes2003}, imparting a contaminating signal that is not currently accounted for by modern models. Moreover, any ages inferred from rotation periods of stars in unresolved binaries using gyrochronology, a method that links the long-term spin-down of low-mass stars to their ages, \citep{Skumanich1972,Barnes2003,Barnes2007,Mamajek2008,Barnes2010}, will likely be incorrect owing to the influence of tidal torques. No previous study has quantified this effect.  
 
-Here, we examine angular momentum evolution over the full main sequence lifetimes of low-mass stellar binaries using a realistic treatment of stellar evolution, magnetic braking, and tidal torques. We investigate under what conditions tidal-locking occurs, and how tidal torques influence rotation in stellar binaries as a function of binary orbital period and tidal dissipation parameters for two widely-used equilibrium tidal models.  We show how tidal torques can impact stellar rotation rate in binaries out to P$_{orb} = 100$ d, causing stellar rotation periods to not strongly correlate with age, making the predictions of gyrochronlogy models to fail in such systems.  We describe our model in $\S$~\ref{sec:methods} and our simulation procedure in $\S$~\ref{sec:simulations}.  We discuss how our model impacts rotation period distributions and the implication for gyrochronology methods in $\S$~\ref{sec:gyro}, apply our model to the \kepler field in $\S$~\ref{sec:kepler}, and discuss our results' implications in $\S$~\ref{sec:discussion}.
+Here, we examine angular momentum evolution over the full main sequence lifetimes of low-mass stellar binaries using a realistic treatment of stellar evolution, magnetic braking, and tidal torques. We investigate under what conditions tidal-locking occurs, and how tidal torques influence rotation in stellar binaries as a function of binary orbital period and tidal dissipation parameters for two widely-used equilibrium tidal models.  We show how tidal torques can impact stellar rotation in binaries out to P$_{orb} = 100$ d, causing stellar rotation periods to not strongly correlate with age, making the predictions of gyrochronlogy models to fail in such systems.  We describe our model in $\S$~\ref{sec:methods} and our simulation procedure in $\S$~\ref{sec:simulations}.  We discuss how our model impacts rotation period distributions and the implication for gyrochronology methods in $\S$~\ref{sec:gyro}, apply our model to the \kepler field in $\S$~\ref{sec:kepler}, and discuss our results' implications in $\S$~\ref{sec:discussion}.
 
 %% SECTION : Methods %%
 
@@ -106,25 +101,25 @@ at \href{https://github.com/VirtualPlanetaryLaboratory/vplanet}{{https://github.
 
 \subsection{Stellar Evolution} \label{sec:methods:stellar}
 
-We improve upon the stellar evolution model used in \citet{Fleming2018}, \stellar, by tracking the evolution of both the stellar radius of gyration, $r_g$, and radius, using a bicubic interpolation over mass and time of the \citet{Baraffe2015} stellar evolution models. We model the long-term stellar spin-down due to magnetic braking using the model derived in \citet{Matt2015} since it has been shown to successfully model the spin-down of low-mass stars across many ages in both the Praesepe cluster and in the \kepler field. We model the net change in the stellar rotation rate due to stellar evolution and magnetic braking via the following equation 
+We improve upon the stellar evolution model used in \citet{Fleming2018}, \stellar, by tracking the evolution of both the stellar radius of gyration, $r_g$, and radius, $R$, using a bicubic interpolation over mass and time of the \citet{Baraffe2015} stellar evolution models. We model the long-term stellar spin-down due to magnetic braking using the model derived in \citet{Matt2015} since it has been shown to successfully model the spin-down of low-mass stars across many ages in both the Praesepe cluster and in the \kepler field. We model the net change in the stellar rotation rate due to stellar evolution and magnetic braking via the following equation 
 \begin{equation} \label{eqn:stellar_rot_rate_dt}
 \dot{\omega} = \frac{\dot{J}_{mb}}{I} - \frac{2 \dot{R} \omega}{R} - \frac{2 \dot{r_g} \omega}{r_g}
 \end{equation}
-where the moment of inertia $I = M r_g^2 R^2$, $\dot{J}_{mb}$ is the angular momentum loss due to magnetic braking, and the time derivatives of the stellar radius and $r_g$ are computed numerically using our interpolation of the \citet{Baraffe2015} stellar evolution grids.  
+where the moment of inertia $I = M r_g^2 R^2$, $\dot{J}_{mb}$ is the angular momentum loss due to magnetic braking, and the time derivatives of the stellar $R$ and $r_g$ are computed numerically using our interpolation of the \citet{Baraffe2015} stellar evolution grids.  
 
 \subsubsection{Example Stellar Evolution} \label{sec:methods:stellarExample}
 
-In Fig.~\ref{fig:stellarExample}, we plot the evolution of the radius, $r_g$, and P$_{rot}$ for 0.2 M$_{\odot}$, 0.7 M$_{\odot}$, and 1 M$_{\odot}$ mass stars, representing an M, K , and G dwarf, respectively, computed according to our stellar evolution model, \stellar. We assume all stars have an initial P$_{rot} = 1$ d and have an initial age of 5 Myr. All stars' radii contract along the pre-main sequence, spinning the stars up (right panel). Once the stars reach the main sequence, their radii slowly grow and magnetic braking dominates the stellar angular momentum evolution, significantly spinning-down the stars over long timescales. The $r_g$ evolution noticably differs between the stars as the M dwarf's (green) $r_g$ varies little as it remains full convective, while the K and G dwarf grow a radiative core while on the pre-main sequence, decreasing $r_g$ until both reach the main sequence.
+In Fig.~\ref{fig:stellarExample}, we plot the evolution of $R$, $r_g$, and P$_{rot}$ for 0.2 M$_{\odot}$, 0.7 M$_{\odot}$, and 1 M$_{\odot}$ mass stars, representing an M, K , and G dwarf, respectively, computed according to our stellar evolution model, \stellar. We assume all stars have an initial P$_{rot} = 1$ d and have an initial age of 5 Myr. All stars' radii contract along the pre-main sequence, spinning the stars up (right panel). Once the stars reach the main sequence, their structure changes slowly, allowing magnetic braking to dominate the stellar angular momentum evolution, significantly spinning-down the stars over long timescales. The $r_g$ evolution noticably differs between the stars as the M dwarf's (green) $r_g$ varies little as it remains full convective, while the K and G dwarf grow a radiative core while on the pre-main sequence, decreasing $r_g$ until both reach the main sequence.
 
 \begin{figure*}[ht]
 	\includegraphics[width=\textwidth]{../Plots/stellarExample.pdf}
-   \caption{Stellar radius (left), $r_g$ (middle), and P$_{rot}$ (right) evolution for 0.2 M$_{\odot}$ (M, green), 0.7 M$_{\odot}$ (K, orange), and 1 M$_{\odot}$ (G, blue) mass stars computed according to \stellar, our interpolation of the \citet{Baraffe2015} stellar evolution models ($\S$~\ref{sec:methods:stellar}) combined with the \citet{Matt2015} magnetic braking law. Each dot denotes the approximate time when each star reaches the main sequence.}%
+   \caption{Stellar $R$ (left), $r_g$ (middle), and P$_{rot}$ (right) evolution for 0.2 M$_{\odot}$ (M, green), 0.7 M$_{\odot}$ (K, orange), and 1 M$_{\odot}$ (G, blue) mass stars computed according to \stellar, our interpolation of the \citet{Baraffe2015} stellar evolution models ($\S$~\ref{sec:methods:stellar}) combined with the \citet{Matt2015} magnetic braking law. Each dot denotes the approximate time when each star reaches the main sequence.}%
     \label{fig:stellarExample}%
 \end{figure*}
 
 \subsection{Tidal Evolution} \label{sec:methods:eqtide}
 
- Equilibrium tidal models, first introduced by \citep{Darwin1880}, track the secular evolution of an orbiter's semi-major axis, $a$, eccentricity, $e$, and the rotation rates, $\omega$, and obliquities $\psi$, of the both gravitating bodies due to tidal torques. Equilibrium tidal models assume that tidally-interacting bodies raise tidal bulges on their companions that remain offset from the line connecting the both bodies' centers of mass due to friction within each body.  The tidal bulges cause torques that drive the exchange of angular momentum between the orbit and both bodies' spins. Equilibrium tidal models are linear since they assume that the tidal waves that comprise the tidal bulge raised on a body are uncoupled. Under these assumptions, the tidal evolution is analogous to a driven, damped harmonic oscillator \citep{Greenberg2009}. We refer the reader to \citet{Barnes2017} for an in-depth discussion of the assumptions and limitations of equilibrium tidal models.  Although simple, equilibrium tidal models have been used to robustly model the secular orbital and rotation evolution of both Solar System bodies and exoplanets \citet[e.g.][]{Goldreich1966,Jackson2009,Leconte2010,Heller2011,Barnes2013,Barnes2017} and stellar binaries \citep[e.g.][]{Zahn1989,Zahn2008,Khaliullin2011,Repetto2014,Fleming2018}. For stars, equilibrium tidal models assume that tidal forces dissipate energy in convective regions via viscous turbulence \citep[see][]{Zahn2008}, corresponding tidal dissipation in the outer convective layers of low-mass stars. Here, we consider two equilibrium tidal models to study the secular spin-orbital evolution of low-mass stellar binaries.  
+ Equilibrium tidal models, first introduced by \citep{Darwin1880}, track the secular evolution of an orbiter's semi-major axis, $a$, eccentricity, $e$, and the rotation rates, $\omega$, and obliquities $\psi$, of the both gravitating bodies due to tidal torques. Equilibrium tidal models assume that tidally-interacting bodies raise tidal bulges on their companions that remain offset from the line connecting the both bodies' centers of mass due to friction within each body.  The tidal bulges cause torques that drive the exchange of angular momentum between the orbit and both bodies' spins. Equilibrium tidal models are linear since they assume that the tidal waves that comprise the tidal bulge raised on a body are uncoupled. Under these assumptions, the tidal evolution is analogous to a driven, damped harmonic oscillator \citep{Greenberg2009}. For stars, equilibrium tidal models assume that tidal forces dissipate energy in convective regions via viscous turbulence \citep[see][]{Zahn2008}, corresponding to tidal dissipation in the outer convective layers of low-mass stars. We refer the reader to \citet{Barnes2017} for an in-depth discussion of the assumptions and limitations of equilibrium tidal models.  Although simple, equilibrium tidal models have been used to robustly model the secular orbital and rotation evolution of both Solar System bodies and exoplanets \citep[e.g.][]{Goldreich1966,Jackson2009,Leconte2010,Heller2011,Barnes2013,Barnes2017} and stellar binaries \citep[e.g.][]{Zahn1989,Zahn2008,Khaliullin2011,Repetto2014,Fleming2018}. Here, we consider two equilibrium tidal models to study the secular spin-orbital evolution of low-mass stellar binaries.  
 
 \subsubsection{Constant Phase Lag Model}
 
@@ -236,7 +231,7 @@ P_{orb} & \text{if } e < \sqrt{1/19}\\
 \frac{2}{3}P_{orb} & \text{if } e \geq \sqrt{1/19}.
 \end{cases}
 \end{equation}
-Therefore, the CPL model predicts synchronous rotation for $e \lsim 0.23$, and a supersychronous 3:2 spin-orbit state otherwise.
+Therefore, the CPL model predicts synchronous rotation for $e \lsim 0.23$, and a supersychronous 3:2 spin-orbit state otherwise for tidally-locked rotators.
 
 The CTL model, however, is continuous over a range of tidal frequencies and therefore predicts a P$_{eq}$ that is a continuous function of both $e$ and $\psi$.  Following \citet{Barnes2017}, we define the CTL P$_{eq}$ by
 \begin{equation} \label{eqn:ctl:eqPer}
@@ -256,9 +251,9 @@ We plot the tidal evolution for $a$, $e$, and $\omega$, ignoring stellar evoluti
     \label{fig:tidalExample}%
 \end{figure}
 
-\subsection{Coupled Stellar-Tidal Evolution} \label{sec:coupled}
+\subsection{Coupled Stellar-Tidal Evolution For Tidally-Locked Systems} \label{sec:coupled}
 
-Following \citet{Fleming2018}, when one or both binary stars are tidally locked, we assume that tidal forces prevent magnetic braking from spinning down the tidally-locked star(s), but instead, any angular momentum lost is lost at the expense of the binary orbit, decreasing $a$ as a result \citep{Verbunt1981}.  Below in Eq.~(\ref{eqn:tidal_locked_one}) and Eq.~(\ref{eqn:tidal_locked_two}), we modify the $a$ decay equations due to stellar evolution and magnetic braking in tidally-locked binaries from \citet{Fleming2018}, their Eqs. (18) and (20), to additionally account for $r_g$ evolution when one or both stars tidally-lock, respectively, assuming conservation of angular momentum:
+Following \citet{Fleming2018}, when one or both binary stars are tidally locked, tidal forces prevent magnetic braking from spinning down the tidally-locked star(s), and any angular momentum lost is lost at the expense of the binary orbit, decreasing $a$ as a result \citep{Verbunt1981}.  Below in Eq.~(\ref{eqn:tidal_locked_one}) and Eq.~(\ref{eqn:tidal_locked_two}), we modify the $a$ decay equations due to stellar evolution and magnetic braking in tidally-locked binaries from \citet{Fleming2018}, their Eqs. (18) and (20), to additionally account for $r_g$ evolution when one or both stars tidally-lock, respectively, assuming conservation of angular momentum:
 \small
 \begin{equation} \label{eqn:tidal_locked_one}
 \begin{split}
@@ -281,15 +276,21 @@ where $J_{orb}$ is the orbital angular momentum.
 %% SECTION: Simulations + Initial conditions %%
 \section{Simulations} \label{sec:simulations}
 
-We examine stellar angular momentum evolution in low-mass binaries by performing a Monte Carlo study of two sets of 10,000 stellar binaries, one modeled using the CPL model and the other using the CTL formalism.  We simulate both stars' spin evolution but mainly consider the P$_{rot}$ evolution for the primary, i.e. more massive star in binaries, as it is observationally easier to measure a P$_{rot}$ on the more massive, and hence brighter, star \citep[e.g.][]{Meibom2006,Lurie2017}. For each simulation, we sample the primary's mass uniformly over $[0.1, 1]$ M$_{\odot}$. Following \citet{Matt2015}, we uniformly sample the log$_{10}$ of P$_{rot}$ over [$0.8,15$] days, a distribution that approximates the P$_{rot}$ distribution of young stars in the ${\sim}2$ Myr old ONC.  We compute the secondary star's mass by uniformly sampling the mass ratio over [$0.1, 1$] following observations of mass ratios in low-mass binaries \citep{Raghavan2010,Moe2018}. Given the inherent uncertainty in and complexity of the formation of binaries \citep[e.g.][]{Bonnell1994,Bate2000,Bate2002,Moe2018} and the potential for dynamical processing via tides or stellar close encounters \citep[e.g.][]{Mardling2001,Hurley2002,Ivanova2005,Meibom2005}, we take an agnostic approach to the initial orbital configuration by uniformly randomly sampling the initial eccentricity ($e$) over [$0.0,0.3$] and uniformly sampling the initial P$_{orb}$ over [$3,100$] d. Altough the CTL model is applicable for $e > 0.3$ while the CPL model is not, we restrict $e \leq 0.3$ to allow us to compare both models.
+We examine stellar angular momentum evolution in low-mass binaries by performing a Monte Carlo study of two sets of 10,000 stellar binaries, one modeled using the CPL model and the other using the CTL formalism.  We simulate both stars' spin evolution but mainly consider the P$_{rot}$ evolution for the primary, i.e. more massive star in binaries, as it is observationally easier to measure a P$_{rot}$ on the more massive, and hence brighter, star \citep[e.g.][]{Meibom2006,Lurie2017}. For each simulation, we sample the primary's mass uniformly over $[0.1, 1]$ M$_{\odot}$. Following \citet{Matt2015}, we uniformly sample the log$_{10}$ of P$_{rot}$ over [$0.8,15$] days, a distribution that approximates the P$_{rot}$ distribution of young stars in the ${\sim}2$ Myr old ONC.  We compute the secondary star's mass by uniformly sampling the mass ratio over [$0.1, 1$] following observations of mass ratios in low-mass binaries \citep{Raghavan2010,Moe2018}. Given the inherent uncertainty in and complexity of the formation of binaries \citep[e.g.][]{Bonnell1994,Bate2000,Bate2002,Moe2018} and the potential for dynamical processing via tides or stellar close encounters \citep[e.g.][]{Mardling2001,Hurley2002,Ivanova2005,Meibom2005}, we take an agnostic approach to the initial orbital configuration by uniformly randomly sampling the initial eccentricity ($e$) over [$0.0,0.3$] and uniformly sampling the initial P$_{orb}$ over [$3,100$] d. Although the CTL model is applicable for $e > 0.3$, the CPL model is not, so we restrict $e \leq 0.3$ to allow us to compare both models. We do not consider P$_{orb} < 3$ d as these binaries are likely to have a tertiary companion \citep{Tokovinin2006} which can significantly impact the inner binaries' dynamical evolution \citep[e.g.][]{Munoz2015,Martin2015b,Hamers2016,Moe2018}. 
 
-Values for stellar tidal $Q$s and $\tau$s for low-mass stars are highly uncertain, likely depend on complex viscous evolution within the stars \citep{Ogilvie2007}, differ for stars of the same spectral clase \citep{Barker2009}, and can vary as a function of stellar age \citep{Bolmont2016}. Typical values of $Q$ and $\tau$ for Sun-like stars are estimated to be of order $Q \approx 10^6$ and $\tau \approx 0.1$ s, respectfully \citep[e.g.][]{Meibom2005,Ogilvie2007,Jackson2009}, however a wide range of values exist in the literature.  Therefore, we consider a wide range of tidal parameters and sample stellar tidal Qs loguniformly over $[10^4,10^7]$ and $\tau$ loguniformly over $[10^{-2},1]$ s.
+Values for stellar tidal $Q$s and $\tau$s for low-mass stars are highly uncertain, likely depend on complex viscous evolution within the stars \citep{Ogilvie2007}, can differ for stars of the same spectral class \citep{Barker2009}, and can vary as a function of stellar age \citep{Bolmont2016}, likely due to low-mass star's evolving convective regions where the tidal dissipation predominantly occurs \citep{Zahn2008}. Typical values of $Q$ and $\tau$ for Sun-like stars are estimated to be of order $Q \approx 10^6$ and $\tau \approx 0.1$ s, respectfully \citep[e.g.][]{Meibom2005,Ogilvie2007,Jackson2009}, however a wide range of values exist in the literature.  Therefore, we consider a wide range of tidal parameters by sampling stellar tidal Qs loguniformly over $[10^4,10^7]$ and $\tau$ loguniformly over $[10^{-2},1]$ s.
 
 We also perform a smaller subset of simulations to illustrate the behaviour of our coupled model and describe their initial conditions as we introduce them. All code used to run simulations and generate figures is available online\footnote{\href{https://github.com/dflemin3/sync}{https://github.com/dflemin3/sync}.} with accompanying descriptions and documentation.
 
 %% SECTION: RESULTS %%
 
-\section{The Rotational Equilibrium State} \label{sec:eq}
+\section{Results} \label{sec:results}
+
+\subsection{The Rotational Equilibrium State} \label{sec:eq}
+
+we actually see subsync rotation in Kepler-47, RUP whatever it's number (short period binaries!), and in the Kepler field!
+
+binaries WILL tidally-lock in the long term as P$_{eq}$ will decrease because P$_{orb}$ decreases in the long-run due to tidal energy dissipation (e.q. Eqn.~(\ref{eqn:tidal_locked_two}), adot from Fleming+2018 coupled stellar-tidal evolution, reference example tidal example above, Fleming+2018 paper).  As P$_{orb}$ decreases, closer to P$_{rot}$ so easier locking, AND tidal torques become strong as distance decreases, allowing them to overpower magnetic braking.  Can see this is slope of P$_{eq}/$P$_{rot}$ curve steepening.  Dissipation occurs because weak tidal torques want to balance out magnetic braking, keeping Prot not equal to Peq, producing tidal dissipation. Tides plus magnetic braking still constantly spinning star down. Systems WILL inevitably tidally-lock, but at MUCH longer timescales as most of our Peq simulations do not lock by 7 Gyr even though Prot=Peq passings occured, but not locking because magnetic braking overpowered tidal torques at that time.
 
 XXX
 
@@ -301,7 +302,7 @@ XXX
 
 XXX
 
-\section{Role $Q$ and $\tau$}
+\subsection{Role $Q$ and $\tau$}
 
 \begin{figure*}[ht]
 	\includegraphics[width=\textwidth]{../Plots/qTauPorbRatioHist.pdf}
@@ -328,19 +329,30 @@ XXX
 XXX
 
 %% SECTION: COMPARISON TO KEPLER %%
-\section{Comparison to \kepler} \label{sec:kepler}
+\subsection{Comparison to \kepler} \label{sec:kepler}
 
-XXX
+- Consult Lurie's paper for CPL vs CTL (e.g. why not 3:2 population-> use CTL!) and for discussing sunsync population. stars prob not in 3:2 resonance since they likely dont have a fixed solid body shape as I assume, but perhaps in a decoupled core envelope model (bouvier?) envelope could get locked into resonance
+
+- cite Matsen+2018 for "more than $50\%$ of the binary period distribution will be imaged in about $85\%$ of the host stars" in paper
+about detecting unresolved binaries in TESS
+
+- we use Lurie+2017 Prots that "Assuming solar-like differential rotation, P1,min will be closest to the equatorial rotation period. This provides a consistent reference point for the differential rotation discussion below."
+
+- compare results to Lurie section 4.4.2 discussion of dependence with eccentricity
+
+- lurie finds that low mass ratio binaries are more likely to be subsync for Porb less than 10 days, makes sense since lower mass secondary means weaker tidal torques
+
+- we can explain fast rotation observed in \citet{Meibom2007} to be due to tidal torques speeding up stellar Prots
 
 \begin{figure*}[t]
 	\includegraphics[width=\textwidth]{../Plots/lurieFig7.pdf}
-   \caption{Caption}%
+   \caption{P$_{orb}/$P$_{rot}$ as a function for P$_{orb}$ simulated according to the CPL model (left) and the CTL model (right) colored by $e$, compared with \kepler EBs from \citet{Lurie2017} (red plus signs).  Each simulation is integrated to system ages uniformly sampled over $1-7$ Gyr, consistent with ages of \kepler field stars \citep{Chaplin2014}. The \kepler EBs at low P$_{orb}$ and low P$_{orb}/$P$_{rot}$ are likely either brown dwarfs or exoplanets \citep{Lurie2017}, and hence not modeled by our simulations, so we do not consider them. TODO.}%
     \label{fig:lurie7}%
 \end{figure*}
 
 XXX
 
-\subsection{P$_{orb} < 10$ d: The Subsynchronous Population} \label{sec:subsync}
+\subsubsection{P$_{orb} < 10$ d: The Subsynchronous Population} \label{sec:subsync}
 
 Median subsync tidal tau: 0.0790922272
 Median supersync tidal tau: 0.12508653609999998
@@ -358,25 +370,25 @@ $72\%$ in [0.92,1.2] and $15\%$ in [0.84, 0.92].
 
 \begin{figure}
 	\includegraphics[width=0.45\textwidth]{../Plots/subsync.pdf}
-   \caption{P$_{orb}/$P$_{rot}$ as a function for P$_{orb}$ simulated according to the CTL model (dots) compared with \kepler EBs from \citet{Lurie2017} (diamonds), colored by $e$. Our simulations are in excellent agreement with the observed orbital and rotational states of \kepler EBs. Our model predicts that all EBs with P$_{orb} < 3$ d are synchronized as is observed by \citet{Lurie2017}. We find that our model predicts a population of supersyncronous rotators on eccentric orbits and a population of subsyncronous rotators on nearly-circular orbits, both of which were observed by \citet{Lurie2017}. This excellent agreement between theory and observations validates our model and provides strong evidence that the CTL formalism can accurately model the tidal evolution of low-mass stellar binaries.}%
+   \caption{Same format as Fig.~\ref{fig:lurie7}, with \citet{Lurie2017} data plotted as diamonds.  All points are colored according to the binary orbital $e$. Our simulations are in excellent agreement with the observed orbital and rotational states of \kepler EBs. Our model predicts that nearly all EBs with P$_{orb} < 3$ d are synchronized as is observed by \citet{Lurie2017}. We find that our model predicts a population of supersyncronous rotators on eccentric orbits and a population of subsyncronous rotators with P$_{orb}/$P$_{rot} \approx 0.9$ on nearly-circular orbits, both of which were observed by \citet{Lurie2017}. This excellent agreement between theory and observations validates our model and provides strong evidence that the CTL formalism can accurately model the tidal evolution of low-mass stellar binaries.}%
     \label{fig:subsync}%
 \end{figure}
 
-\subsection{$Q$, $\tau$ Constraints from P$_{orb}$ and P$_{rot}$} \label{sec:qTau}
+\subsubsection{$Q$, $\tau$ Constraints from P$_{orb}$ and P$_{rot}$} \label{sec:qTau}
 
 \begin{figure}
 	\includegraphics[width=0.45\textwidth]{../Plots/qLurie.pdf}
-   \caption{Caption}%
+   \caption{Distribution of stellar tidal $Q$ produced by convolving \citet{Lurie2017} observations of EBs' P$_{rot}$ and P$_{orb}$ with our CPL simulation results shown in Fig.~\ref{fig:qmap}. The dashed black lines, from left to right, indicate the $16^{th}$ percentile, median, and $84^{th}$ percentile. Our $Q$ constraints are consistent with our flat prior distribution over log$_{10}(Q)$, suggesting that tidally-interacting stellar binaries can have a wide range of $Q$.}%
     \label{fig:qLurie}%
 \end{figure}
 
 \begin{figure}
 	\includegraphics[width=0.45\textwidth]{../Plots/tauLurie.pdf}
-   \caption{Caption}%
+   \caption{Same as Fig.~\ref{fig:qLurie}, but using our CTL simulation results from Fig.~\ref{fig:taumap}. We find log$_{10}(\tau) = -0.73^{+0.52}_{-0.82}$ with an increase in density at larger $\tau$ deviating from our prior flat distribution, suggesting that time lags in low-mass stars are larger than the typical value of $\tau \approx 0.1$ s. A wide range of values for $\tau$ are still consistent with observations, however, indicating that tidally-interacting binaries can exhibit a wide range of tidal time lags, albeit with a preference for longer lags.}%
     \label{fig:tauLurie}%
 \end{figure}
 
-\section{Deviations From Single Star P$_{rot}$ Evolution: Implications for Gyrochronology} \label{sec:gyro}
+\subsection{Deviations From Single Star P$_{rot}$ Evolution: Implications for Gyrochronology} \label{sec:gyro}
 
 Here we compare the P$_{rot}$ distribution for tidally-interacting stellar binaries from our CPL and CTL simulations with the P$_{rot}$ distribution of single stars subject to stellar evolution and magnetic braking.  We simulate 10,000 single star systems according to the evolution described in $\S$~\ref{sec:methods:stellar}.  To generate the simulations, we sample from the same mass and initial P$_{rot}$ distributions we used for the binary simulations described $\S$~\ref{sec:methods}. In Fig.~\ref{fig:protDist}, we P$_{rot}$ as a function of mass and age for binaries simulated using both the CPL and CTL model and for single stars. 
 
@@ -386,7 +398,7 @@ Tidal forces modify the spins of unlocked binaries as well, tending to spin-up s
 
 \begin{figure*}[t]
 	\includegraphics[width=\textwidth]{../Plots/protDist.pdf}
-   \caption{P$_{rot}$ as a function of stellar mass and age according to our CPL (left), CTL (left center), and single star (right center) simulations. The P$_{rot}$ distribution for each case, marginalized over stellar mass, is depicted in the right panel. For each case, we only plot 2,500 systems for clarity but account for all systems when computing the marginalized distributions. Both tidal models predict a substantial population of fast rotators (P$_{rot} < 20$ d) not seen in the single star model at any age, except for young (age $< 2$ Gyr) M dwarfs (M$ < 0.5$ M$_{\odot}$). In many binary systems, both tidal models predict that age does not directly correlate with P$_{rot}$, especially in short P$_{orb}$ binaries where tidal torques are stronger, compared to the clear age-dependence of P$_{rot}$ seen in the single star models, the key assumption of gyrochronology methods.}%
+   \caption{P$_{rot}$ as a function of stellar mass and age according to our CPL (left), CTL (left center), and single star (right center) simulations integrated to system ages uniformly sampled over $1-7$ Gyr. The P$_{rot}$ distribution for each case, marginalized over stellar mass, is depicted in the right panel. For each case, we only plot 2,500 systems for clarity but account for all systems when computing the marginalized distributions. Both tidal models predict a substantial population of fast rotators (P$_{rot} < 20$ d) not seen in the single star model at any age, except for young (age $< 2$ Gyr) M dwarfs (M$ < 0.5$ M$_{\odot}$). In many binary systems, both tidal models predict that age does not directly correlate with P$_{rot}$, especially in short P$_{orb}$ binaries where tidal torques are stronger, compared to the clear age-dependence of P$_{rot}$ seen in the single star models, the key assumption of gyrochronology methods. Any application of gyrochonlogy methods to age stars, especially those with P$_{rot} < 20$ d, should rule out or account for binarity.}%
     \label{fig:protDist}%
 \end{figure*}
 
@@ -394,7 +406,7 @@ XXX
 
 \begin{figure}
 	\includegraphics[width=0.45\textwidth]{../Plots/lockedCPL.pdf}
-   \caption{Caption.}%
+   \caption{Rotation state for tidally-locked (blue, P$_{rot} = $ P$_{eq}$), interacting (green, P$_{rot}$ within $10\%$ of P$_{eq}$ and not locked), and not locked (orange, remainder of binaries) stellar binaries. Left: P$_{rot}$ as a function of stellar mass and age according to our CPL simulations integrated to system ages uniformly sampled over $1-7$ Gyr. Right: P$_{rot}$ distribution for each case, marginalized over stellar mass. Tidally-locked stars systematically rotate faster (median P$_{rot} = 27.0$ d) than interacting (median P$_{rot} = 51.8$ d) and not locked (median P$_{rot} = 41.1$ d) binaries as the locked population typically have shorter P$_{orb}$ where tidal torques are stronger, although binaries up to P$_{orb} = 100$ d tidally-lock. More massive stars are more likely to tidally-lock compared to less massive stars as tidal torques scale with stellar mass, reflected by the enhanced density of locked systems at larger masses. The interacting population tends to rotate more slowly than the unlocked population as at short P$_{orb}$, and hence P$_{rot}$, the systems preferentially tidally-lock.  At longer P$_{orb}$, magnetic braking spin down the stars while tidal torques sheppard P$_{rot}$ towards P$_{eq}$ via the mechanism discussed in $\S$~\ref{sec:eq}. $35\%$ of stars are either tidally-locked or interacting, demonstrating that tidal torques play a pivotal role in shaping the angular momentum evolution in stellar binaries. The P$_{rot}$ - mass distribution for not locked binaries resembles the single star sequence observed in the center right panel of Fig.~\ref{fig:protDist}.}%
     \label{fig:lockedCPL}%
 \end{figure}
 
@@ -402,7 +414,7 @@ XXX
 
 \begin{figure}
 	\includegraphics[width=0.45\textwidth]{../Plots/lockedCTL.pdf}
-   \caption{Caption.}%
+   \caption{Same format as Fig.~\ref{fig:lockedCPL}, but for the CTL simulations. According to the CTL model, only $2\%$ of stellar binaries tidally-locked, mostly at short P$_{orb}$ (median P$_{orb} = 4.8$ d), where tidal torques are strong.  The  $15\%$ of stars are either tidally-locked or interacting, demonstrating that tidal torques play a pivotal role in shaping the angular momentum evolution in stellar binaries. As in Fig.~\ref{fig:lockedCPL}, interacting binaries cluster at longer P$_{rot}$ as magnetic braking overpowers tidal torques to spin down stars, but tidal torques are strong enough to sheppard P$_{rot}$ near P$_{eq}$.}%
     \label{fig:lockedCTL}%
 \end{figure}
 
@@ -410,9 +422,11 @@ XXX
 
 \begin{figure}
 	\includegraphics[width=0.45\textwidth]{../Plots/lockedProtHist.pdf}
-   \caption{Caption.}%
-    \label{fig:lockedInteracting}%
+   \caption{P$_{rot}$ distribution for tidally-locked (blue) and interacting (green, P$_{rot}$ within $10\%$ of P$_{eq}$ and not locked) binaries according to the CPL (solid line) and CTL (dashed line) models. Strong tidal torques in the CPL model can tidally-lock binaries out to P$_{rot} = 100$ d, while weaker torques in the CTL model can only tidally-lock binary stars into a rapid rotation state with P$_{rot} < 20$ d. Under both models, binaries with a wide range of P$_{rot}$ can be strongly tidally-interacting.}%
+    \label{fig:lockedProtHist}%
 \end{figure}
+
+interacting systems tend to cluster near more massive stars for intermediate periods since their PMS lifetimes are shorter, so they have already spin down and tidal torques are stronger in those systems
 
 XXX
 
