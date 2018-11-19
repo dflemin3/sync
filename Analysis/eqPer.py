@@ -143,22 +143,30 @@ fig.savefig("../Plots/eqPer.pdf", bbox_inches="tight", dpi=600)
 ### Short Porb Plot ###
 
 ctlDir = "../Sims/Peq"
-dirs = ["0.001", "0.01", "0.1"]
-labels = [r"$\tau = 10^{-3}$ s", r"$\tau = 10^{-2}$ s", r"$\tau = 10^{-1}$ s"]
+cplDir = "../Sims/Peq"
+ctlDirs = ["0.1", "0.01", "0.001"]
+cplDirs = ["6", "7", "8"]
+labels = [r"$Q= 10^6$, $\tau = 10^{-1}$ s", r"$Q=10^7$, $\tau = 10^{-2}$ s",
+          r"$Q=10^8$, $\tau = 10^{-3}$ s"]
 
 fig, ax = plt.subplots(figsize=(9,8))
 
-for ii, dir in enumerate(dirs):
+for ii in range(len(ctlDirs)):
     # Load data
     # saOutputOrder	Time -TotEn -TotAngMom -Radius -RotPer -EqRotPer
     # DRotPerDtEqtide DRotPerDtStellar Ecce -OrbPer RadGyra -SurfEnFluxTotal
-    ctl = np.genfromtxt(os.path.join(ctlDir, dir, "bintides.secondary.forward"))
+    ctl = np.genfromtxt(os.path.join(ctlDir, ctlDirs[ii], "bintides.secondary.forward"))
+    cpl = np.genfromtxt(os.path.join(cplDir, cplDirs[ii], "bintides.secondary.forward"))
 
-    # Left: Prot/Peq
-    ax.plot(ctl[:,0], ctl[:,4]/ctl[:,5], lw=3, ls="-", label=labels[ii],
-            color="C%d" % ii)
+    # Prot/Peq
+    ax.plot(cpl[:,0], cpl[:,4]/cpl[:,5], lw=3, ls="-", color="C%d" % ii,
+            label=labels[ii])
+    ax.plot(ctl[:,0], ctl[:,4]/ctl[:,5], lw=3, ls="--", color="C%d" % ii)
 
-ax.legend(loc="best", framealpha=0, fontsize=18)
+ax.plot([100], [100], ls="-", lw=3, color="grey", label="CPL")
+ax.plot([100], [100], ls="--", lw=3, color="grey", label="CTL")
+
+ax.legend(loc="lower right", framealpha=0, fontsize=15)
 ax.set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=30)
 ax.set_xlabel("Time [yr]", fontsize=30)
 ax.set_xscale("log")

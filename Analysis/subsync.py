@@ -12,9 +12,10 @@ Median subsync tidal tau: 0.0790922272
 Median supersync tidal tau: 0.12508653609999998
 Median subsync ecc: 0.1288805
 Median supersync ecc: 0.151426
+Median subsync mass ratio: 0.6315316837433688
+Median supersync mass ratio: 0.6522318263105934
 Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6126373626373627
 Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.11401098901098901
-
 
 Interpretation:
 
@@ -127,9 +128,35 @@ ax.legend(loc="lower center", framealpha=0)
 
 fig.savefig("../Plots/subsyncEccHist.pdf", bbox_inches="tight", dpi=600)
 
-# Print median sub,supersync tidal taus
+# Print median sub,supersync tidal ecc
 print("Median subsync ecc:",np.median(ctl["Age_Ecc"][subMask].values))
 print("Median supersync ecc:",np.median(ctl["Age_Ecc"][~subMask].values))
+
+### Plot histogram of mass ratio above and below Prot=Peq=Porb=1 line
+
+subMask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 1)
+
+fig, ax = plt.subplots()
+
+mu = ctl["Sec_dMass"][subMask].values/ctl["Pri_dMass"][subMask].values
+ax.hist(mu, lw=3, histtype="step",
+        color="C0", label="Subsynchronous", bins="auto", density=True)
+
+mu = ctl["Sec_dMass"][~subMask].values/ctl["Pri_dMass"][~subMask].values
+ax.hist(mu, lw=3, histtype="step",
+        color="C1", label="Supersynchronous", bins="auto", density=True)
+
+ax.set_ylabel("Normalized Counts")
+ax.set_xlabel("Mass Ratio (M$_2$/M$_1$)")
+ax.legend(loc="lower center", framealpha=0)
+
+fig.savefig("../Plots/subsyncMuHist.pdf", bbox_inches="tight", dpi=600)
+
+# Print median sub,supersync tidal taus
+mu = ctl["Sec_dMass"][subMask].values/ctl["Pri_dMass"][subMask].values
+print("Median subsync mass ratio:",np.median(mu))
+mu = ctl["Sec_dMass"][~subMask].values/ctl["Pri_dMass"][~subMask].values
+print("Median supersync mass ratio:",np.median(mu))
 
 # Compare with Lurie+2017 sample for 2 < Porb < 10 days
 # Lurie+2017: 72% in [0.92,1.2]
