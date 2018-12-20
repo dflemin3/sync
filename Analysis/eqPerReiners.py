@@ -21,8 +21,8 @@ mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Path to sim results
-cplDir = "../Sims/CPLTest"
-ctlDir = "../Sims/CTLTest"
+cplDir = "../Sims/CPLTestReiners"
+ctlDir = "../Sims/CTLTestReiners"
 logfile_name = "bintides.log"
 dirs = ["5", "10", "20", "30", "40", "50", "60"]
 colors = ["C0", "C1", "C2", "C3", "C4", "C5", "C6"]
@@ -107,7 +107,7 @@ axes[1].axhline(0, lw=2.5, ls=":", color="k")
 
 # Save!
 fig.tight_layout()
-fig.savefig("../Plots/eqPerTwoPanel.pdf",bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/eqPerTwoPanelReiners.pdf",bbox_inches="tight", dpi=600)
 
 ### One Panel Plot ###
 
@@ -138,12 +138,12 @@ ax.set_xlim(1.0e6, cpl[-1,0])
 ax.set_ylim(0, 1.3)
 
 # Save!
-fig.savefig("../Plots/eqPer.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/eqPerReiners.pdf", bbox_inches="tight", dpi=600)
 
 ### Short Porb Plot ###
 
-ctlDir = "../Sims/Peq"
-cplDir = "../Sims/Peq"
+ctlDir = "../Sims/PeqReiners"
+cplDir = "../Sims/PeqReiners"
 ctlDirs = ["0.1", "0.01", "0.001"]
 cplDirs = ["6", "7", "8"]
 labels = [r"$Q= 10^6$, $\tau = 10^{-1}$ s", r"$Q=10^7$, $\tau = 10^{-2}$ s",
@@ -172,7 +172,7 @@ ax.set_xlabel("Time [yr]", fontsize=30)
 ax.set_xscale("log")
 ax.axhline(1, lw=2.5, ls=":", color="k")
 ax.set_xlim(1.0e6, cpl[-1,0])
-ax.set_ylim(0, 1.4)
+ax.set_ylim(0, 2.5)
 
 # Save!
-fig.savefig("../Plots/eqPerShortPorb.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/eqPerShortPorbReiners.pdf", bbox_inches="tight", dpi=600)

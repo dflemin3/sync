@@ -10,18 +10,22 @@ in the Kepler field.
 
 Script Output:
 
+Prot Stats:
+CPL Prot median: 39.7426215
 CPL locked Prot median: 27.049087
 CPL unlocked Prot median: 41.0628235
 CPL interacting Prot median: 51.7563165
 CPL fraction of locked binaries: 0.2518
 CPL fraction of not locked but interacting binaries: 0.0956
 
+CTL Prot median: 41.87753
 CTL locked Prot median: 4.683883
 CTL unlocked Prot median: 41.19235
 CTL interacting Prot median: 49.27336
 CTL fraction of locked binaries: 0.0202
 CTL fraction of not locked but interacting binaries: 0.1257
 
+Age Stats:
 CPL locked Age median: 4.511807432302286
 CPL unlocked Age median: 3.6993176339544354
 CPL interacting Age median: 4.518420938215314
@@ -30,6 +34,7 @@ CTL locked Age median: 3.8579810329094926
 CTL unlocked Age median: 3.9204912513099366
 CTL interacting Age median: 4.604624291466229
 
+Porb Stats:
 CPL locked Porb median: 27.947582500000003
 CPL unlocked Porb median: 60.4407475
 CPL interacting Porb median: 57.719126499999994
@@ -37,8 +42,6 @@ CPL interacting Porb median: 57.719126499999994
 CTL locked Porb median: 4.7715415
 CTL unlocked Porb median: 51.597271
 CTL interacting Porb median: 58.190884
-
-
 
 """
 
@@ -201,12 +204,16 @@ fig.savefig("../Plots/lockedCTL.pdf", bbox_inches="tight", dpi=600)
 
 # Prots in d
 print("Prot Stats:")
+print("Single Prot median:",np.median(single["Pri_ProtAge"]))
+print()
+print("CPL Prot median:",np.median(cpl["Pri_ProtAge"]))
 print("CPL locked Prot median:",np.median(cpl["Pri_ProtAge"][cpl["Locked"]]))
 print("CPL unlocked Prot median:",np.median(cpl["Pri_ProtAge"][cpl["Free"]]))
 print("CPL interacting Prot median:",np.median(cpl["Pri_ProtAge"][cpl["Interacting"]]))
 print("CPL fraction of locked binaries:",np.mean(cpl["Locked"]))
 print("CPL fraction of not locked but interacting binaries:",np.mean(cpl["Interacting"]))
 print()
+print("CTL Prot median:",np.median(ctl["Pri_ProtAge"]))
 print("CTL locked Prot median:",np.median(ctl["Pri_ProtAge"][ctl["Locked"]]))
 print("CTL unlocked Prot median:",np.median(ctl["Pri_ProtAge"][ctl["Free"]]))
 print("CTL interacting Prot median:",np.median(ctl["Pri_ProtAge"][ctl["Interacting"]]))

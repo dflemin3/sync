@@ -41,10 +41,11 @@ mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 plotLurie = True
+bins = "auto"
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
-ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
+cpl = pd.read_csv("../Data/mcCPLTorqueUniformDec19.csv")
+ctl = pd.read_csv("../Data/mcCTLTorqueLargeTauUniformDec19.csv")
 
 # Load in cleaned sample of Prot and Ecc from Lurie+2017
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
@@ -71,7 +72,7 @@ if plotLurie:
 # Format
 ax0.set_rasterization_zorder(0)
 ax0.set_xlim(0,10)
-ax0.set_ylim(0.4, 1.3)
+ax0.set_ylim(0.6, 1.25)
 ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
 leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=22)
@@ -87,6 +88,117 @@ cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity", fontsize=25)
 
 fig.savefig("../Plots/subsync.pdf", bbox_inches="tight", dpi=600)
+
+### Make version of above plot with marginal Porb/Prot histogram with CTL ###
+
+fig = plt.figure(figsize=(9,9))
+
+gs = GridSpec(4,4)
+
+ax = fig.add_subplot(gs[1:4,0:3])
+ax_marg_y = fig.add_subplot(gs[1:4,3])
+
+im = ax.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
+                c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
+                s=40, marker="o", vmin=0, vmax=0.3, label="CTL")
+
+# Line at synchronization
+ax.axhline(1, lw=2, color="black", ls="-", zorder=2)
+
+if plotLurie:
+    # Plot Lurie+2017 data
+    ax.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], c=lurie["Ecc"], s=75, zorder=3,
+               marker="d", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+
+ax.set_xlabel("P$_{orb}$ [d]", fontsize=30)
+ax.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
+ax.set_xlim(0,10)
+ax.set_ylim(0.6, 1.25)
+leg = ax.legend(loc="lower left", framealpha=0.0, fontsize=22)
+leg.legendHandles[0]._sizes = [100]
+leg.legendHandles[0].set_color('k')
+if plotLurie:
+    leg.legendHandles[1].set_color('k')
+    leg.legendHandles[1]._sizes = [100]
+ax.set_rasterization_zorder(0)
+
+# Now adding the colorbar
+cbaxes = fig.add_axes([0.1, 0.775, 0.8, 0.03])
+cb = plt.colorbar(im, cax=cbaxes, label="Eccentricity", orientation="horizontal")
+
+# Marginalized histograms
+ax_marg_y.hist(ctl["Age_Porb"]/ctl["Pri_ProtAge"], orientation="horizontal",
+               bins=bins, histtype="step", lw=3, color="C0", label="CTL",
+               density=True, range=(0.6, 1.25))
+
+# Histogram for Kepler data
+ax_marg_y.hist(lurie["Porb"]/lurie["Prot"], orientation="horizontal", bins=bins,
+                histtype="step", lw=3, color="C1", label="Lurie et al. (2017)",
+                range=(0.6, 1.25), density=True)
+
+ax_marg_y.legend(loc="best", framealpha=0.0, fontsize=15)
+
+# Turn off tick labels on marginals
+ax_marg_y.set_ylim(0.6, 1.25)
+plt.setp(ax_marg_y.get_yticklabels(), visible=False);
+
+fig.savefig("../Plots/subsyncMarginalCTL.pdf", bbox_inches="tight", dpi=600)
+
+
+### Make version of above plot with marginal Porb/Prot histogram with CPL ###
+
+fig = plt.figure(figsize=(9,9))
+
+gs = GridSpec(4,4)
+
+ax = fig.add_subplot(gs[1:4,0:3])
+ax_marg_y = fig.add_subplot(gs[1:4,3])
+
+im = ax.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
+                c=cpl["Age_Ecc"].values, cmap="viridis", zorder=1,
+                s=40, marker="o", vmin=0, vmax=0.3, label="CPL")
+
+# Line at synchronization
+ax.axhline(1, lw=2, color="black", ls="-", zorder=2)
+
+if plotLurie:
+    # Plot Lurie+2017 data
+    ax.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], c=lurie["Ecc"], s=75, zorder=3,
+               marker="d", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+
+ax.set_xlabel("P$_{orb}$ [d]", fontsize=30)
+ax.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
+ax.set_xlim(0,10)
+ax.set_ylim(0.6, 1.25)
+leg = ax.legend(loc="lower left", framealpha=0.0, fontsize=22)
+leg.legendHandles[0]._sizes = [100]
+leg.legendHandles[0].set_color('k')
+if plotLurie:
+    leg.legendHandles[1].set_color('k')
+    leg.legendHandles[1]._sizes = [100]
+ax.set_rasterization_zorder(0)
+
+# Now adding the colorbar
+cbaxes = fig.add_axes([0.1, 0.775, 0.8, 0.03])
+cb = plt.colorbar(im, cax=cbaxes, label="Eccentricity", orientation="horizontal")
+
+# Marginalized histograms
+ax_marg_y.hist(cpl["Age_Porb"]/cpl["Pri_ProtAge"], orientation="horizontal",
+               bins=bins, histtype="step", lw=3, color="C0", label="CPL",
+               density=True, range=(0.6, 1.25))
+
+# Histogram for Kepler data
+ax_marg_y.hist(lurie["Porb"]/lurie["Prot"], orientation="horizontal", bins=bins,
+                histtype="step", lw=3, color="C1", label="Lurie et al. (2017)",
+                range=(0.6, 1.25), density=True)
+
+ax_marg_y.legend(loc="best", framealpha=0.0, fontsize=15)
+
+# Turn off tick labels on marginals
+ax_marg_y.set_ylim(0.6, 1.25)
+plt.setp(ax_marg_y.get_yticklabels(), visible=False);
+
+fig.savefig("../Plots/subsyncMarginalCPL.pdf", bbox_inches="tight", dpi=600)
 
 ### Plot histogram of log10 tidal taus above and below Prot=Peq=Porb=1 line
 
