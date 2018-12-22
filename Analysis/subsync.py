@@ -8,14 +8,14 @@ on the subsynchronous rotators.
 
 Script output:
 
-Median subsync tidal tau: 0.0790922272
-Median supersync tidal tau: 0.12508653609999998
-Median subsync ecc: 0.1288805
-Median supersync ecc: 0.151426
-Median subsync mass ratio: 0.6315316837433688
-Median supersync mass ratio: 0.6522318263105934
-Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6126373626373627
-Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.11401098901098901
+Median subsync tidal tau: 0.17078373819999998
+Median supersync tidal tau: 0.466656378
+Median subsync ecc: 0.107152
+Median supersync ecc: 0.15391400000000002
+Median subsync mass ratio: 0.6416154898583578
+Median supersync mass ratio: 0.6614121797592005
+Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.7182910547396528
+Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.09078771695594126
 
 Interpretation:
 
@@ -44,8 +44,8 @@ plotLurie = True
 bins = "auto"
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorqueUniformDec19.csv")
-ctl = pd.read_csv("../Data/mcCTLTorqueLargeTauUniformDec19.csv")
+cpl = pd.read_csv("../Data/mcCPLDec22.csv")
+ctl = pd.read_csv("../Data/mcCTLDec22.csv")
 
 # Load in cleaned sample of Prot and Ecc from Lurie+2017
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,

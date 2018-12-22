@@ -8,28 +8,28 @@ single star models uniform over ages [1,7] Gyr, roughly field star ages.
 
 Script Output:
 
-CPL median Prot: 38.995495000000005
-CTL median Prot: 40.5107835
+CPL median Prot: 40.0140705
+CTL median Prot: 39.7350345
 Single median Prot: 46.4415785
 
-CPL Fraction of Stars with Prot < 7.5 d: 0.0678
-CTL Fraction of Stars with Prot < 7.5 d: 0.056
+CPL Fraction of Stars with Prot < 7.5 d: 0.0566
+CTL Fraction of Stars with Prot < 7.5 d: 0.0625
 Single Fraction of Stars with Prot < 7.5 d: 0.0172
 
-CPL Fraction of Stars with Prot < 20 d: 0.1947
-CTL Fraction of Stars with Prot < 20 d: 0.1702
+CPL Fraction of Stars with Prot < 20 d: 0.1766
+CTL Fraction of Stars with Prot < 20 d: 0.1885
 Single Fraction of Stars with Prot < 20 d: 0.0523
 
-CPL Median Age of Stars with Prot < 20 d: 3.094056856848848
-CTL Median Age of Stars with Prot < 20 d: 2.7658880946291395
+CPL Median Age of Stars with Prot < 20 d: 2.7893700005017488
+CTL Median Age of Stars with Prot < 20 d: 3.108449437935221
 Single Mediage Age of Stars with Prot < 20 d: 1.346166303555715
 
-CPL + Age of Stars with Prot < 20 d: 5.8487757586979665
-CTL + Age of Stars with Prot < 20 d: 5.563816566899135
+CPL + Age of Stars with Prot < 20 d: 5.705097268321147
+CTL + Age of Stars with Prot < 20 d: 5.695241667822796
 Single + Age of Stars with Prot < 20 d: 1.8214255111813729
 
-CPL - Age of Stars with Prot < 20 d: 1.3467068622724916
-CTL - Age of Stars with Prot < 20 d: 1.2988697413400274
+CPL - Age of Stars with Prot < 20 d: 1.315608590645681
+CTL - Age of Stars with Prot < 20 d: 1.3464971366685323
 Single - Age of Stars with Prot < 20 d: 1.0843035833816197
 
 
@@ -75,8 +75,8 @@ num = 2500
 np.random.seed(seed)
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
-ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
+cpl = pd.read_csv("../Data/mcCPLDec22.csv")
+ctl = pd.read_csv("../Data/mcCTLDec22.csv")
 single = pd.read_csv("../Data/mcSingle.csv")
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])

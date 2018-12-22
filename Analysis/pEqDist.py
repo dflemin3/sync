@@ -25,8 +25,8 @@ mpl.rc('text', usetex=True)
 bins = 20
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLTorqueNov9.csv")
-ctl = pd.read_csv("../Data/mcCTLTorqueNov9.csv")
+cpl = pd.read_csv("../Data/mcCPLDec22.csv")
+ctl = pd.read_csv("../Data/mcCTLDec22.csv")
 
 ### Total marginal histogram of Peq/Prot ###
 
