@@ -8,6 +8,8 @@ on the subsynchronous rotators.
 
 Script output:
 
+CTL:
+
 Median subsync tidal tau: 0.17078373819999998
 Median supersync tidal tau: 0.466656378
 Median subsync ecc: 0.107152
@@ -16,6 +18,11 @@ Median subsync mass ratio: 0.6416154898583578
 Median supersync mass ratio: 0.6614121797592005
 Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.7182910547396528
 Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.09078771695594126
+
+CPL:
+
+Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6887052341597796
+Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.01928374655647383
 
 Interpretation:
 
@@ -88,6 +95,22 @@ cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity", fontsize=25)
 
 fig.savefig("../Plots/subsync.pdf", bbox_inches="tight", dpi=600)
+
+# Compare with Lurie+2017 sample for 2 < Porb < 10 days
+# Lurie+2017: 72% in [0.92,1.2]
+# Lurie+2017: 15% in [0.84, 0.92]
+
+porbMask = (ctl["Age_Porb"] < 10) & (ctl["Age_Porb"] > 2)
+mask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] >= 0.92)
+mask = mask & (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 1.2)
+mask = mask & porbMask
+print("Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d:",np.sum(mask)/np.sum(porbMask))
+
+mask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] >= 0.84)
+mask = mask & (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 0.92)
+mask = mask & porbMask
+print("Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d:",np.sum(mask)/np.sum(porbMask))
+
 
 ### Make version of above plot with marginal Porb/Prot histogram with CTL ###
 
@@ -269,20 +292,5 @@ mu = ctl["Sec_dMass"][subMask].values/ctl["Pri_dMass"][subMask].values
 print("Median subsync mass ratio:",np.median(mu))
 mu = ctl["Sec_dMass"][~subMask].values/ctl["Pri_dMass"][~subMask].values
 print("Median supersync mass ratio:",np.median(mu))
-
-# Compare with Lurie+2017 sample for 2 < Porb < 10 days
-# Lurie+2017: 72% in [0.92,1.2]
-# Lurie+2017: 15% in [0.84, 0.92]
-
-porbMask = (ctl["Age_Porb"] < 10) & (ctl["Age_Porb"] > 2)
-mask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] >= 0.92)
-mask = mask & (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 1.2)
-mask = mask & porbMask
-print("Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d:",np.sum(mask)/np.sum(porbMask))
-
-mask = (ctl["Age_Porb"]/ctl["Pri_ProtAge"] >= 0.84)
-mask = mask & (ctl["Age_Porb"]/ctl["Pri_ProtAge"] < 0.92)
-mask = mask & porbMask
-print("Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d:",np.sum(mask)/np.sum(porbMask))
 
 # Done!
