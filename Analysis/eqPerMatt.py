@@ -96,6 +96,9 @@ axes[0].axhline(1, lw=2.5, ls=":", color="k")
 axes[0].set_xlim(1.0e6, cpl[-1,0])
 axes[0].set_ylim(0, 1.2)
 
+axes[0].text(1.2e6, 1.12, "Matt et al. (2015)",
+         ha="left", va="center", size=15, color="black", zorder=100)
+
 # Format right axis
 axes[1].set_ylabel("$d$P$_{rot}$/$dt$ [d/Gyr]", fontsize=25)
 axes[1].set_xlabel("Time [yr]", fontsize=25)

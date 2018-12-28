@@ -158,9 +158,10 @@ color = (cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Locked"]]/cpl.iloc[inds][
 im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
-ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=28)
+ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(cpl["Pri_dMass"]), np.max(cpl["Pri_dMass"]))
-ax.set_ylabel("P$_{rot}$ [d]", fontsize=28)
+ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
+ax.set_title("CPL", fontsize=28)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
 leg = ax.legend(loc="upper left", framealpha=0.5, fontsize=15)
@@ -209,9 +210,10 @@ y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Locked"]]
 im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
-ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=28)
+ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(ctl["Pri_dMass"]), np.max(ctl["Pri_dMass"]))
-ax.set_ylabel("P$_{rot}$ [d]", fontsize=28)
+ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
+ax.set_title("CTL", fontsize=28)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
 leg = ax.legend(loc="upper left", framealpha=0.0, fontsize=15)

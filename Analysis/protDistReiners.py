@@ -105,6 +105,9 @@ ax0.set_ylim(0.0, 100)
 ax0.text(0.4, 90, "CPL", ha="left", va="center", size=30, color="black",
          zorder=100)
 
+ax0.text(0.13, 112, "Reiners \& Mohanty (2012)", ha="left", va="center", size=30,
+         color="black", zorder=100)
+
 ### CTL Plot ###
 ax1 = fig.add_subplot(gs[16])
 

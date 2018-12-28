@@ -82,12 +82,15 @@ ax0.set_xlim(0,10)
 ax0.set_ylim(0.6, 1.25)
 ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
-leg = ax0.legend(loc="lower left", framealpha=0.0, fontsize=22)
+leg = ax0.legend(loc="lower left", framealpha=0.5, fontsize=22)
 leg.legendHandles[0]._sizes = [100]
 leg.legendHandles[0].set_color('k')
 if plotLurie:
     leg.legendHandles[1].set_color('k')
     leg.legendHandles[1]._sizes = [100]
+
+ax0.text(0.5, 1.2, "CTL", ha="left", va="center", size=28,
+         color="black", zorder=100)
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])
