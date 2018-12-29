@@ -16,7 +16,7 @@ from matplotlib.gridspec import GridSpec
 from cmap import shiftedColorMap
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['font.size'] = 20.0
+mpl.rcParams['font.size'] = 26.0
 
 # Define a shifted colormap so 1 is at the center
 midpoint = 1 - 1.2614218627451428 / (1.2614218627451428 + 0.2518443643281677)
@@ -92,7 +92,7 @@ ax1.imshow(cplJointPeq, origin="lower", aspect="auto", extent=qExtent,
 
 ax1.set_xlabel(r"log$_{10}(Q)$", fontsize=30)
 ax1.set_ylabel("Orbital Period [d]", fontsize=30)
-ax1.set_title("CPL")
+ax1.set_title("CPL", fontsize=28)
 
 ### CTL Plot ###
 ax2 = fig.add_subplot(gs[2])
@@ -102,7 +102,7 @@ im = ax2.imshow(ctlJointPeq, origin="lower", aspect="auto", extent=tauExtent,
 
 #ax2.axes.get_yaxis().set_visible(False)
 ax2.set_xlabel(r"log$_{10}(\tau \mathrm{[s]})$", fontsize=22)
-ax2.set_title("CTL")
+ax2.set_title("CTL", fontsize=28)
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[4])
@@ -129,7 +129,7 @@ ax1.imshow(cplJointRatio, origin="lower", aspect="auto", extent=qExtent,
 
 ax1.set_xlabel(r"log$_{10}(Q)$", fontsize=30)
 ax1.set_ylabel("Orbital Period [d]", fontsize=30)
-ax1.set_title("CPL")
+ax1.set_title("CPL", fontsize=30)
 
 ### CTL Plot ###
 ax2 = fig.add_subplot(gs[2])
@@ -139,12 +139,12 @@ im = ax2.imshow(ctlJointRatio, origin="lower", aspect="auto", extent=tauExtent,
 
 #ax2.axes.get_yaxis().set_visible(False)
 ax2.set_xlabel(r"log$_{10}(\tau \mathrm{[s]})$", fontsize=30)
-ax2.set_title("CTL")
+ax2.set_title("CTL", fontsize=30)
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label="Median P$_{orb}$/P$_{rot}$", labelpad=30, rotation=270, fontsize=25)
+cb.set_label(label="Median P$_{orb}$/P$_{rot}$", labelpad=40, rotation=270, fontsize=30)
 
 fig.savefig("../Plots/qTauPorbRatioHist.pdf", bbox_inches="tight", dpi=600)
 # Done!

@@ -89,7 +89,7 @@ from matplotlib.gridspec import GridSpec
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 22.0
+mpl.rcParams['font.size'] = 24.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -161,10 +161,10 @@ im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(cpl["Pri_dMass"]), np.max(cpl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
-ax.set_title("CPL", fontsize=28)
+ax.set_title("CPL", fontsize=30)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
-leg = ax.legend(loc="upper left", framealpha=0.5, fontsize=15)
+leg = ax.legend(loc="upper left", framealpha=0.7, fontsize=18)
 
 # Plot marginals
 ax_marg_y.hist(cpl["Pri_ProtAge"][cpl["Free"]], orientation="horizontal",
@@ -213,10 +213,10 @@ im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(ctl["Pri_dMass"]), np.max(ctl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
-ax.set_title("CTL", fontsize=28)
+ax.set_title("CTL", fontsize=30)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
-leg = ax.legend(loc="upper left", framealpha=0.0, fontsize=15)
+leg = ax.legend(loc="upper left", framealpha=0.0, fontsize=18)
 
 # Plot marginals
 ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Free"]], orientation="horizontal",
@@ -231,7 +231,7 @@ ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Locked"]], orientation="horizontal",
 
 # Format marginals
 ax_marg_y.set_ylim(ylims)
-ax_marg_y.legend(loc="upper center", framealpha=0.0, fontsize=11)
+ax_marg_y.legend(loc="upper center", framealpha=0.0, fontsize=12)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
 
 # Save!
@@ -380,7 +380,7 @@ ax.set_xlim(0,100)
 ax.set_ylim(0, 0.0325)
 ax.set_xlabel("Rotation Period [d]", fontsize=30)
 ax.set_ylabel("Normalized Counts", fontsize=30)
-ax.legend(loc="upper right", fontsize=18)
+ax.legend(loc="upper right", fontsize=20)
 
 fig.tight_layout()
 fig.savefig("../Plots/lockedProtHist.pdf", bbox_inches="tight", dpi=600)

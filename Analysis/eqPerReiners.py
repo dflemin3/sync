@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 20.0
+mpl.rcParams['font.size'] = 23.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -96,14 +96,14 @@ axes[0].axhline(1, lw=2.5, ls=":", color="k")
 axes[0].set_xlim(1.0e6, cpl[-1,0])
 axes[0].set_ylim(0, 1.2)
 
-axes[0].text(1.2e6, 1.12, "Reiners \& Mohanty (2012)",
-         ha="left", va="center", size=15, color="black", zorder=100)
+axes[0].text(1.05e6, 1.14, "Reiners \& Mohanty (2012)",
+         ha="left", va="center", size=17, color="black", zorder=100)
 
 # Format right axis
 axes[1].set_ylabel("$d$P$_{rot}$/$dt$ [d/Gyr]", fontsize=25)
 axes[1].set_xlabel("Time [yr]", fontsize=25)
 axes[1].set_xlim(1.0e6, cpl[-1,0])
-axes[1].legend(loc="lower center", framealpha=0.75, fontsize=13, ncol=3)
+axes[1].legend(loc="lower center", framealpha=0.75, fontsize=13.5, ncol=3)
 axes[1].set_xscale("log")
 axes[1].set_yscale("symlog")
 axes[1].axhline(0, lw=2.5, ls=":", color="k")

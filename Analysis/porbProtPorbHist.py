@@ -16,7 +16,7 @@ from matplotlib.gridspec import GridSpec
 from cmap import shiftedColorMap
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['font.size'] = 20.0
+mpl.rcParams['font.size'] = 25.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -116,7 +116,7 @@ ax1.set_ylabel("Orbital Period [d]", fontsize=30)
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label="Median log$_{10}(Q)$", labelpad=30, fontsize=25)
+cb.set_label(label="Median log$_{10}(Q)$", labelpad=30, fontsize=30)
 
 fig.savefig("../Plots/porbProtPorbQHist.pdf", bbox_inches="tight", dpi=600)
 
@@ -147,7 +147,7 @@ ax2.set_xlabel(r"P$_{orb}$/P$_{rot}$", fontsize=30)
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label=r"Median log$_{10}(\tau[\mathrm{s}])$", labelpad=30, fontsize=25)
+cb.set_label(label=r"Median log$_{10}(\tau[\mathrm{s}])$", labelpad=30, fontsize=30)
 
 fig.savefig("../Plots/porbProtPorbTauHist.pdf", bbox_inches="tight", dpi=600)
 

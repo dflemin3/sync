@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 23.0
+mpl.rcParams['font.size'] = 25.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
