@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 30.0
+mpl.rcParams['font.size'] = 23.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -44,8 +44,7 @@ ind_k = np.argmin(np.fabs(time-1.0e8))
 ind_m = np.argmin(np.fabs(time-3.0e8))
 
 # Plot!
-ncols = 3
-fig, ax = plt.subplots(ncols=ncols, figsize=(9*ncols,8))
+fig, ax = plt.subplots(ncols=3, figsize=(20,6))
 
 # Left panel: Stellar radius evolution
 ax[0].plot(time, g[:,1], lw=2.5, color="C0", label=r"$1$ M$_{\odot}$")
@@ -58,9 +57,9 @@ ax[0].scatter(time[ind_k], k[ind_k,1], s=75, color="C1")
 ax[0].scatter(time[ind_m], m[ind_m,1], s=75, color="C2")
 
 # Format
-ax[0].legend(loc="best", framealpha=0, fontsize=26)
-ax[0].set_ylabel("Radius [R$_{\odot}$]", fontsize=30)
-ax[0].set_xlabel("Time [yr]", fontsize=30)
+ax[0].legend(loc="best", framealpha=0, fontsize=20)
+ax[0].set_ylabel("Radius [R$_{\odot}$]", fontsize=25)
+ax[0].set_xlabel("Time [yr]", fontsize=25)
 
 ax[0].set_xlim(1.0e6,time[-1])
 ax[0].set_xscale("log")
@@ -76,8 +75,8 @@ ax[1].scatter(time[ind_k], k[ind_k,3], s=75, color="C1")
 ax[1].scatter(time[ind_m], m[ind_m,3], s=75, color="C2")
 
 # Format
-ax[1].set_ylabel("Radius of Gyration", fontsize=30)
-ax[1].set_xlabel("Time [yr]", fontsize=30)
+ax[1].set_ylabel("Radius of Gyration", fontsize=25)
+ax[1].set_xlabel("Time [yr]", fontsize=25)
 ax[1].set_xlim(1.0e6,time[-1])
 ax[1].set_xscale("log")
 
@@ -104,13 +103,13 @@ ax[2].plot([100], [100], lw=2.5, ls="-", color="grey", label="Matt et al. (2015)
 ax[2].plot([100], [100], lw=2.5, ls="--", color="grey", label="Reiners \& Mohanty (2012)")
 
 # Format
-ax[2].set_ylabel("Rotation Period [d]", fontsize=30)
-ax[2].set_xlabel("Time [yr]", fontsize=30)
+ax[2].set_ylabel("Rotation Period [d]", fontsize=25)
+ax[2].set_xlabel("Time [yr]", fontsize=25)
 ax[2].set_xlim(1.0e6,time[-1])
 ax[2].set_ylim(0.5e-1,1.0e2)
 ax[2].set_xscale("log")
 ax[2].set_yscale("log")
-ax[2].legend(loc="upper left", framealpha=0, fontsize=24)
+ax[2].legend(loc="upper left", framealpha=0, fontsize=18)
 
 # Save!
 fig.tight_layout()
