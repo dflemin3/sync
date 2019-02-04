@@ -53,21 +53,21 @@ ax.hist(single["Age"][single["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
 # Annotate young stars
 ax.annotate(s="", xy=(2.5, 430), xytext=(0.8, 430),
             arrowprops={"arrowstyle" : "<->", "color" : "black"})
-ax.text(1.65, 450, "Young Systems", ha="center", va="center", size=18, color="k")
+ax.text(1.65, 460, "Young \n Rapid Rotators", ha="center", va="center", size=21, color="k")
 
 # Annotate locked population
 ax.annotate(s="", xy=(7, 180), xytext=(2.75, 180),
             arrowprops={"arrowstyle" : "<->", "color" : "black"})
-ax.text(4.85, 200, "Tidally-Locked Binaries", ha="center", va="center", size=18,
+ax.text(4.85, 200, "Tidally-Locked Binaries", ha="center", va="center", size=21,
         color="k")
 
 ax.set_xlabel("Age [Gyr]", fontsize=30)
 ax.set_ylabel("Counts", fontsize=30)
 ax.set_xlim(0.8,7.2)
-ax.set_ylim(0, 475)
-ax.legend(loc="best", framealpha=0.0, fontsize=20)
+ax.set_ylim(0, 490)
+ax.legend(loc="best", framealpha=0.0, fontsize=22)
 
-fig.savefig("../Plots/protAgeHist.png", dpi=200, bbox_inches="tight")
+fig.savefig("../Plots/protAgeHist.pdf", dpi=400, bbox_inches="tight")
 
 ### Age histogram of rapid rotators (Prot <= 20 d) highlighting single stars ###
 fig, ax = plt.subplots()
