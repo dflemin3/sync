@@ -59,7 +59,7 @@ from matplotlib.gridspec import GridSpec
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (9,8)
-mpl.rcParams['font.size'] = 22.0
+mpl.rcParams['font.size'] = 25.0
 
 ## for Palatino and other serif fonts use:
 mpl.rc('font',**{'family':'serif'})
@@ -150,6 +150,25 @@ ax3.hist(single["Pri_ProtAge"], orientation="horizontal", bins=bins,
 ax3.legend(loc="best", framealpha=0.0, fontsize=17)
 plt.setp(ax3.get_yticklabels(), visible=False);
 ax3.set_ylim(0.0, 100)
+
+fig.savefig("protDist.pdf", dpi=600, bbox_inches="tight")
+
+### Age histogram of rapid rotators (Prot <= 20 d) ###
+fig, ax = plt.subplots()
+
+ax.hist(cpl["Age"][cpl["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
+        histtype="step", lw=3, label="Binary, CPL", color="C0", density=True)
+ax.hist(ctl["Age"][ctl["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
+        histtype="step", lw=3, label="Binary, CTL", color="C1", density=True)
+ax.hist(single["Age"][single["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
+        histtype="step", lw=3, label="Single", color="C2", density=True)
+
+ax.set_xlabel("Age [Gyr]", fontsize=30)
+ax.set_ylabel("Normalized Counts", fontsize=30)
+ax.set_xlim(0.8,7.2)
+ax.legend(loc="best", framealpha=0.0)
+
+fig.savefig("../Plots/protAgeHist.pdf", dpi=600, bbox_inches="tight")
 
 # Print out interesting statistics
 print("CPL median Prot:",np.median(cpl["Pri_ProtAge"]))
