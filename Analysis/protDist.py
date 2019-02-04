@@ -151,7 +151,7 @@ ax3.legend(loc="best", framealpha=0.0, fontsize=17)
 plt.setp(ax3.get_yticklabels(), visible=False);
 ax3.set_ylim(0.0, 100)
 
-fig.savefig("protDist.pdf", dpi=600, bbox_inches="tight")
+fig.savefig("../Plots/protDist.pdf", dpi=600, bbox_inches="tight")
 
 ### Age histogram of rapid rotators (Prot <= 20 d) ###
 fig, ax = plt.subplots()
@@ -194,5 +194,3 @@ print()
 print("CPL - Age of Stars with Prot < 20 d:",np.percentile(cpl["Age"][cpl["Pri_ProtAge"] < 20]/1.0e9, 16))
 print("CTL - Age of Stars with Prot < 20 d:",np.percentile(ctl["Age"][ctl["Pri_ProtAge"] < 20]/1.0e9, 16))
 print("Single - Age of Stars with Prot < 20 d:",np.percentile(single["Age"][single["Pri_ProtAge"] < 20]/1.0e9, 16))
-
-fig.savefig("../Plots/protDist.pdf", bbox_inches="tight", dpi=600)
