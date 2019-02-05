@@ -69,12 +69,10 @@ im = ax0.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
                  c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
-ax0.axhline(1, lw=2, color="black", ls="-", zorder=2)
-
 if plotLurie:
     # Plot Lurie+2017 data
-    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], c=lurie["Ecc"], s=75, zorder=3,
-                marker="d", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
+    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], c=lurie["Ecc"], s=80, zorder=3,
+                marker="x", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax0.set_rasterization_zorder(0)
@@ -97,7 +95,7 @@ cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity", fontsize=25)
 
-fig.savefig("../Plots/subsync.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/subsync.pdf", bbox_inches="tight", dpi=200)
 
 # Compare with Lurie+2017 sample for 2 < Porb < 10 days
 # Lurie+2017: 72% in [0.92,1.2]
