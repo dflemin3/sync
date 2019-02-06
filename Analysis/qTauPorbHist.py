@@ -109,7 +109,7 @@ cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Median P$_{eq}$/P$_{rot}$", labelpad=30, rotation=270)
 
-fig.savefig("../Plots/qTauPorbPeq.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/qTauPorbPeq.pdf", bbox_inches="tight", dpi=200)
 # Done!
 
 ################################################################################
@@ -144,7 +144,7 @@ ax2.set_title("CTL", fontsize=30)
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
-cb.set_label(label="Median P$_{orb}$/P$_{rot}$", labelpad=40, rotation=270, fontsize=30)
+cb.set_label(label="Median P$_{orb}$/P$_{rot}$", labelpad=20, fontsize=30)
 
-fig.savefig("../Plots/qTauPorbRatioHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/qTauPorbRatioHist.pdf", bbox_inches="tight", dpi=200)
 # Done!
