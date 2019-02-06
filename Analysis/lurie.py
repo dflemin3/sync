@@ -94,7 +94,7 @@ cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity")
 
-fig.savefig("../Plots/lurieFig6.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lurieFig6.pdf", bbox_inches="tight", dpi=200)
 
 ### 2nd Fig modeled after Fig. 7 from Lurie+2017 ###
 
@@ -106,20 +106,20 @@ gs = GridSpec(1, 5, width_ratios=[1, 0.05, 1, 0.01, 0.075], wspace=0.05)
 # Plot simulated data
 ax0 = fig.add_subplot(gs[0])
 im = ax0.scatter(cpl["Age_Porb"], cpl["Age_Porb"]/cpl["Pri_ProtAge"],
-                 c=cpl["Age_Ecc"].values, cmap="viridis", zorder=1,
+                 c=cpl["Age_Ecc"].values, cmap="viridis", zorder=3, alpha=0.5,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
 ax0.axhline(1, lw=3, color="black", ls="--", zorder=100)
 
 if plotLurie:
     # Plot Lurie+2017 data
-    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
+    ax0.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=150, zorder=1,
                 marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax0.set_rasterization_zorder(0)
-ax0.set_xlim(0,50)
-ax0.set_ylim(0.0, 3)
+ax0.set_xlim(0, 30)
+ax0.set_ylim(0.25, 2)
 ax0.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax0.set_ylabel("P$_{orb}$ / P$_{rot}$", fontsize=30)
 ax0.set_title("CPL")
@@ -133,20 +133,20 @@ if plotLurie:
 # Plot simulated data
 ax1 = fig.add_subplot(gs[2])
 im = ax1.scatter(ctl["Age_Porb"], ctl["Age_Porb"]/ctl["Pri_ProtAge"],
-                 c=ctl["Age_Ecc"].values, cmap="viridis", zorder=1,
+                 c=ctl["Age_Ecc"].values, cmap="viridis", zorder=3, alpha=0.5,
                  s=40, marker="o", vmin=0, vmax=0.3, label="Simulated")
 
 ax1.axhline(1, lw=3, color="black", ls="--", zorder=100)
 
 if plotLurie:
     # Plot Lurie+2017 data
-    ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=100, zorder=3,
+    ax1.scatter(lurie["Porb"], lurie["Porb"]/lurie["Prot"], color="red", s=150, zorder=1,
                marker="+", vmin=0, vmax=0.3, label="Lurie et al. (2017)")
 
 # Format
 ax1.set_rasterization_zorder(0)
-ax1.set_xlim(0,50)
-ax1.set_ylim(0.0, 3)
+ax1.set_xlim(0, 30)
+ax1.set_ylim(0.25, 2)
 ax1.set_xlabel("P$_{orb}$ [d]", fontsize=30)
 ax1.set_title("CTL")
 
@@ -155,6 +155,6 @@ cbaxes = fig.add_subplot(gs[4])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Eccentricity")
 
-fig.savefig("../Plots/lurieFig7.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lurieFig7.pdf", bbox_inches="tight", dpi=200)
 
 # Done!
