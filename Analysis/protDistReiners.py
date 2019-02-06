@@ -177,4 +177,4 @@ print("CPL - Age of Stars with Prot < 20 d:",np.percentile(cpl["Age"][cpl["Pri_P
 print("CTL - Age of Stars with Prot < 20 d:",np.percentile(ctl["Age"][ctl["Pri_ProtAge"] < 20]/1.0e9, 16))
 print("Single - Age of Stars with Prot < 20 d:",np.percentile(single["Age"][single["Pri_ProtAge"] < 20]/1.0e9, 16))
 
-fig.savefig("../Plots/protDistReiners.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/protDistReiners.pdf", bbox_inches="tight", dpi=200)

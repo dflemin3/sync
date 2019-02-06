@@ -183,7 +183,7 @@ ax_marg_y.legend(loc="upper center", framealpha=0.5, fontsize=12)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
 
 # Save!
-fig.savefig("../Plots/lockedCPL.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lockedCPL.pdf", bbox_inches="tight", dpi=200)
 
 ### CTL ###
 
@@ -235,7 +235,7 @@ ax_marg_y.legend(loc="upper center", framealpha=0.0, fontsize=12)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
 
 # Save!
-fig.savefig("../Plots/lockedCTL.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lockedCTL.pdf", bbox_inches="tight", dpi=200)
 
 # Output interesting statistics
 
@@ -350,7 +350,7 @@ ax1.set_xlabel("Period [d]", fontsize=30)
 ax1.legend(loc="best", framealpha=0.0, fontsize=17)
 
 fig.tight_layout()
-fig.savefig("../Plots/lockedProtPorbHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lockedProtPorbHist.pdf", bbox_inches="tight", dpi=200)
 
 # Make histograms of CPL, CTL Prot and Porb for 3 classifications: Paper version
 fig, ax = plt.subplots()
@@ -383,6 +383,6 @@ ax.set_ylabel("Normalized Counts", fontsize=30)
 ax.legend(loc="upper right", fontsize=20)
 
 fig.tight_layout()
-fig.savefig("../Plots/lockedProtHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/lockedProtHist.pdf", bbox_inches="tight", dpi=200)
 
 # Done!

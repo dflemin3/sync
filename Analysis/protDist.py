@@ -151,7 +151,7 @@ ax3.legend(loc="best", framealpha=0.0, fontsize=17)
 plt.setp(ax3.get_yticklabels(), visible=False);
 ax3.set_ylim(0.0, 100)
 
-fig.savefig("../Plots/protDist.pdf", dpi=600, bbox_inches="tight")
+fig.savefig("../Plots/protDist.pdf", dpi=200, bbox_inches="tight")
 
 ### Age histogram of rapid rotators (Prot <= 20 d) ###
 fig, ax = plt.subplots()
@@ -168,7 +168,7 @@ ax.set_ylabel("Normalized Counts", fontsize=30)
 ax.set_xlim(0.8,7.2)
 ax.legend(loc="best", framealpha=0.0)
 
-fig.savefig("../Plots/protAgeHist.pdf", dpi=600, bbox_inches="tight")
+fig.savefig("../Plots/protAgeHist.pdf", dpi=200, bbox_inches="tight")
 
 # Print out interesting statistics
 print("CPL median Prot:",np.median(cpl["Pri_ProtAge"]))
