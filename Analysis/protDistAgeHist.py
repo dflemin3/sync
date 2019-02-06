@@ -67,7 +67,7 @@ ax.set_xlim(0.8,7.2)
 ax.set_ylim(0, 490)
 ax.legend(loc="best", framealpha=0.0, fontsize=22)
 
-fig.savefig("../Plots/protAgeHist.pdf", dpi=400, bbox_inches="tight")
+fig.savefig("../Plots/protAgeHist.pdf", dpi=200, bbox_inches="tight")
 
 ### Age histogram of rapid rotators (Prot <= 20 d) highlighting single stars ###
 fig, ax = plt.subplots()

@@ -153,23 +153,6 @@ ax3.set_ylim(0.0, 100)
 
 fig.savefig("../Plots/protDist.pdf", dpi=200, bbox_inches="tight")
 
-### Age histogram of rapid rotators (Prot <= 20 d) ###
-fig, ax = plt.subplots()
-
-ax.hist(cpl["Age"][cpl["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
-        histtype="step", lw=3, label="Binary, CPL", color="C0", density=True)
-ax.hist(ctl["Age"][ctl["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
-        histtype="step", lw=3, label="Binary, CTL", color="C1", density=True)
-ax.hist(single["Age"][single["Pri_ProtAge"] <= 20]/1.0e9, bins="auto",
-        histtype="step", lw=3, label="Single", color="C2", density=True)
-
-ax.set_xlabel("Age [Gyr]", fontsize=30)
-ax.set_ylabel("Normalized Counts", fontsize=30)
-ax.set_xlim(0.8,7.2)
-ax.legend(loc="best", framealpha=0.0)
-
-fig.savefig("../Plots/protAgeHist.pdf", dpi=200, bbox_inches="tight")
-
 # Print out interesting statistics
 print("CPL median Prot:",np.median(cpl["Pri_ProtAge"]))
 print("CTL median Prot:",np.median(ctl["Pri_ProtAge"]))
