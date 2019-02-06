@@ -538,7 +538,7 @@ Our coupled stellar-tidal model reproduces many of the the spin and orbital feat
 Nearly all simulated binaries with P$_{orb} < 4$ d have circularized orbits and synchronized spins due to strong tidal torques at short stellar separations, in excellent agreement with the \citet{Lurie2017} observations. At very short P$_{orb}$ in the absence of a perturbing tertiary companion, circularization and synchronization is the inevitable end state for low-mass binaries.  Beyond P$_{orb} \approx 4$ d, tidally-locked, eccentric binaries populate the supersynchronous population, again in excellent agreement with the \citet{Lurie2017} \kepler data.  These systems have tidally-locked but their orbits have not yet circularized, even though they likely experience strong tidal torques at short separations, because the tidal locking time scale is 2-3 orders of magnitude less than the circularization timescale \citep{Mazeh2008}.
 
 \begin{figure}
-	\includegraphics[width=0.45\textwidth]{../Plots/subsync.pdf}
+	\includegraphics[width=0.5\textwidth]{../Plots/subsync.pdf}
    \caption{Same format as Fig.~\ref{fig:lurie7}, with \citet{Lurie2017} data plotted as crosses.  All points are colored according to the binary orbital $e$. Our simulations reproduce many of the observed orbital and rotational features seen in the \kepler EB population.}%
     \label{fig:subsync}%
 \end{figure}
@@ -583,9 +583,9 @@ As shown in $\S$~\ref{sec:protDist}, the detection of tidally-locked binaries wi
 
 \subsection{Inferring Binary Tidal Properties from \kepler} \label{sec:inference}
 
-XXX
+In principle, we could have conditioned our model on the \citet{Lurie2017} data to infer population-level properties of stellar binaries, such as tidal $Q$ and $\tau$ values for stars, perhaps as a function of stellar mass, or the initial binary P$_{orb}$ distribution, using hierarchical probabilistic modeling instead of qualitatively comparing of our simulations with the data. Such an analysis is beyond the scope of this work because the biases in the \citet{Lurie2017} data are not well known.  For example, the bias of the obvious lack of longer P$_{orb}$ binaries in the \citet{Lurie2017} data arises from the fact that it is difficult to detect binaries with longer P$_{orb}$ in a finite time window via the transit method as longer P$_{orb}$ systems transit fewer times.  What is not known, however, is how this bias impacts the completeness of binary detections as a function of P$_{orb}$, nor is the completeness known as a function of stellar P$_{rot}$. These biases, combined with the lack of P$_{rot}$ uncertainties, inaccurate binary eccentricities, and lack of binary masses and ages makes it difficult to directly compare our simulations with the data to robustly infer properties of low-mass binaries.
 
-The limitations/biases in the Lurie data set are not well known, besides the obvious lack of longer Porb binaries, so any direct comparison of my simulations with the data is not robust.  Instead, I think it would be better to focus on how my simulations can produce the features seen in the Lurie data, like the subsynchronous rotators, to show how the interaction between tidal torques and magnetic braking can produce rich dynamical interactions with varied outcomes. 
+Instead, one could use our model to infer tidal properties for individual systems with well-constrained properties.  For example, Kepler-47 \citep{Orosz2012} is a low-mass binary whose primary star rotates subsynchronously.  This system has been extensively monitored via photometry and spectroscopy because it harbors multiple transiting circumbinary planets, and as a result has well-constrained properties. One could infer the tidal properties for this binary, perhaps in a Markov Chain Monte Carlo framework, by directly comparing simulation results with the observed stellar and orbital properties, given the observational uncertainties. This analysis, however, is beyond the scope of this work and we leave it for future endeavors.
 
 %% SECTION: DISCUSSION %%
 \section{Discussion} \label{sec:discussion}
