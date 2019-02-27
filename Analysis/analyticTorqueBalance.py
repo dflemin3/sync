@@ -62,7 +62,7 @@ def ctlMatt2015(Porb, logK2Tau):
     return Pr/DAYSEC
 # end function
 
-nbins = 100
+nbins = 20
 logK2Taus = np.log10(0.5 * np.logspace(-1.8, 0.3, nbins))[::-1]
 Porbs = np.linspace(20, 80, nbins)
 res = np.zeros((nbins, nbins)) # = Prot/Peq

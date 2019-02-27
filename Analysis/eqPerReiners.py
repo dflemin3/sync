@@ -96,7 +96,7 @@ axes[0].axhline(1, lw=2.5, ls=":", color="k")
 axes[0].set_xlim(1.0e6, cpl[-1,0])
 axes[0].set_ylim(0, 1.2)
 
-axes[0].text(1.05e6, 1.14, "Reiners \& Mohanty (2012)",
+axes[0].text(1.05e6, 1.12, "Reiners \& Mohanty (2012) \n \t + tides",
          ha="left", va="center", size=17, color="black", zorder=100)
 
 # Format right axis

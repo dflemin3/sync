@@ -38,7 +38,7 @@ mpl.rcParams['figure.figsize'] = (9,8)
 mpl.rcParams['font.size'] = 22.0
 
 ## for Palatino and other serif fonts use:
-mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
+mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Where simulation results live
