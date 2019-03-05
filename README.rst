@@ -1,6 +1,8 @@
 Rotation Period Evolution in Low-Mass Binary Stars: The Impact of Tidal Torques and Magnetic Braking
 ====================================================================================================
 
+David P. Fleming, Rory Barnes, James R. A. Davenport, and Rodrigo Luger
+
 We examine how tides, stellar evolution, and magnetic braking shape the rotation
 period (Prot) evolution of low-mass stellar binaries up to orbital periods
 (Porb) of 100 d across a wide range tidal dissipation parameters using two
