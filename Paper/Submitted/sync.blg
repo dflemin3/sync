@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: sync.aux
+The style file: aasjournal.bst
+Database file #1: syncNotes.bib
+Database file #2: sync.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--empty publisher in Murray1999
+You've used 88 entries,
+            3222 wiz_defined-function locations,
+            1347 strings with 24519 characters,
+and the built_in function-call counts, 39201 in all, are:
+= -- 3172
+> -- 2918
+< -- 45
++ -- 966
+- -- 1029
+* -- 3270
+:= -- 7149
+add.period$ -- 89
+call.type$ -- 88
+change.case$ -- 474
+chr.to.int$ -- 88
+cite$ -- 89
+duplicate$ -- 1603
+empty$ -- 2508
+format.name$ -- 1165
+if$ -- 7943
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 84
+newline$ -- 270
+num.names$ -- 354
+pop$ -- 695
+preamble$ -- 1
+purify$ -- 474
+quote$ -- 0
+skip$ -- 1241
+stack$ -- 0
+substring$ -- 1426
+swap$ -- 42
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 789
+warning$ -- 1
+while$ -- 337
+width$ -- 0
+write$ -- 886
+(There was 1 warning)
