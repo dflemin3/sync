@@ -23,9 +23,9 @@ mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
 cpl["Pri_dTidalQ"] = pd.Series(cpl["Pri_dTidaLQ"].values, index=cpl.index)
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 # Read in lurie data
 lurie = pd.read_csv("../Data/Lurie2017Full.csv", header=0)
@@ -118,7 +118,7 @@ cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label="Median log$_{10}(Q)$", labelpad=30, fontsize=30)
 
-fig.savefig("../Plots/porbProtPorbQHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/porbProtPorbQHist.pdf", bbox_inches="tight", dpi=200)
 
 ### CTL Plot ###
 fig = plt.figure(figsize=(9, 8))
@@ -149,7 +149,7 @@ cbaxes = fig.add_subplot(gs[2])
 cb = plt.colorbar(im, cax=cbaxes)
 cb.set_label(label=r"Median log$_{10}(\tau[\mathrm{s}])$", labelpad=30, fontsize=30)
 
-fig.savefig("../Plots/porbProtPorbTauHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/porbProtPorbTauHist.pdf", bbox_inches="tight", dpi=200)
 
 ################################################################################
 #

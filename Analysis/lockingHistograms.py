@@ -28,8 +28,8 @@ seed = 42
 np.random.seed(seed)
 
 # Load in data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 # Create indices for a random sample of num points to make scatterplot legible
 inds = np.random.choice(np.arange(len(cpl)), size=num, replace=False)

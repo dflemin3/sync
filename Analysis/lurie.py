@@ -24,8 +24,8 @@ mpl.rc('text', usetex=True)
 plotLurie = True
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 #lurie = pd.read_csv("../Data/Lurie2017Full.csv", header=0)
 #lurie["Prot"] = lurie["p_1_min"].copy() # As recommended by Lurie+2017 for equitorial Prot

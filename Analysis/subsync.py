@@ -10,19 +10,19 @@ Script output:
 
 CTL:
 
-Median subsync tidal tau: 0.17078373819999998
-Median supersync tidal tau: 0.466656378
-Median subsync ecc: 0.107152
-Median supersync ecc: 0.15391400000000002
-Median subsync mass ratio: 0.6416154898583578
-Median supersync mass ratio: 0.6614121797592005
-Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.7182910547396528
-Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.09078771695594126
+Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.7367688022284122
+Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.07520891364902507
+Median subsync tidal tau: 0.13994108759999999
+Median supersync tidal tau: 0.413785876
+Median subsync ecc: 0.098839
+Median supersync ecc: 0.15375899999999998
+Median subsync mass ratio: 0.625039651747849
+Median supersync mass ratio: 0.6587939375776
 
 CPL:
 
-Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.6887052341597796
-Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.01928374655647383
+Fraction with Porb/Prot in [0.92,1.2] for Porb < 10d: 0.7332457293035479
+Fraction with Porb/Prot in [0.84,0.92] for Porb < 10d: 0.01576872536136662
 
 Interpretation:
 
@@ -51,8 +51,8 @@ plotLurie = True
 bins = "auto"
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 # Load in cleaned sample of Prot and Ecc from Lurie+2017
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
@@ -166,7 +166,7 @@ ax_marg_y.legend(loc="best", framealpha=0.0, fontsize=15)
 ax_marg_y.set_ylim(0.6, 1.25)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
 
-fig.savefig("../Plots/subsyncMarginalCTL.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/subsyncMarginalCTL.pdf", bbox_inches="tight", dpi=200)
 
 
 ### Make version of above plot with marginal Porb/Prot histogram with CPL ###
@@ -222,7 +222,7 @@ ax_marg_y.legend(loc="best", framealpha=0.0, fontsize=15)
 ax_marg_y.set_ylim(0.6, 1.25)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
 
-fig.savefig("../Plots/subsyncMarginalCPL.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/subsyncMarginalCPL.pdf", bbox_inches="tight", dpi=200)
 
 ### Plot histogram of log10 tidal taus above and below Prot=Peq=Porb=1 line
 
@@ -262,7 +262,7 @@ ax.set_ylabel("Normalized Counts")
 ax.set_xlabel("Eccentricity")
 ax.legend(loc="lower center", framealpha=0)
 
-fig.savefig("../Plots/subsyncEccHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/subsyncEccHist.pdf", bbox_inches="tight", dpi=200)
 
 # Print median sub,supersync tidal ecc
 print("Median subsync ecc:",np.median(ctl["Age_Ecc"][subMask].values))
@@ -286,7 +286,7 @@ ax.set_ylabel("Normalized Counts")
 ax.set_xlabel("Mass Ratio (M$_2$/M$_1$)")
 ax.legend(loc="lower center", framealpha=0)
 
-fig.savefig("../Plots/subsyncMuHist.pdf", bbox_inches="tight", dpi=600)
+fig.savefig("../Plots/subsyncMuHist.pdf", bbox_inches="tight", dpi=200)
 
 # Print median sub,supersync tidal taus
 mu = ctl["Sec_dMass"][subMask].values/ctl["Pri_dMass"][subMask].values

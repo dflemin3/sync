@@ -8,10 +8,10 @@ period bins.
 
 Script output:
 
-CPL Primary Locked Fraction: 0.3119
-CTL Primary Locked Fraction: 0.0768
-CPL Secondary Locked Fraction: 0.2929
-CTL Secondary Locked Fraction: 0.0881
+CPL Primary Locked Fraction: 0.3084
+CTL Primary Locked Fraction: 0.0856
+CPL Secondary Locked Fraction: 0.3017
+CTL Secondary Locked Fraction: 0.0962
 
 """
 
@@ -30,8 +30,8 @@ mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
 mpl.rc('text', usetex=True)
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 # Lock times < 0 -> Not locked, set them to 7e9 (last simulation output time)
 cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9

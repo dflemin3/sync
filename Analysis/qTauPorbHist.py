@@ -27,8 +27,8 @@ mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 # Load data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 # Lock times < 0 -> Not locked, set them to 7e9 (last simulation output time)
 cpl["Pri_LockTime"][cpl["Pri_LockTime"] < 0] = 7.0e9

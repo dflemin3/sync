@@ -10,73 +10,39 @@ in the Kepler field.
 
 Script Output:
 
-CPL Prot median: 40.0140705
-CPL locked Prot median: 27.605545999999997
-CPL unlocked Prot median: 41.29818
-CPL interacting Prot median: 51.323143
-CPL fraction of locked binaries: 0.247
-CPL fraction of not locked but interacting binaries: 0.0971
-CPL fraction of locked binaries with Prot < 20 d: 0.097
+CPL Prot median: 31.550073499999996
+CPL locked Prot median: 22.636840499999998
+CPL unlocked Prot median: 32.429345
+CPL interacting Prot median: 43.517854
+CPL fraction of locked binaries: 0.2354
+CPL fraction of not locked but interacting binaries: 0.071
+CPL fraction of locked binaries with Prot < 20 d: 0.46219201359388273
 
-CTL Prot median: 39.7350345
-CTL locked Prot median: 7.400932000000001
-CTL unlocked Prot median: 40.804916999999996
-CTL interacting Prot median: 45.6187995
-CTL fraction of locked binaries: 0.0747
-CTL fraction of not locked but interacting binaries: 0.1756
-CTL fraction of locked binaries with Prot < 20 d: 0.0643
-
-Age Stats:
-CPL locked Age median: 4.395778067659794
-CPL unlocked Age median: 3.6588904832188893
-CPL interacting Age median: 4.436232401852751
-
-CTL locked Age median: 3.955133657998956
-CTL unlocked Age median: 3.8779651074930905
-CTL interacting Age median: 4.550487764517989
-
-Porb Stats:
-CPL locked Porb median: 28.608129499999997
-CPL unlocked Porb median: 60.951834999999996
-CPL interacting Porb median: 58.36535500000001
-
-CTL locked Porb median: 7.559052
-CTL unlocked Porb median: 55.369326
-CTL interacting Porb median: 52.700736
-[dflemin3 Analysis]$ python locking.py
-CPL Prot median: 40.0140705
-CPL locked Prot median: 27.605545999999997
-CPL unlocked Prot median: 41.29818
-CPL interacting Prot median: 51.323143
-CPL fraction of locked binaries: 0.247
-CPL fraction of not locked but interacting binaries: 0.0971
-CPL fraction of locked binaries with Prot < 20 d: 0.39271255060728744
-
-CTL Prot median: 39.7350345
-CTL locked Prot median: 7.400932000000001
-CTL unlocked Prot median: 40.804916999999996
-CTL interacting Prot median: 45.6187995
-CTL fraction of locked binaries: 0.0747
-CTL fraction of not locked but interacting binaries: 0.1756
-CTL fraction of locked binaries with Prot < 20 d: 0.8607764390896921
+CTL Prot median: 31.293733500000002
+CTL locked Prot median: 8.751350500000001
+CTL unlocked Prot median: 32.4363845
+CTL interacting Prot median: 36.4195355
+CTL fraction of locked binaries: 0.0816
+CTL fraction of not locked but interacting binaries: 0.157
+CTL fraction of locked binaries with Prot < 20 d: 0.8308823529411765
 
 Age Stats:
-CPL locked Age median: 4.395778067659794
-CPL unlocked Age median: 3.6588904832188893
-CPL interacting Age median: 4.436232401852751
+CPL locked Age median: 4.445921424688489
+CPL unlocked Age median: 3.6702531621032675
+CPL interacting Age median: 5.050168624194712
 
-CTL locked Age median: 3.955133657998956
-CTL unlocked Age median: 3.8779651074930905
-CTL interacting Age median: 4.550487764517989
+CTL locked Age median: 3.9992385987802774
+CTL unlocked Age median: 3.8249306365530074
+CTL interacting Age median: 4.683332960365213
 
 Porb Stats:
-CPL locked Porb median: 28.608129499999997
-CPL unlocked Porb median: 60.951834999999996
-CPL interacting Porb median: 58.36535500000001
+CPL locked Porb median: 23.502239499999998
+CPL unlocked Porb median: 62.8394635
+CPL interacting Porb median: 48.727921499999994
 
-CTL locked Porb median: 7.559052
-CTL unlocked Porb median: 55.369326
-CTL interacting Porb median: 52.700736
+CTL locked Porb median: 9.3593115
+CTL unlocked Porb median: 60.113932999999996
+CTL interacting Porb median: 41.761252999999996
 
 """
 
@@ -103,8 +69,8 @@ seed = 42
 np.random.seed(seed)
 
 # Load in data
-cpl = pd.read_csv("../Data/mcCPLDec22.csv")
-ctl = pd.read_csv("../Data/mcCTLDec22.csv")
+cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
+ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
 
 # Create indices for a random sample of num points to make scatterplot legible
 inds = np.random.choice(np.arange(len(cpl)), size=num, replace=False)
