@@ -2,7 +2,7 @@
 
 @author: David P. Fleming, University of Washington, Seattle
 @email: dflemin3 (at) uw (dot) edu
-Nov. 2018
+Dec. 2018
 
 This script produces a population of tidally-interacting binaries stars.
 
@@ -74,8 +74,8 @@ for ii in range(num):
     # Loguniform initial rotation period prior over [0.8, 15] days (Matt+2015)
     dRotPeriod = -loguniform(low=np.log10(0.8), high=np.log10(15.0)) # negative -> days
 
-    # Log uniform prior for 1.0e-2 - 1s for tidal tau
-    dTidalTau = loguniform(low=-2, high=0)*3.171e-8
+    # log uniform prior for 1.0e-2 - 10s for tidal tau
+    dTidalTau = 10**np.random.uniform(low=-2, high=1)*3.171e-8
 
     # Mass is uniformly sampled over [0.1, 1.0]
     dMass = np.random.uniform(low=0.1, high=1.0)
@@ -103,8 +103,8 @@ for ii in range(num):
     # Loguniform initial rotation period prior over [0.8, 15] days (Matt+2015)
     dRotPeriod = -loguniform(low=np.log10(0.8), high=np.log10(15.0)) # negative -> days
 
-    # Log uniform prior for 1.0e-2 - 1s for tidal tau
-    dTidalTau = loguniform(low=-2, high=0)*3.171e-8
+    # Loguniform prior for 1.0e-2 - 10s for tidal tau
+    dTidalTau = 10**np.random.uniform(low=-2, high=1)*3.171e-8
 
     # Pick secondary mass using uniform mass ratio distribution over [0.1,1.0]
     # following Moe & Kratter (2018) assumption.  Make sure minimum mass is 0.1.

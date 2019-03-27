@@ -84,8 +84,12 @@ for ii, directory in enumerate(dirs):
             matches.append((line.split()[-1]))
 
     # Convert lock times to years
-    dLockTime1 = float(matches[2])/YEARSEC
-    dLockTime2 = float(matches[3])/YEARSEC
+    if len(matches) > 2:
+        dLockTime1 = float(matches[2])/YEARSEC
+        dLockTime2 = float(matches[3])/YEARSEC
+    else:
+        dLockTime1 = -1
+        dLockTime2 = -1
 
     tmp.append(dLockTime1)
     tmp.append(dLockTime2)
@@ -157,7 +161,7 @@ df = pd.DataFrame(table, columns=headers)
 print(df.head(5))
 
 # Save it!
-df.to_csv("mcCPLTorque.csv", header=True, index=False)
+df.to_csv("mcCPLMarch27.csv", header=True, index=False)
 
 # Finished!
 print("Done!")
