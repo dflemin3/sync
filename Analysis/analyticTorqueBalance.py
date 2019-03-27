@@ -25,10 +25,10 @@ DAYSEC = 86400.0 # Number of seconds in a day
 
 def ctlMatt2015Obj(Prot, Porb, k2Tau):
     """
-    CTL, Matt+2015 torque balance
+    CTL, Matt+2015 torque balance with Matt+2019 T0 correction
     """
 
-    return (Prot**3 / Porb**5) * (1.0 - Porb/Prot) - 6.17e-16/k2Tau
+    return (Prot**3 / Porb**5) * (1.0 - Porb/Prot) - 4.96e-16/k2Tau
 # end function
 
 

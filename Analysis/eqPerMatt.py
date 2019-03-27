@@ -169,7 +169,7 @@ for ii in range(len(ctlDirs)):
 ax.plot([100], [100], ls="-", lw=3, color="grey", label="CPL")
 ax.plot([100], [100], ls="--", lw=3, color="grey", label="CTL")
 
-ax.legend(bbox_to_anchor=[0.59, 0.32], framealpha=0.0, fontsize=17)
+ax.legend(loc="lower right", framealpha=0.0, fontsize=17)
 ax.set_ylabel("P$_{rot}$/P$_{eq}$", fontsize=30)
 ax.set_xlabel("Time [yr]", fontsize=30)
 ax.set_xscale("log")
