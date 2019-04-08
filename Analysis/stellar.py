@@ -90,18 +90,6 @@ ax[2].scatter(time[ind_g], g[ind_g,2], s=75, color="C0")
 ax[2].scatter(time[ind_k], k[ind_k,2], s=75, color="C1")
 ax[2].scatter(time[ind_m], m[ind_m,2], s=75, color="C2")
 
-ax[2].plot(time, gr[:,2], lw=2.5, color="C0", ls="--",)
-ax[2].plot(time, kr[:,2], lw=2.5, color="C1", ls="--",)
-ax[2].plot(time, mr[:,2], lw=2.5, color="C2", ls="--",)
-
-# Plot points to indicate ZAMS
-ax[2].scatter(time[ind_g], gr[ind_g,2], s=75, color="C0")
-ax[2].scatter(time[ind_k], kr[ind_k,2], s=75, color="C1")
-ax[2].scatter(time[ind_m], mr[ind_m,2], s=75, color="C2")
-
-ax[2].plot([100], [100], lw=2.5, ls="-", color="grey", label="Matt et al. (2015)")
-ax[2].plot([100], [100], lw=2.5, ls="--", color="grey", label="Reiners \& Mohanty (2012)")
-
 # Format
 ax[2].set_ylabel("Rotation Period [d]", fontsize=25)
 ax[2].set_xlabel("Time [yr]", fontsize=25)
@@ -109,7 +97,6 @@ ax[2].set_xlim(1.0e6,time[-1])
 ax[2].set_ylim(0.5e-1,1.0e2)
 ax[2].set_xscale("log")
 ax[2].set_yscale("log")
-ax[2].legend(loc="upper left", framealpha=0, fontsize=18)
 
 # Save!
 fig.tight_layout()
