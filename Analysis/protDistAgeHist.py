@@ -36,7 +36,7 @@ np.random.seed(seed)
 # Load data
 cpl = pd.read_csv("../Data/mcCPLMarch27.csv")
 ctl = pd.read_csv("../Data/mcCTLMarch27.csv")
-single = pd.read_csv("../Data/mcSingle.csv")
+single = pd.read_csv("../Data/mcSingleMarch27.csv")
 lurie = pd.read_csv("../Data/Lurie2017.csv", comment="#", header=None,
                     names=["Porb", "Prot", "Ecc"])
 
