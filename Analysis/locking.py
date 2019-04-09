@@ -124,7 +124,7 @@ color = (cpl.iloc[inds]["Pri_ProtAge"][cpl.iloc[inds]["Locked"]]/cpl.iloc[inds][
 im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
-ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
+ax.set_xlabel(r"Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(cpl["Pri_dMass"]), np.max(cpl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
 ax.set_title("CPL", fontsize=30)
@@ -176,7 +176,7 @@ y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Locked"]]
 im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
-ax.set_xlabel("Mass [M$_{\odot}$]", fontsize=30)
+ax.set_xlabel(r"Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(ctl["Pri_dMass"]), np.max(ctl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
 ax.set_title("CTL", fontsize=30)

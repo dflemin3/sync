@@ -105,8 +105,8 @@ for ii in range(len(porbBinEdges)-1):
     for jj in range(len(porbProtBinEdges)-1):
         x = 0.5*(porbProtBinEdges[jj] + porbProtBinEdges[jj+1])
         if not np.isnan(cplTidalQ[ii,jj]):
-            ax1.text(x, y, ("$%.1lf^{+%0.1lf}_{-%0.1lf}$" % (cplTidalQ[ii,jj], cplTidalQUp[ii,jj], cplTidalQDown[ii,jj])),
-                     ha="center", va="center", size=14, color="white", zorder=100)
+            ax1.text(x, y, ("$%.1lf$" % cplTidalQ[ii,jj]),
+                     ha="center", va="center", size=18, color="white", zorder=100)
 
 ax1.set_xlim(0.4, 2.0)
 ax1.set_ylim(0, 100)
@@ -136,8 +136,9 @@ for ii in range(len(porbBinEdges)-1):
     for jj in range(len(porbProtBinEdges)-1):
         x = 0.5*(porbProtBinEdges[jj] + porbProtBinEdges[jj+1])
         if not np.isnan(ctlTidalTau[ii,jj]):
-            ax2.text(x, y, ("$%.1lf^{+%0.1lf}_{-%0.1lf}$" % (ctlTidalTau[ii,jj], ctlTidalTauUp[ii,jj], ctlTidalTauDown[ii,jj])),
-                     ha="center", va="center", size=12, color="white", zorder=100)
+            # Pick best font color
+            ax2.text(x, y, ("$%.1lf$" % ctlTidalTau[ii,jj]),
+                     ha="center", va="center", size=18, color="white", zorder=100)
 
 ax2.set_xlim(0.4, 2.0)
 ax2.set_ylim(0, 100)
