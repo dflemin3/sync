@@ -62,6 +62,7 @@ mpl.rc('font',**{'family':'serif'})
 mpl.rc('text', usetex=True)
 
 ylims = [0, 100]
+xlims = [0.1, 1]
 bins = "auto"
 num = 2500
 seed = 42
@@ -100,11 +101,13 @@ ctl["Free"] = pd.Series(mask, index=ctl.index)
 
 ### CPL ###
 
-fig = plt.figure(figsize=(10,9))
-gs = GridSpec(4,4, wspace=0.45)
+fig = plt.figure(figsize=(9,8.5))
 
-ax = fig.add_subplot(gs[1:4,0:3])
-ax_marg_y = fig.add_subplot(gs[1:4,3])
+gs = GridSpec(3, 3, width_ratios=[1, 0.01, 0.25], wspace=0.05,
+              height_ratios=[0.25, 0.01, 1], hspace=0.05)
+
+# Main panel
+ax = fig.add_subplot(gs[2, 0])
 
 # Not tidally locked binaries: sub and super sync populations
 x = cpl.iloc[inds]["Pri_dMass"][cpl.iloc[inds]["Free"]]
@@ -127,12 +130,13 @@ im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 ax.set_xlabel(r"Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(cpl["Pri_dMass"]), np.max(cpl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
-ax.set_title("CPL", fontsize=30)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
 leg = ax.legend(loc="upper left", framealpha=0.7, fontsize=18)
 
-# Plot marginals
+# Plot marginals: y for prot
+ax_marg_y = fig.add_subplot(gs[2, 2])
+
 ax_marg_y.hist(cpl["Pri_ProtAge"][cpl["Free"]], orientation="horizontal",
                bins=bins, histtype="step", lw=3, color="C1",
                label="Not Locked", density=False)
@@ -148,43 +152,67 @@ ax_marg_y.set_ylim(ylims)
 ax_marg_y.legend(loc="upper center", framealpha=0.5, fontsize=12)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
 
+# Plot marginals: x for mass
+ax_marg_x = fig.add_subplot(gs[0, 0])
+
+ax_marg_x.hist(cpl["Pri_dMass"][cpl["Free"]],
+               bins=bins, histtype="step", lw=3, color="C1",
+               label="Not Locked", density=False)
+ax_marg_x.hist(cpl["Pri_dMass"][cpl["Interacting"]],
+               bins=bins, histtype="step", lw=3, color="C2",
+               label="Interacting", density=False)
+ax_marg_x.hist(cpl["Pri_dMass"][cpl["Locked"]],
+               bins=bins, histtype="step", lw=3, color="C0",
+               label="Locked", density=False)
+
+# Format marginals
+ax_marg_x.set_xlim(xlims)
+plt.setp(ax_marg_x.get_xticklabels(), visible=False);
+
+# Annotate with model name
+ax.text(1.15, 117, "CPL", ha="center", va="center", size=30, color="k")
+
 # Save!
 fig.savefig("../Plots/lockedCPL.pdf", bbox_inches="tight", dpi=200)
 
 ### CTL ###
 
-fig = plt.figure(figsize=(10,9))
-gs = GridSpec(4,4, wspace=0.45)
+fig = plt.figure(figsize=(9,8.5))
 
-ax = fig.add_subplot(gs[1:4,0:3])
-ax_marg_y = fig.add_subplot(gs[1:4,3])
+gs = GridSpec(3, 3, width_ratios=[1, 0.01, 0.25], wspace=0.05,
+              height_ratios=[0.25, 0.01, 1], hspace=0.05)
+
+# Main panel
+ax = fig.add_subplot(gs[2, 0])
 
 # Not tidally locked binaries: sub and super sync populations
 x = ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Free"]]
 y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Free"]]
 im = ax.scatter(x, y, color="C1", marker="o", s=30, zorder=1, label="Not Locked")
 
-# Not tidally locked binaries, but strongly tidally Interacting
+# Not locked, but strongly tidally interacting
 x = ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Interacting"]]
 y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Interacting"]]
-im = ax.scatter(x, y, color="C2", marker="d", s=50, zorder=2,
-                label="Interacting")
+color = (ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Interacting"]]/ctl.iloc[inds]["Age_Peq"][ctl.iloc[inds]["Interacting"]]).values
+im = ax.scatter(x, y, color="C2", marker="d", s=50, zorder=2, label="Interacting")
 
 # Plot locked binaries
 x = ctl.iloc[inds]["Pri_dMass"][ctl.iloc[inds]["Locked"]]
 y = ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Locked"]]
+color = (ctl.iloc[inds]["Pri_ProtAge"][ctl.iloc[inds]["Locked"]]/ctl.iloc[inds]["Age_Peq"][ctl.iloc[inds]["Locked"]]).values
 im = ax.scatter(x, y, color="C0", marker="x", s=50, zorder=3, label="Locked")
 
 # Format plot
 ax.set_xlabel(r"Mass [M$_{\odot}$]", fontsize=30)
 ax.set_xlim(np.min(ctl["Pri_dMass"]), np.max(ctl["Pri_dMass"]))
 ax.set_ylabel("P$_{rot}$ [d]", fontsize=30)
-ax.set_title("CTL", fontsize=30)
 ax.set_ylim(ylims)
 ax.set_rasterization_zorder(0)
-leg = ax.legend(loc="upper left", framealpha=0.0, fontsize=18)
+leg = ax.legend(loc="upper left", framealpha=0.7, fontsize=18)
 
-# Plot marginals
+# Plot marginals: y for prot
+ax_marg_y = fig.add_subplot(gs[2, 2])
+
 ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Free"]], orientation="horizontal",
                bins=bins, histtype="step", lw=3, color="C1",
                label="Not Locked", density=False)
@@ -197,8 +225,28 @@ ax_marg_y.hist(ctl["Pri_ProtAge"][ctl["Locked"]], orientation="horizontal",
 
 # Format marginals
 ax_marg_y.set_ylim(ylims)
-ax_marg_y.legend(loc="upper center", framealpha=0.0, fontsize=12)
+ax_marg_y.legend(loc="upper center", framealpha=0.5, fontsize=12)
 plt.setp(ax_marg_y.get_yticklabels(), visible=False);
+
+# Plot marginals: x for mass
+ax_marg_x = fig.add_subplot(gs[0, 0])
+
+ax_marg_x.hist(ctl["Pri_dMass"][ctl["Free"]],
+               bins=bins, histtype="step", lw=3, color="C1",
+               label="Not Locked", density=False)
+ax_marg_x.hist(ctl["Pri_dMass"][ctl["Interacting"]],
+               bins=bins, histtype="step", lw=3, color="C2",
+               label="Interacting", density=False)
+ax_marg_x.hist(ctl["Pri_dMass"][ctl["Locked"]],
+               bins=bins, histtype="step", lw=3, color="C0",
+               label="Locked", density=False)
+
+# Format marginals
+ax_marg_x.set_xlim(xlims)
+plt.setp(ax_marg_x.get_xticklabels(), visible=False);
+
+# Annotate with model name
+ax.text(1.15, 117, "CTL", ha="center", va="center", size=30, color="k")
 
 # Save!
 fig.savefig("../Plots/lockedCTL.pdf", bbox_inches="tight", dpi=200)
