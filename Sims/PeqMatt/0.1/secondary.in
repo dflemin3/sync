@@ -9,7 +9,7 @@ dAge          5.0e6
 dRotPeriod    -1.0
 
 # Orbital properties
-dOrbPeriod  -5.0
+dOrbPeriod  -7.5
 dEcc         0.0
 
 # EQTIDE Parameters
