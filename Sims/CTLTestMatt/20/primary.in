@@ -5,7 +5,7 @@ saModules       stellar eqtide
 # Physical Parameters
 iBodyType     1 # Star!
 dMass         1.0                        # Mass, solar masses
-dAge          5.0e6
+dAge          1.0e6
 dRotPeriod    -1.0
 
 # The first body in the saBodyFiles list must be the central mass.

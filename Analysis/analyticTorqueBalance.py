@@ -63,8 +63,8 @@ def ctlMatt2015(Porb, logK2Tau):
 # end function
 
 nbins = 50
-logK2Taus = np.log10(0.5 * np.logspace(-1.8, 0.3, nbins))[::-1]
-Porbs = np.linspace(20, 80, nbins)
+logK2Taus = np.log10(0.5 * np.logspace(-1.8, -0.3, nbins))[::-1]
+Porbs = np.linspace(10, 80, nbins)
 res = np.zeros((nbins, nbins)) # = Prot/Peq
 
 for ii in range(nbins):
@@ -76,8 +76,12 @@ for ii in range(nbins):
 fig, ax = plt.subplots()
 
 extent = [logK2Taus[0], logK2Taus[-1], Porbs[0], Porbs[-1]]
-im = plt.imshow(res, cmap="viridis", aspect="auto", interpolation="nearest",
-                origin="lower", extent=extent, vmin=1, vmax=1.5)
+im = ax.imshow(res, cmap="viridis", aspect="auto", interpolation="nearest",
+               origin="lower", extent=extent, vmin=1)
+cont = ax.contour(res, colors="white", levels=[1.02, 1.05, 1.1, 1.2, 1.4, 1.6],
+                  extent=extent, origin="lower", extend="both")
+plt.clabel(cont, inline=True, fontsize=12, fmt="%.02lf")
+
 
 ax.set_xlabel(r"log$_{10}$($k_2 \tau$)")
 ax.set_ylabel("Orbital Period [d]")
