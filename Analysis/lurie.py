@@ -154,7 +154,7 @@ ax2.set_title("Lurie et al. (2017)")
 
 ### Colorbar ###
 cbaxes = fig.add_subplot(gs[-1])
-cb = plt.colorbar(im, cax=cbaxes)
+cb = plt.colorbar(im, cax=cbaxes, extend='max')
 cb.set_label(label="Eccentricity")
 
 fig.savefig("../Plots/lurieFig7.pdf", bbox_inches="tight", dpi=200)

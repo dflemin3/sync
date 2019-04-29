@@ -64,7 +64,7 @@ def ctlMatt2015(Porb, logK2Tau):
 
 nbins = 50
 logK2Taus = np.log10(0.5 * np.logspace(-1.8, -0.3, nbins))[::-1]
-Porbs = np.linspace(10, 80, nbins)
+Porbs = np.linspace(15, 80, nbins)
 res = np.zeros((nbins, nbins)) # = Prot/Peq
 
 for ii in range(nbins):
