@@ -4,5 +4,6 @@
 *.ipynb_checkpoints
 *.forward
 *.log
+*.txt
 References/
 Paper/response.txt
