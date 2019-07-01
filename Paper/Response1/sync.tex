@@ -158,7 +158,7 @@ In Fig.~\ref{fig:stellarExample}, we plot the evolution of $R$, $r_g$, and P$_{r
 % Both magnetic braking models produce qualitatively similar P$_{rot}$ evolution, with the \citet{Reiners2012} predicting marginally stronger torques. 
 
 \begin{figure*}[ht]
-	\includegraphics[width=\textwidth]{../Plots/stellarExample.pdf}
+	\includegraphics[width=\textwidth]{stellarExample.pdf}
    \caption{\xxx{Updated Figure} Stellar $R$ (left), $r_g$ (middle), and P$_{rot}$ (right) evolution for 0.2 M$_{\odot}$ (M, green), 0.7 M$_{\odot}$ (K, orange), and 1 M$_{\odot}$ (G, blue) mass stars computed according to \stellar, our interpolation of the \citet{Baraffe2015} stellar evolution models ($\S$~\ref{sec:methods:stellar}) combined with the \xxx{\citet{Matt2015} magnetic braking model}. Each dot denotes the approximate time when each star reaches the main sequence.}%
     \label{fig:stellarExample}%
 \end{figure*}
@@ -308,7 +308,7 @@ Due to the discontinuities in the equilibrium tidal model equations, for example
 We plot the tidal evolution for $a$, $e$, and $P_{rot}$, ignoring stellar evolution, for a solar-twin binary with an initial P$_{orb} = 10$ d, P$_{rot} = 1$ d, $e = 0.2$ for the CPL model and CTL model, assuming $Q=10^6$ and $\tau = 0.1$ seconds, respectively, in Fig.~\ref{fig:tidalExample}. \xxx{The} CPL and CTL model predict the same qualitative evolution: both the binary's $e$ and P$_{orb}$ slightly increase as tides force the spins toward the tidally-locked state, transferring rotational angular momentum into the orbit in the process.  At late times, both the CPL and CTL drive the binaries towards orbital circularization, with tidal dissipation decreasing P$_{orb}$. The predictions of the CPL and CTL model, differ, however, when the binaries tidally-lock.  Under the CPL model, the binary tidally-locks into a synchronous orbit when $e < \sqrt{1/19}$, e.g. Eq.~(\ref{eqn:cpl:eqPer}), while the CTL model predicts supersyncronous rotation due to the CTL model's equilibrium period eccentricity dependence, e.g. Eq.~(\ref{eqn:ctl:eqPer}).
 
 \begin{figure}
-	\includegraphics[width=0.4\textwidth]{../Plots/tidalExample.pdf}
+	\includegraphics[width=0.4\textwidth]{tidalExample.pdf}
    \caption{Tidal evolution of a 1 M$_{\odot} -$ 1 M$_{\odot}$ stellar binary's $e$ (top), P$_{orb}$ (middle) and P$_{rot}$ (bottom) for the CPL (blue) and CTL (orange) model. The blue (CPL) and orange (CTL) vertical dashed lines denote when the stellar binary tidally locks. Both the CPL and CTL model predict the same qualitative evolution. The rotational evolution differs, however, as under the CPL model, the binary tidally-locks into a synchronous orbit as $e < \sqrt{1/19}$, e.g. Eq.~(\ref{eqn:cpl:eqPer}), while the CTL model predicts supersyncronous rotation due to the CTL model's equilibrium period eccentricity dependence (see Eq.~(\ref{eqn:ctl:eqPer})).}%
     \label{fig:tidalExample}%
 \end{figure}
@@ -358,7 +358,7 @@ Here we focus on binaries in \xxx{the ``weak tides"} regime, i.e. long P$_{orb}$
 In the weak tides regime, spin-down due to magnetic braking will drive the stellar P$_{rot}$ past P$_{eq}$, resulting in subsynchronous rotation\xxx{, P$_{rot} >$ P$_{eq}$. For long P$_{orb}$, the stars will be slowly-rotating and in the unsaturated regime \citep{Matt2015}. Since magnetic braking scales as P$_{rot}^{-3}$ for unsaturated rotators, e.g. Eqn.~(\ref{eqn:mattUnSat}), magnetic braking torques weaken as the stellar rotation slows down, so at some P$_{rot}$, tidal torques will balance magnetic braking, producing a long-lasting state of subsynchronous rotation. We compute the P$_{rot}$ at which this balance occurs as a function of P$_{orb}$, $k_2$, and $\tau$ in $\S$~\ref{sec:appendix:balance} by setting the sum of Eqn.~(\ref{eqn:ctl:omega}) and Eqn.~(\ref{eqn:mattUnSat}) equal to 0, considering tidal torques under the CTL formalism. For simplicity, we assume both stars are solar-mass with 0 obliquity, a circular binary orbit, and that the torque balance occurs while the stars are on the main sequence where stellar properties change slowly. Although solar mass stars are the most massive stars we consider in this work, and hence will have the strongest tidal torque for a given tidal dissipation parameter and P$_{orb}$, they can still exhibit subsynchronous rotation and serve as a useful end member case to examine here and in simulations below.  We display the results of this calculation in Fig.~\ref{fig:analyticBalance}, normalizing P$_{rot}$ by P$_{eq}$, which for binary stars with 0 obliquity on circular orbits is simply P$_{orb}$.}
 
 \begin{figure}[h]
-	\includegraphics[width=0.5\textwidth]{../Plots/analyticTorque.pdf}
+	\includegraphics[width=0.5\textwidth]{analyticTorque.pdf}
    \caption{\xxx{Updated Figure} The stellar P$_{rot}$, normalized by P$_{eq}$, at which the torques due to magnetic braking and tides balance for a 1 M$_{\odot} - 1$ M$_{\odot}$ binary on a circular orbit according to Eqn.~\ref{eqn:appendixBalance}. The white dashed line indicates our fiducial values for $k_2$ and $\tau$, 0.5 and 0.1 s, respectively, that we adopt in the simulations in $\S$~\ref{sec:mattBalance}.}%
     \label{fig:analyticBalance}%
 \end{figure}
@@ -373,7 +373,7 @@ In the weak tides regime, spin-down due to magnetic braking will drive the stell
 \xxx{We simulate the full coupled stellar-tidal evolution of 1 M$_{\odot} - 1$ M$_{\odot}$ binaries on initially circular orbits to examine how stellar binaries evolve towards subsynchronous rotation. In Fig.~\ref{fig:eqPer}, we plot P$_{rot}$, normalized by P$_{eq}$, and its time derivative for P$_{orb} \in [5,60]$ d modeled using both the CPL (solid line, $Q=10^6$) and CTL (dashed line, $\tau = 0.1$ s) models. Both tidal models predict that binaries with P$_{orb} < 10$ d will tidally-lock within 100 Myr, in agreement with observations \citep{Meibom2005} and previous theoretical work \citep{Zahn1989}. The CPL model predicts that all binaries tidally-lock, even out to P$_{orb} = 60$ d, indicating that tidal locking is not necessarily restricted to short P$_{orb}$ systems. As anticipated by our analytic calculations, the CTL model predicts subsynchronous rotation for P$_{orb} \geq 20$ d as magnetic braking overpowers tidal torques. For P$_{orb} = 20$ d, magnetic braking pushes P$_{rot}/$P$_{eq} \approx 1.05$, with the maximum value set by the torque balance. As shown in $\S$~\ref{sec:analytic}, the peak P$_{rot}/$P$_{eq}$ grows for longer P$_{orb}$ since tides weaken with increasing binary separation, e.g. Eqn.~(\ref{eqn:ctl:z}), allowing magnetic braking to dominate the spin evolution.} 
 
 \begin{figure*}
-	\includegraphics[width=\textwidth]{../Plots/eqPerTwoPanelMatt.pdf}
+	\includegraphics[width=\textwidth]{eqPerTwoPanelMatt.pdf}
    \caption{\xxx{Updated Figure} Evolution of stellar P$_{rot}$, normalized by P$_{eq}$ (see Eqn.~(\ref{eqn:cpl:eqPer}) and Eqn.~(\ref{eqn:ctl:eqPer}), for initial circular binary orbits according to the CPL (solid) and CTL (dashed) models with $Q = 10^6$ and $\tau = 0.1$ s, respectively, using the \citet{Matt2015} magnetic braking model. Left: P$_{rot}/$P$_{eq}$ for stars with P$_{orb}$ ranging from 5 d to 60 d. The black dotted line indicates the tidally-locked state.  Right: Net P$_{rot}$ derivative due to stellar evolution, tidal torques, and magnetic braking.  We truncate each curve when the binary tidally-locks. For P$_{orb} \leq 10$ d, both the CPL and CTL models predict that the binaries lock into synchronous rotation.  For all P$_{orb}$, the CPL models tidally-lock whereas the CTL model predicts subsynchronous rotation that persists for Gyrs.}%
     \label{fig:eqPer}%
 \end{figure*}
@@ -406,7 +406,7 @@ Spin-orbit synchronization is the typical outcome for binaries with P$_{orb} < 1
 Both tidal models predict a population of nearly synchronous rotators near P$_{orb} \approx 60$ d.  This population corresponds to the evolution described in $\S$~\ref{sec:eq} in which magnetic braking initially spins down stars past the tidally-locked state, but in the long-term, tidal torques spin up the stars, shepherding them towards the tidally-locked state.  This process can keep stellar P$_{rot} \gsim$ P$_{eq}$ for several Gyrs or longer, depending on the P$_{orb}$ and $Q$ or $\tau$ (see Figs.~\ref{fig:eqPer},$\S$~\ref{sec:shortPorbSubSync}). 
 
 \begin{figure*}[ht]
-	\includegraphics[width=\textwidth]{../Plots/qTauPorbRatioHist.pdf}
+	\includegraphics[width=\textwidth]{qTauPorbRatioHist.pdf}
    \caption{\xxx{Updated Figure} Median P$_{orb}/$P$_{rot}$ at the end of the simulation according to the CPL (left) and CTL (right) models binned by log$_{10}(Q)$ and log$_{10}(\tau)$, respectively, and P$_{orb}$.  For P$_{orb} < 10$ d, the CPL model predicts that most systems will tidally lock into synchronous rotation, whereas the CTL model requires $\tau \geq 0.1$ s to tidally-lock.  Both models exhibit supersynchronous rotation (blue regions, P$_{rot} <$ P$_{orb}$) for P$_{orb} > 80$ d, that \xxx{does} not in general reflect tidally-locking, but rather at long P$_{orb}$, the combination of weak tidal torques and magnetic braking have not spun down the star enough for P$_{rot}$ to be close to P$_{orb}$ after 7 Gyr of evolution. For large $Q$ ($> 10^7$) and small $\tau$ ($\tau < 0.1$ s), weak tidal torques cannot prevent magnetic braking from spinning down stars past the tidally-locked state, producing a population of subsynchronous rotators (red regions, P$_{rot} >$ P$_{orb}$).}%
     \label{fig:qTauLock}%
 \end{figure*}
@@ -415,7 +415,7 @@ Both tidal models predict a population of nearly synchronous rotators near P$_{o
 % The CPL model predicts that stellar binaries can tidally-lock out to P$_{orb} = 30$ d for most values of $Q$, with some locking all the way up to P$_{orb} = 100$ d for small $Q < 10^5$.  
 
 \begin{figure*}
-	\includegraphics[width=\textwidth]{../Plots/porbProtPorbQHist.pdf}
+	\includegraphics[width=\textwidth]{porbProtPorbQHist.pdf}
    \caption{\xxx{Updated Figure} Median log$_{10}(Q)$ of primary stars binned by P$_{orb}$ and P$_{orb}/$P$_{rot}$ evolved using the CPL model.  In each bin, we compute the median, $16\%$, and $84\%$ percentiles for log$_{10}(Q)$ and display these values. Narrow constraints imply that certain tidal parameters are required to produce that rotation state, e.g. supersynchronous rotators near P$_{orb}/$P$_{rot} = 1.5$ require $Q \lsim 10^{5.5}$. }%
     \label{fig:qmap}%
 \end{figure*}
@@ -425,7 +425,7 @@ Both tidal models predict a population of nearly synchronous rotators near P$_{o
 Subsynchronous rotators have systematically larger $Q$s, typically $Q > 10^6$, and hence experience weak tidal torques that are dominated by magnetic braking.  This effect can be seen for P$_{orb} < 50$ d where the median $Q$ \xxx{tends to} increases with decreasing P$_{orb}/$P$_{rot}$, except near the tidally-locked state.  This trend reverses at longer P$_{orb} > 60$ d where supersynchronous rotation arises from the inability of tidal torques and magnetic braking to spin-down stars enough to approach the tidally-locked state by the end of the simulation.  In this case, the more supersynchronous the rotation, the weaker the tidal torques must be, and hence the larger the $Q$ must be. 
 
 \begin{figure*}
-	\includegraphics[width=\textwidth]{../Plots/porbProtPorbTauHist.pdf}
+	\includegraphics[width=\textwidth]{porbProtPorbTauHist.pdf}
    \caption{\xxx{Updated Figure} Same format as Fig.~\ref{fig:qmap}, but for log$_{10}(\tau [s])$ under the CTL model. }%
     \label{fig:taumap}%
 \end{figure*}
@@ -439,7 +439,7 @@ Subsynchronous rotators have systematically larger $Q$s, typically $Q > 10^6$, a
 \xxx{As seen in Fig.~\ref{fig:qTauLock}, subsynchronous rotation can even occur for short P$_{orb}$ binaries, where tidal-locking is the expectation, if the tidal torques are sufficiently weak.} In Fig.~\ref{fig:eqPerShortPorb}, we examine subsynchronous rotation in short P$_{orb}$ binaries by displaying the P$_{rot}$ evolution for a \xxx{P$_{orb} = 7.5$ d} binary for various tidal dissipation parameters. Subsynchronous rotation occurs in general for weak tidal torques, $Q>10^7$ or $\tau < 0.1$ s in these cases, and is not restricted to long P$_{orb}$ binaries. Previous theoretical studies have also predicted subsynchronous rotation in short P$_{orb}$ binaries arising from the balance between tidal torques and magnetic braking \citep[e.g.][]{Habets1989,Zahn1994,Keppens1997} suggesting that this behavior is not an artifact of our choice of tidal or magnetic braking models, but rather a general outcome of the competition between magnetic braking and tidal evolution in low-mass binaries.  Short P$_{orb}$ subsynchronous rotators can eventually tidally-lock \xxx{after several Gyrs, e.g. the $Q=10^8$ case in Fig.~\ref{fig:eqPerShortPorb},} via the mechanism described above where tidal torques gradually strengthen relative to magnetic braking. 
 
 \begin{figure}
-	\includegraphics[width=0.45\textwidth]{../Plots/eqPerShortPorbMatt.pdf}
+	\includegraphics[width=0.45\textwidth]{eqPerShortPorbMatt.pdf}
    \caption{\xxx{Updated Figure} Evolution of stellar P$_{rot}$, normalized by P$_{eq}$ (see Eqn.~(\ref{eqn:cpl:eqPer}) and Eqn.~(\ref{eqn:ctl:eqPer})), for initial circular binary orbits with initial P$_{orb} = 7.5$ d according to the CPL (solid) and CTL (dashed) models for several values of $Q$ and $\tau$, respectively, using the \citet{Matt2015} magnetic braking model. Systems with strong tidal torques tidally-lock, whereas in systems with weaker tidal torques (larger $Q$ and smaller $\tau$, respectively), magnetic braking initially overpowers tidal torques, spinning down the stars past the tidally-locked state, resulting in subsynchronous rotation. }%
     \label{fig:eqPerShortPorb}%
 \end{figure}
@@ -454,7 +454,7 @@ Short P$_{orb}$ subsynchronous binaries exist in nature, such as many \kepler EB
 Here we examine how the competition between tidal torques and magnetic braking shape the P$_{rot}$ distribution of low-mass stellar binaries.  We consider two cases where tidal torques dominate: ``Locked", where P$_{rot} = $ P$_{eq}$, and ``Interacting", where P$_{rot}$ is within $10\%$ of P$_{eq}$ as in this regime, tides are likely shepherding P$_{rot}$ towards the tidally-locked state as we demonstrated in $\S$~\ref{sec:eq}. We refer to the remaining binaries as ``not locked" as magnetic braking and stellar evolution likely dominate their angular momentum evolution.  In Fig.~\ref{fig:lockedCPL} and Fig.~\ref{fig:lockedCTL}, we plot P$_{rot}$ as a function of mass for the primary stars in stellar binaries for both the CPL and CTL model, respectively, integrated to system ages uniformly sampled over $1-7$ Gyr\xxx{, consistent with ages of stars in the \kepler field \citep{Chaplin2014}}.  
 
 \begin{figure}
-	\includegraphics[width=0.5\textwidth]{../Plots/lockedCPL.pdf}
+	\includegraphics[width=0.5\textwidth]{lockedCPL.pdf}
    \caption{\xxx{Updated Figure} Rotation state for tidally-locked (blue, P$_{rot} = $ P$_{eq}$), interacting (green, P$_{rot}$ within $10\%$ of P$_{eq}$ and not locked), and not locked (orange, remainder of binaries) stellar binaries. Left: P$_{rot}$ as a function of stellar mass and age according to our CPL simulations integrated to system ages uniformly sampled over $1-7$ Gyr. Right: Marginalized P$_{rot}$ distribution for each case. \xxx{Top: Marginalized mass distributions.}}%
     \label{fig:lockedCPL}%
 \end{figure}
@@ -462,7 +462,7 @@ Here we examine how the competition between tidal torques and magnetic braking s
 Both models predict a substantial population of tidally-locked fast rotators with P$_{rot} \lsim 20$ d, with tidally-locked stars systematically rotating faster \xxx{(median CPL, CTL P$_{rot} = 22.6$ d and $8.8$ d)} than not locked \xxx{(median CPL, CTL both P$_{rot} = 32.4$ d)} binaries. \xxx{The CTL model predicts that the majority of tidally-locked binaries, \xxx{$83\%$}, lock into rapid rotation with P$_{rot} \lsim 20$ d, typically in short P$_{orb}$ binaries where tidal torques are strongest. The CPL model, however predicts that binaries can tidally-lock into a wide range of rotation states as only $46\%$ of locked binaries have P$_{rot} < 20$ d, while the rest can lock out to P$_{rot} \approx 100$ d in long P$_{orb}$ binaries.} More massive stars are more likely to tidally-lock compared to less massive stars as tidal torques scale \xxx{with the stellar masses and as $R^5$, with $R$ increasing with stellar mass.  This feature is seen in the enhanced density of locked systems at larger masses for both tidal models, but in particular for the CPL model. We highlight this enhanced density of locked binaries in systems with more massive primaries in the marginalized mass distributions in the top panels of Fig.~\ref{fig:lockedCPL} and Fig.~\ref{fig:lockedCTL}.}
 
 \begin{figure}
-	\includegraphics[width=0.48\textwidth]{../Plots/lockedCTL.pdf}
+	\includegraphics[width=0.48\textwidth]{lockedCTL.pdf}
    \caption{\xxx{Updated Figure} Same format as Fig.~\ref{fig:lockedCPL}, but for the CTL simulations. }%
     \label{fig:lockedCTL}%
 \end{figure}
@@ -472,7 +472,7 @@ Both models predict a substantial population of tidally-locked fast rotators wit
 Tidal locking is not limited to P$_{orb} \lsim 20$ d, however, as we find stellar binaries can tidally-lock over a wide range of P$_{rot}$ up to P$_{rot} =$ P$_{orb} \approx 100$ d according to the CPL model, producing a slow-rotating population above the P$_{rot}$ distribution envelop of \xxx{solar-mass} single stars. This behavior is consistent with observations of P$_{rot}$ in \kepler eclipsing binaries by \citet{Lurie2017} who find tentative evidence that binaries can tidally-lock up to their detection limit of P$_{orb} = $ P$_{rot} = 45$ d. Under the CTL model, however, binaries predominantly tidally-lock out to only P$_{orb} \approx 20$ d\xxx{, although binaries with more massive primaries can occasionally lock, or at least tidally-interact, out to P$_{orb} \approx 80$ d. \xxx{We highlight this behavior with a histogram of locked and interacting binaries over P$_{rot}$ for both tidal models in Fig.~\ref{fig:lockedProtHist}.} The presence of P$_{orb} > 20$ d locked population, or lack there of, could be a powerful observational discriminant between which equilibrium tidal model acts in low-mass stellar binaries.  We discuss this point further in $\S$~\ref{sec:whichModel}}.
 
 \begin{figure}
-	\includegraphics[width=0.48\textwidth]{../Plots/lockedProtHist.pdf}
+	\includegraphics[width=0.48\textwidth]{lockedProtHist.pdf}
    \caption{P$_{rot}$ distribution for tidally-locked (blue) and interacting (green, P$_{rot}$ within $10\%$ of P$_{eq}$ and not locked) binaries according to the CPL (solid line) and CTL (dashed line) models.}%
     \label{fig:lockedProtHist}%
 \end{figure}
@@ -482,7 +482,7 @@ Tidal locking is not limited to P$_{orb} \lsim 20$ d, however, as we find stella
 We compare the \xxx{P$_{rot}$ and age distributions of tidally-interacting stellar binaries from our CPL and CTL simulations with that of single stars to gauge the impact of tidal torques on driving P$_{rot}$ distributions away from that of single stars and what implications that may have for estimating stellar ages using gyrochronology}.  We simulate 10,000 single star systems according to the evolution described in $\S$~\ref{sec:methods:stellar} with initial conditions sampled from the same mass and P$_{rot}$ distributions used for the binary simulations described $\S$~\ref{sec:methods}. In Fig.~\ref{fig:protDist}, we display P$_{rot}$ as a function of mass and age for binaries simulated using both the CPL and CTL model and for single stars.
 
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth]{../Plots/protDist.pdf}
+	\includegraphics[width=\textwidth]{protDist.pdf}
    \caption{\xxx{Updated Figure} P$_{rot}$ as a function of stellar mass and age according to our CPL (left), CTL (left center), and single star (right center) simulations integrated to system ages uniformly sampled over $1-7$ Gyr using the \citet{Matt2015} magnetic braking model. For each case, we only plot 2,500 systems for clarity but account for all systems when computing the marginalized distributions. Right: The P$_{rot}$ distribution for each case, marginalized over stellar mass.}%
     \label{fig:protDist}%
 \end{figure*}
@@ -494,7 +494,7 @@ We compare the \xxx{P$_{rot}$ and age distributions of tidally-interacting stell
 \xxx{We quantify the impact of binarity on gyrochronology age estimates in Fig.~\ref{fig:gyro} by computing the percent difference between the mean ages of single and binary stars, for both tidal models, in mass and P$_{rot}$ bins for the populations depicted in Fig.~\ref{fig:protDist}. This quantity, referred to here as the ``Relative Age Error", represents the systematic error incurred by assigning a tidally-interacting binary star the age expected for single stars at a given mass and P$_{rot}$. For this comparison, we select the subset of tidally-locked and tidally-interacting binaries as classified in Fig.~\ref{fig:lockedCPL} and Fig.~\ref{fig:lockedCTL}.} 
 
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth]{../Plots/gyro.pdf}
+	\includegraphics[width=\textwidth]{gyro.pdf}
    \caption{\xxx{New Figure: Relative age error between single and binary stars for both the CPL (left) and CTL (right) tidal models. The error is computed as the percent difference between the mean ages of single and tidally-interacting binary stars in mass and P$_{rot}$ bins.}}%
     \label{fig:gyro}%
 \end{figure*}
@@ -504,7 +504,7 @@ We compare the \xxx{P$_{rot}$ and age distributions of tidally-interacting stell
 \xxx{The age distribution of binaries with P$_{rot} < 20$ d is inconsistent with that of single stars. In this range, the median ages and $68\%$ interval are $2.3^{+2.9}_{-0.9}$ Gyr and $2.4^{+3.0}_{-1.1}$ Gyr according to the CPL and CTL models, respectively, compared to the much younger single stars with ages of $1.6^{+0.8}_{-0.4}$ Gyr. We highlight this dichotomy in Fig.~\ref{fig:protAgeHist} by plotting a histogram of system ages from Fig.~\ref{fig:protDist} for single or primary stars in binaries with P$_{rot} < 20$ d.}  
 
 \begin{figure}[h]
-	\includegraphics[width=0.45\textwidth]{../Plots/protAgeHist.pdf}
+	\includegraphics[width=0.45\textwidth]{protAgeHist.pdf}
    \caption{\xxx{Updated Figure} Histogram of rapidly-rotating (P$_{rot} < 20$ d) \xxx{star} ages for single and primary stars in binaries from Fig.~\ref{fig:protDist}. Rapidly-rotating single stars must be young (ages $\lsim 2$ Gyr), while tidally-locked rapidly-rotating binaries exhibit a wide range of ages.}%
     \label{fig:protAgeHist}%
 \end{figure}
@@ -555,7 +555,7 @@ In general, it is difficult to accurately determine if a source is single star o
 \xxx{Qualitatively, the CTL model appears to do a better job of reproducing features seen in the \citet{Lurie2017} data than the CPL model. The CPL model, for example, cannot produce the observed cluster of supersynchronous rotators with P$_{orb}/$P$_{rot} \lsim 1.2$ for P$_{orb} < 10$ d whereas the CTL model can. Instead, owing to the its discrete P$_{eq}$, the CPL model predicts that all tidally-locked supersynchronous rotators lie on the line P$_{orb}/$P$_{rot} = 1.5$.}  This prediction is inconsistent with the data as no obvious spin-orbit commensurablity, aside from 1:1 synchronization, is present in the \citet{Lurie2017} data, likely because stellar convective envelopes lack a fixed shape, making resonant coupling difficult unless it occurs with internal gravity or pressure modes \citep{Burkart2014,Lurie2017}. \xxx{Neither model reproduces the very supersynchronous, P$_{orb}/$P$_{rot} > 1.6$, binaries in the \citet{Lurie2017} data as they typically have orbital eccentricities in excess of 0.3 and are outside of the region of parameter space we consider. The CTL model, however, could in principle reproduce these points if they are tidally-locked binaries as its P$_{eq}$ is a continuous function of $e$ and is applicable for large $e$, in contrast to the discrete P$_{eq}$ predicted by the CPL model that is valid for smaller $e$. Both tidal models predict that nearly all binaries with P$_{orb} < 4$ d have circularized orbits and synchronized spins due to strong tidal torques at short stellar separations, in agreement with the \citet{Lurie2017} observations. At very short P$_{orb}$, in the absence of a perturbing tertiary companion, circularization and synchronization is the inevitable end state for low-mass binaries \citep{Counselman1973}.} 
 
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth]{../Plots/lurieFig7.pdf}
+	\includegraphics[width=\textwidth]{lurieFig7.pdf}
    \caption{\xxx{Updated Figure} P$_{orb}/$P$_{rot}$ as a function of P$_{orb}$ according to the CPL model (left) and the CTL model (middle), and \citet{Lurie2017} \kepler EB observations (right). All points are colored by $e$.  In the right panel, the \kepler EBs at low P$_{orb}$ and low P$_{orb}/$P$_{rot}$ are likely either brown dwarfs or exoplanets \citep{Lurie2017}, and hence are not modeled by our simulations, so we do not consider them, but we display them for completeness.}%
     \label{fig:lurie7}%
 \end{figure*}

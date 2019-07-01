@@ -1,0 +1,173 @@
+Dear Dr. Shafter,
+
+Thank you for considering our manuscript. Below you will find our response to the referee's report where we list the issues raised in the report, denoted by REF with the referee's text in quotes for clarity, and how we addressed them in our revised manuscript, denoted by REPLY. In general, we found the referee's comments and suggestions very helpful and believe our revised manuscript is greatly improved because of their efforts. Please pass our thanks onto the referee. We have substantially edited portions of the Results section to improve the conciseness and clarity. These edits merely change the language and phrasing and do not alter the scientific content or conclusions. Note that in the revised manuscript, all text changes, except for deletions, are in bold text for emphasis. For each updated figure, we included "Updated Figure" in bold in the figure caption for clarity. Additionally, we added the citation for VPLanet, the software used to perform all of our simulations, to the "Software" section at the end of the manuscript. We did not included STELLAR there as it is a submodule of VPLanet and can only be used as a component of the VPLanet executable when performing our simulations.
+
+Sincerely,
+
+David Fleming, Rory Barnes, Jim Davenport, and Rodrigo Luger
+
+Responses to the referee report
+-------------------------------
+
+We first wish to thank the referee for the careful review of our manuscript. Your in-depth comments and critiques identified weaknesses that we have addressed and we believe have improved the quality of the research. Below, we list the issues raised in your report, denoted by REF with your text in quotes, and how we addressed them in our revised manuscript, denoted by REPLY. Note that in the revised manuscript, all text changes, except for deletions, are in bold text for emphasis. For each updated figure, we included "Updated Figure" in bold in the figure caption for clarity.
+
+During the review process, we noticed that an erratum was recently released for the Matt et al. (2015) magnetic braking model, Matt et al., (2019). The erratum impacted the torque normalization in equation 3 in our paper, overestimating it by a factor of 3/2. This error impacted every simulation in our paper that used the Matt+2015 model. We implemented this fix in our code, re-ran all of the simulations, and found that this error had no qualitative impact on our results: we still find that binaries can rotate subsynchronously at short Porb and tidally-lock at long Porb, even out to 100 d. The error weakened the torque due to magnetic braking relative to tidal torques, increasing the likelihood that binaries will tidally-lock. The number of binaries that tidally-lock at long Porb did decrease somewhat, however, as strong spin-down torques due to the combination of magnetic braking and tides are required to spin down long Porb (Porb > 60 d) stars enough to get captured into the tidally-locked state. This decrease, however, was small, a few percent. After re-running all our simulations, we re-generated every figure that displayed simulation results that used the Matt+2015 model and updated every quantity derived from our simulation results in the revised manuscript.
+
+Referee Report + Responses
+--------------------------
+
+Major points
+
+REF: "As mentioned above, the science presented in the paper is good enough to be published, the lack of concision and proof-reading makes difficult for the reader to estimate the paper at its true value. Many parts can be reduced to make the point of the paper clearer and the reading more convenient. I believe this will help a lot for the acceptance of this work in the community."
+
+REPLY: We apologize for the deficient proofreading and lack of concision in the submitted manuscript. After making the edits to respond to your comments, we thoroughly proofread the manuscript and worked to make our language more direct and concise, making many edits throughout the paper, all in bold.
+
+REF: "Even though the whole range of parameter is explored for equilibrium tides, nothing is said about the importance that dynamical tides could have on the dissipation. Yet, Ogilvie (2007,2013) showed they are a major element of tidal evolution of rotating stars and Mathis (2015) gave a formalism that could be easily implemented in this type of study. In particular, in the case of low-mass stars, it has been shown by eg Gallet & al. (2017) that the tidal dissipation factor (in the CPL formalism) will be strongly affected. I do not expect that the authors re-do all the models for this paper (though I would highly recommend that they do such calculations for a new paper), but the authors need to acknowledge the limitation of their model, at least in the opening section at the end, at best in the description of their model."
+
+REPLY: We thank the referee for pointing out this oversight. Tidal dissipation due to the dynamical tide is indeed an important physical consideration that can impact the rotation rates of low mass stars, e.g., in the star-planet tidal interactions examined in Bolmont et al. (2016). To address this point, we added the following text in bold in a new subsubsection, 2.2.5, in the description of our model:
+
+An additional mechanism for tidal dissipation in low-mass stellar binaries is the dynamical tide. This effect arises from the turbulent viscous damping of inertial waves that are excited in the stellar convective envelope by a tidal perturber, with Coriolis acceleration serving as the restoring force (Zahn 1975; Ogilvie+2007). Under the dynamical tide formalism, the stellar mass, evolving stellar structure, rotation rate, and tidal forcing frequency can all strongly impact the strength of tidal dissipation, which can span many orders of magnitude (Ogilvie+2007, Ogilvie 2013, Mathis 2015, Gallet+2017). For example, adopting the tidal frequency-averaged model for tidal dissipation of Ogilvie (2013), both Mathis (2015) and Gallet+2017 show that dynamical tidal dissipation is enhanced during the pre-main sequence due to the expansion of the stellar radiative core and rapid rotation, whereas the magnetic braking-driven spin-down on the main sequence decreases the tidal dissipation. Dissipation due to the dynamical tide could be important for some of the systems considered in this work since, for binary stars on circular orbits, inertial waves are excited in the stellar convective envelopes for Porb > Prot/2 and can drive significant spin and orbital evolution (e.g. Witte+2002, Ogilvie+2007, Bolmont+2016). Although semi-analytic models for dynamical tidal dissipation that account for the evolving stellar structure and rotation exist (e.g. Mathis 2015, Bolmont+2016, Gallet+2017), we do not consider them here as they are currently limited to circular orbits. We instead focus on exploring the impact of the equilibrium tide across a wide range of parameter space and leave an examination of how the combination of the dynamical and equilibrium tide impacts the rotation period evolution of low-mass binary stars for future work.
+
+REF: "It can be interesting to compare the effects of different magnetic braking models, and I understand that it allows a connection to the computations done in Fleming et al. (2018) using the same torque. But the rotation evolution trends provided by Reiners & Mohanty (2012)'s paper have been discussed at length in the literature as not realistic. They did a great work and were the first to show a direct dependence to the Rossby number and a cluster comparison for different mass at the same time but their converged sequence for solar-like stars (1.0-0.4 M_\odot) is evolving in the wrong way with higher mass stars spinning slower once converged (see eg their fig 4 for Hyades/Praesepe). Moreover, this comparison is not mentioned in the abstract nor discussed in the conclusions. I would remove this part that doesn't seem to be needed for this paper and just add a sentence about it with something like "we tested another braking law and the conclusion's were no different"."
+
+REPLY: We thank the referee for this suggestions and have removed the examination and discussion of simulations using the Reiners & Mohanty (2012) model. Specifically, we removed Sections 4.1.3 and 4.4.2 and Figures 5 and 14 in the original submitted manuscript.
+
+REF: "Abstract : CPL is not define"
+
+REPLY: The CPL model is now properly defined in the abstract.
+
+1.Introduction
+
+REF: "-Reiners & Mohanty (2012) didn't explore the Kepler field but did comparison with Praesepe"
+
+REPLY: We corrected this errant citation.
+
+REF: "Gyrochronlogy => Gyrochronology (A lot of typos are present all over the text, a bit of proof reading would be nice)"
+
+REPLY: We corrected these typos in the text and apologize for the lack of sufficient proofreading in the initial submission.
+
+REF: "Abt & Booyarak (2004) found that long periods binary's Prot can deviate from that of single stars was applicable for A and B type stars. Is that expected to be valid for lower masses ?"
+
+REPLY: Thank you for pointing this out.  After reviewing the literature, we believe that that connection is a bit too speculative as tidal processes in early and late type stars are likely not similar due to the different stellar structures, e.g. radiative vs convective envelope. Zahn (1975) and Mazeh (2008) showed that the tidal orbital circularization timescales differ between stars with radiative and convective envelopes, so we would anticipate that such a difference exists between the synchronization timescales as well. We have therefore removed the reference to Abt & Booyarak (2004) in both the introduction and in Section 4.3 as it is not applicable as we had originally believed.
+
+REF: "Moreover, any ages inferred from rotation periods of stars in unresolved binaries using gyro chronology could be incorrect owing to the influence of tidal torques. No previous study has quantified this effect". Indeed, it would be a really nice output of that paper or a following one."
+
+REF: "4.4 A lot can be cleaned here. It would have been more relevant to mimic a realistic population of binaries in the field to estimate the impact of binarity on gyrochronology."
+
+REPLY: We grouped these comments as they touched on a similar point. Thank you for pointing out this deficiency in our results: we did not properly
+quantify the impact of tidally-interacting binaries on age estimates using gyrochronology. We therefore created a new figure (13) in the revised manuscript that demonstrates the systematic error introduced by assuming gyrochronology methods apply to tidally-interacting binaries. To quantify this error, we computed the difference between the mean ages of single stars and tidally-interacting binaries in mass - Prot bins for both the CPL and CTL model simulation suites. We defined "tidally-interacting binaries" as binaries that were tidally-locked or had Prot within 10% of Peq, i.e. we combined the "Interacting" and "Locked" populations examined in Figures 9 and 10 in the revised manuscript. We found that gyrochronology methods can underpredict ages by up to 300% at short Prot and overpredict ages by up to 25% at long Prot. Only tidally-interacting binaries populated the Prot < 10 d and > 50 d bins for solar mass stars, so we could not compare to the ages of single stars in these cases. We expanded on these points in more detail and significantly edited Section 4.4, "Deviations From Single Star Prot Evolution: Implications for Gyrochronology", in the revised manuscript to accommodate these changes and clean up the section to improve the concision of our writing.
+
+2. Methods
+
+REF: "STELLAR is not a stellar evolution model. Be careful with the vocabulary used here, at best it can be considered as an interpolation tool in
+Baraffe+98's tracks. (Same comment at the beginning of the last paragraph of 2.1)"
+
+REPLY: Thank you for pointing out this error in our description of the model. We have changed the language in both locations in the text.
+
+REF: "I assume it is only a typo in the text but an exponent is missing in the descriptions of Matt+15 magnetic braking in eq. 2 for the convective turnover timescale."
+
+REPLY: Yes, that was a typo. We also confirmed that our code was using the correct exponent in all simulations.
+
+REF: "2.2.3 (end) What prevents your model from capturing other spin-orbit resonances ?"
+
+REPLY: The CPL model, owing to its inclusion of only 4 discrete tidal lags, only allows a body to enter into 3:2 and 1:1 spin - orbit commensurabilities. The CTL model does not resolve capture into spin-orbit resonances besides 1:1 since it predicts a continuous equilibrium period as a function of the orbital period, eccentricity, and obliquity, for tidally-locked bodies. See Sections 2.1 and 2.2 in Barnes (2017) for an expanded discussion. Models that do resolve captures into spin-orbit resonances, e.g. Rodriguez et al. (2012), instead directly integrate the equations of motion and torques for tidally-interacting bodies, whereas our model is purely secular. We added a sentence on this point at the end of Section 2.2.3 in the revised manuscript.
+
+3. Simulations
+
+REF: "I know it is not expected to evolve very much in that direction but what happened in the eccentricity increases and overcomes 0.3 in the CPL case ?"
+
+REPLY: In the CPL model, the eccentricity can grow for certain orbital and rotational states (see Equation 8 in Barnes 2017), such that the eccentricity could increase to beyond 0.3. In such a case, the CPL model can still be applied, but it is not strictly valid as truncated terms can dominate. On the other hand, the CTL model is 8th order in eccentricity. Leconte et al. (2010) argued that the CPL's lower order truncation renders its predictions incorrect in this eccentricity regime. Specifically, Leconte at al. (2010) found that for e > 0.32, the higher-order eccentricity terms dominate the constant and second order terms, meaning the the CPL model does not accurately capture the physics of the tidal interaction for moderate to large eccentricities. In this case, Leconte et al. (2010) showed that this can lead to semi-major axis growth under the 2nd order CPL model instead of the decrease predicted by the CTL model. Moreover, Leconte et al. (2010) found that under the CPL model for pseudo-synchronously (supersynchronously) binaries with eccentricities > 0.326, the eccentricities can grow, whereas the CTL model predicts that the eccentricity should damp. Leconte et al. (2010) argue that the latter is the correct behavior. We added a brief reference to this discussion in Leconte et al. (2010) in the text to clarify this point.
+
+REF: "Respectfully" -> Respectively (and elsewhere in the text)"
+
+REPLY: We have corrected all of these errors in the text.
+
+4. Results
+
+REF: "4.1.1 Low-mass stars can be in the saturated regime for very slow rotation rates + In your range of parameter, a binary 1Msun-1Msun is an extreme case with maximal tidal effect. So it doesn't seem very appropriate for a representative example as fig. 3."
+
+REPLY: Those are good points, however, we chose to use a 1Msun - 1 Msun binary as a pedagogical case because even with the extreme tidal torques in such a binary, tides and magnetic braking can still balance to produce subsynchronous rotation, similar to how we consider short Porb systems where tides are strong and in addition to long Porb cases up to 100 d. Also, we chose this example to serve as a useful comparison for our model with Fleming at al. (2018) and Zahn & Bouchet (1989) who both examined tidal interactions in 1Msun-1Msun binaries. Furthermore, given our assumptions and under the Matt+2015 magnetic braking model, both stars would be in the unsaturated regime, justifying our assumptions. We clarified these assumptions in Section 4.1.1 in the revised manuscript and by adding the following text:
+
+Although solar mass stars are the most massive stars we consider in this work, and hence will have the strongest tidal torque for a given tidal dissipation parameter and Porb, they can still exhibit subsynchronous rotation and serve as a useful end member case to examine here and in simulations below.
+
+Additionally, we took this opportunity to update Fig. 3 by making the range of k2 * tau values more symmetric about our fiducial values and added contours for clarity. The derivation described in the appendix used to generate this figure remains unchanged.
+
+REF: "4.1 is very interesting and the core of the paper. It can however be improved with more concision."
+
+REPLY: We are happy to hear the referee found this section interesting. We edited and trimmed down Section 4.1 to improve the focus. We bolded nearly all the text in Section 4.1 as most portions were edited to improve concision without any substantial nor qualitative change to the scientific content of the text.
+
+REF: "4.1.4 would be more appropriate as part of section 4.2 in my opinion"
+
+REPLY: Upon further reflection, we agree that 4.1.4 would be better suited as part of Section 4.2. It is now Section 4.2.1 in the revised manuscript and we have slightly edited the text near the end of Section 4.2 and beginning of 4.2.1 to accommodate its inclusion.
+
+REF: "4.2 Fig 8 and 9 needs to be adjusted and reshaped, legend, white is not very visible on yellow, etc... They are both really interesting and I spent a lot of time understanding each part of the diagram but I was disappointed that no discussions were made about the narrowness and the wideness of some constraining intervals, particular around for the CPL model. Thus I advise either to remove the interval in the figure, that would allow it to be smaller and clearer and there is already a lot to say about the figure without them. Either to add some comment in the text in a short and concise way."
+
+REPLY: We thank the referee for this point and are grateful that they took the time to understand this inadequate figure. We removed the intervals from the figure since displaying the median values still captures the physics of the various spin-orbital states examined in said figure. We significantly increased the font size to improve the figure's legibility.
+
+REF: "4.3 It would be interesting given the type of diagram of figure 10 and 11, to compare to the Kepler rotation period field by McQuillan+2014 for
+example and to look at what could be some missed binaries."
+
+REPLY: We agree with the referee and are already pursuing this very point in a new project using our model described in this manuscript.
+
+REF: "Also, I don't think anyone ever gave an age to a star with gyrochronology using Reiners&Mohanty (2012). I wouldn't recommend the use of the two different saturations value in a single population model."
+
+REPLY: We have removed the discussion and analysis involving the Reiners & Mohanty (2012) model.
+
+REF: "4.4.1 has actually been already discussed in 4.3."
+
+REPLY: We have removed this subsubsection as it mainly repeated content from 4.3.
+
+REF: "4.5 This section has to be present but should be twice smaller in my opinion and merged with 4.6 and 4.7, the message is very diluted here. Also, I'm surprised by the conclusion of the authors, while they claim that it is hard to make a clear statement, it seems very clear to me that the CTL model is doing a better job a reproducing the field by Lurie+2017. Particularly because the CPL models seems enable to produce super-synchronous rotators. But this is only an eye judgement. I'm also surprise to see that nothing is said about the highly super synchronous rotators with high eccentricity in Lurie+2017 sample. Are they still in the modeled range of parameters ? Should the authors expect their models to reproduce these binary ?"
+
+REPLY: As addressed in a subsequent point below, we removed section 4.7 and compressed its point to a few sentences added to the Discussion. We wish to keep 4.5 and 4.6 separate as 4.5 deals with examining how our model predictions compare to the Lurie+2017 data whereas 4.6 offers general observational tests to distinguish between the CPL and CTL model. We have made the distinction between the themes more clear.
+
+We agree that qualitatively, the CTL model does a better job reproducing the Lurie+2017 data than the CPL model as the former populates regions of parameter space that the CPL model fails to, e.g., the supersynchronous population noted by the reviewer. Our goal here, however, was to explore parameter space and identify general trends and limits predicted by our model and potentially present in the data. A proper statistical analysis, where the goal is to infer whether the CPL or CTL model best describes the Lurie+2017 data, would require considerable effort to generate realistic prior distributions for the simulations and correct the biases that are likely present in the data, i.e. the lack of long Porb binaries and the lack of slow rotators. Moreover, the lack of uncertainties on Prot and eccentricties in the Lurie+2017 dataset, and the approximate means in which the eccentricities were derived, prevent a robust comparison.  While such a suite of simulations would undoubtedly provide interesting constraints, it is beyond the scope of this investigation. We have significantly edited section 4.5, with most of the text reflecting the changes in bold in the revised manuscript, to compress the section, clarify the message, and address the qualitative differences between the CTL and CPL model predictions when compared to the Lurie+2017 data. We additionally worked to shorten the section and note that these edits did not significantly alter the scientific content nor conclusions.
+
+As for the highly supersynchronous rotators, our CTL model could reproduce them if they are tidally-locked binaries with eccentricities > 0.3, beyond the range we considered. In this case for large eccentricities, the CTL model equilibrium period, our equation 22, predicts that binaries on more eccentric orbits rotate more supersynchronously, e.g. Fig. 1 in Barnes (2017), so if we considered more eccentric binaries, our model could reproduce that observation. We have updated the colorbar for Fig. 15 to note that the highly supersynchronous rotators in the Lurie+2017 data have eccentricities > 0.3 and added the following text discussing why our model does not reproduces these systems in the revised manuscripts:
+
+Neither model reproduces the very supersynchronous, Porb/Prot > 1.6, binaries in the Lurie+2017 data as these binaries have orbital eccentricities in excess of 0.3 and are outside of the region of parameter space we consider. The CTL model, however, could in principle reproduce these points if they are tidally-locked binaries as its Peq is a continuous function of e and is applicable for large e, in contrast to the discrete Peq predicted by the CPL model that is valid for smaller e.
+
+REF: "4.6 The discussion around spin-orbit resonances as the ones by Rodriguez et al (2012) has already been discussed in much more positive terms in Sect. 2.2.3. + See comment above about the conclusion on CTL or CPL and the comparison to Lurie+2017 data."
+
+REPLY: We removed the repeated discussion of spin-orbit resonances from this section. Furthermore, we cut out additional unnecessary text in this section to make its points more concise.
+
+REF: "4.7 I'm sorry, I don't really understand the point of this section, at best it could be added in the conclusion in a sentence or two about future perspectives."
+
+REPLY: We removed this section and compressed the point to the following few sentences in the discussion as suggested by the reviewer:
+
+Beyond these tests, our model could be used to infer the tidal properties of binary stars, perhaps in a Markov Chain Monte Carlo framework, by directly comparing simulation results with the observed stellar and orbital properties, given the observational uncertainties and reasonable prior probability distributions for parameters like the initial binary e. This analysis, however, is also beyond the scope of this work and we leave it for future endeavors.
+
+5. Discussion
+
+REF: "We described three observational tests that can distinguish between which equilibrium tidal model better describes tidal interactions in low-mass stellar binaries." => Which observational tests ? The discussion would be a good place to summarise them."
+
+REPLY: We added the following text in the discussion to briefly summarize our proposed observational tests:
+
+We described three observational tests that can distinguish between which equilibrium tidal model better describes tidal interactions in low-mass stellar binaries. We primarily suggest that observers measure stellar Prot in binaries with solar-mass primaries at Porb 60-100 d. If any tidally-locked binaries are identified at long Porb, this would be evidence in favor of the CPL model as we found that only binaries tidally-interacting via the CPL model could tidally lock at such long Porb. At shorter Porb, precise measurements of Prot and binary e and Porb could distinguish between the CPL and CTL model in tidally locked systems, e.g. identifying if Peq follows Eq. (20) vs. Eq. (22), especially if the CPL Peq is in fact a discrete function of e. The observations required by these tests, however, are non-trivial.
+
+Additional comments
+
+REF: "These low-masse stars are expected to have their core and envelope rotation evolution decoupled and to re-couple on a long time-scale, see eg Gallet & Bouvier (2015). How would that affect the results of the authors ? In what direction ? In the aforementioned paper, they seem to have some fast rotating stars at late ages that are non-explained by their single star models. Do the authors think their binary model could help to reproduce these ?"
+
+REPLY: As explained by Gallet et al. (2013) and Gallet et al. (2015), the radiative core could act as an angular momentum reservoir for the envelope for up to 1 Gyr. This effect would work to spin up stars early on the main sequence against the spin-down induced by tidal torques and magnetic braking. We anticipate that this would increase the tidal locking timescales, but not significantly since the transfer lasts for only up to 1 Gyr. One interesting situation that could occur, however, is if the torque from the convective envelope's spin-up from internal angular momentum transportation balances the spin-down from tidal and magnetic braking torques. We would expect that in this case, a binary star could be rotating slightly faster than its expected equilibrium rotation period from tidal locking, analogous to the subsynchronous cases examined in Section 4.1 in this work. This state would likely not persist for long, however, as the internal angular momentum transport does not persist for the age of many systems. To address this, we added the following text to a new subsubsection, 2.1.1: Core-Envelope Coupling, in the Methods section:
+
+Our simplified model assumes that stars follow solid body rotation, whereas in real low-mass stars, coupling between the radiative core and convective envelope can impact the surface rotation period evolution (MacGregor+1991,Allain+1998,Bouvier+2008,Irwin+2009). Recent work by Gallet+2013 and Gallet+2015 find that the rapidly-rotating stellar core acts as an angular momentum reservoir for the convective envelope, potentially transferring angular momentum within the stellar interior and into the envelope for up to 1 Gyr, depending on the adopted magnetic braking model, the initial rotation rate, and the stellar mass. We anticipate that internal angular momentum transport would work against the spin-down caused by tidal torques, increasing tidal locking timescales. Internal angular momentum transport torques could potentially balance both tidal and magnetic braking torques near the tidally-locked state, producing slight supersynchronous rotation, analogous to the subsynchronous case examined in Section 4.1. Modeling core-envelope coupling is beyond the scope of this work, however.
+
+The fast rotating stars at late ages examined by Gallet & Bouvier (2015) could be explained by our model if they are in fact unresolved binaries at relatively short orbital periods. For example, for sufficiently strong tidal parameters, our theory shows that binaries can tidally-lock in good agreement with previous results, e.g. Zahn & Bouchet (1989). In this case, the tidal locking maintains rapid rotation against the spin-down caused by magnetic braking at the expense of orbital angular momentum, often keeping Prot <= 20 d. We find that this state of tidally-induced rapid rotation can persist for Gyrs across a wide range of primary star masses, e.g. Figs. 9, 10, and 14 in the revised manuscript.
+
+For completeness, we also describe other changes to the manuscript that were not suggested by the reviewer:
+
+-Throughout the revised manuscript, we corrected typos, grammatical errors, and sentence structure with the corrected text in bold.
+
+- Near the end of the introduction, we performed some minor text edits to improve the conciseness and removed a redundant phrase. The edited sentence appears in bold in the revised manuscript.
+
+-At the end of Section 2.2.2 in the revised manuscript, we added the following text to further clarify how our results can be interpreted in the context of other similar works as a function of tidal Q:
+
+"For example, a common re-parameterization of Q is the reduced tidal quality factor,
+Q' = 3Q/2k_2 (e.g. Leconte+2010). Given our choice of k_2 = 0.5, this reduces to Q' = 3 Q."
+
+-Given that the Matt+2015 model erratum effectively strengthened tides relative to magnetic braking, all the CPL simulations in Fig. 5 in the original manuscript tidally locked after we implemented the correction. We re-ran the simulations in Fig. 5 in the revised manuscript, keeping all initial conditions the same, but assuming a slightly longer initial Porb = 7.5 d to get weaker tidal torques, compared to the initial Porb = 5 d in the submitted manuscript. The new simulations now again displays how subsynchronous rotation can occur for short Porb systems and highlights how subsynchronous rotators can transition from subsynchronous to synchronous rotation via the mechanism described in the text. The new simulations qualitatively replicate the evolution seen in original Figure 5 in the submitted manuscript and do not change our results. We noted these changes in bold in the text in Section 4.1.3 and in the Fig. 5 caption in the revised manuscript.
+
+-At the end of the 1st paragraph in Section 4.3 in the revised manuscript, we added the text "consistent with ages of stars in the Kepler field (Chaplin+2014)" to clarify our adopted age distribution.
+
+-Following the referee's emphasis on concision, we consolidated much of Section 4.3 to remove redundant points and improve the readability of this section. The scientific content and conclusions remain unchanged, but the language has been edited for clarity. We highlighted the changes in bold text in the revised manuscript.

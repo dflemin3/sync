@@ -20,6 +20,13 @@ mpl.rcParams['font.size'] = 22.0
 mpl.rc('font',**{'family':'serif','serif':['Computer Modern']})
 mpl.rc('text', usetex=True)
 
+# Define physical constants
+BIGG = 6.674e-8 # Universal gravitational constant in cgs
+MSUN = 1.988416e30 # Mass of sun in g
+RSUN = 6.957e10 # Radius of sun in cm
+AUCM = 1.49597870700e11 # cm per AU
+DAYSEC = 24.0 * 3600.0 # seconds per day
+
 # Path to sim results
 cplDir = "../Sims/TidalExample/CPL"
 ctlDir = "../Sims/TidalExample/CTL"
@@ -34,9 +41,9 @@ cpl = np.genfromtxt(os.path.join(cplDir,"bintides.secondary.forward"))
 ctl = np.genfromtxt(os.path.join(ctlDir,"bintides.secondary.forward"))
 
 # Plot e, Porb, Prot
-fig, axes = plt.subplots(nrows=3, figsize=(6,16), sharex=True)
+fig, axes = plt.subplots(nrows=3, figsize=(6,15), sharex=True)
 
-# Left: e
+# Top: e
 axes[0].plot(cpl[:,0], cpl[:,5], lw=3, ls="-", color="C0", label="CPL")
 axes[0].plot(ctl[:,0], ctl[:,5], lw=3, ls="-", color="C1", label="CTL")
 
@@ -49,7 +56,7 @@ axes[1].plot(ctl[:,0], ctl[:,6], lw=3, ls="-", color="C1", label="CTL")
 
 axes[1].set_ylabel("Orbital Period [d]")
 
-# Right: Prot
+# Bottom: Prot
 axes[2].plot(cpl[:,0], cpl[:,4], lw=3, ls="-", color="C0", label="CPL")
 axes[2].plot(ctl[:,0], ctl[:,4], lw=3, ls="-", color="C1", label="CTL")
 
@@ -61,7 +68,6 @@ for ax in axes:
     ax.set_xscale("log")
     ax.axvline(cplLock, lw=3, ls="--", color="C0")
     ax.axvline(ctlLock, lw=3, ls="--", color="C1")
-
 
 axes[2].set_xlabel("Time [yr]")
 

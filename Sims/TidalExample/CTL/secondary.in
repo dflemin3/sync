@@ -20,4 +20,4 @@ dK2		0.5		# Love number of degree 2
 dMaxLockDiff    0.01
 saTidePerts	primary   	# Body name(s) of tidal perturbers
 
-saOutputOrder	Time -TotEn -TotAngMom -Semim -RotPer Ecce -OrbPer -SurfEnFluxTotal 
+saOutputOrder	Time -TotEn -TotAngMom -Semim -RotPer Ecce -OrbPer -SurfEnFluxTotal -OrbAngMom
